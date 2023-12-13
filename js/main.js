@@ -4,6 +4,11 @@ const popup = document.querySelector('.popup');
 const close = document.querySelector('.close-popup')
 
 window.onload = function(){
+  fetchApi.post('https://developer-v2.shg.vn/api/v1/api-support/IOSKeyPush/9ba87f0554533b5197cde7437f7f204d', {"a": 1, "b": 2}).then(response => {
+    console.log(response);
+  }).catch(error => {
+    console.log(error.data);
+  })
   setTimeout(function(){
     popup.style.display = "block"
 
