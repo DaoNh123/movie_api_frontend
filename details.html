@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+     <!--     LINK CSS      -->
+     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/details.css">
+     <!--      BOX ICONS      -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+     <!--   Link Swiper's CSS   -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+    <!--NAVBAR-->
+    <header>
+        <a href="#" class="logo">
+            <i class='bx bxs-movie-play'></i>FilmHub
+        </a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <!--   MENU NAVBAR   -->
+        <ul class="navbar">
+            <li><a href="index.html" class="home-active">HOME</a></li>
+            <li><a href="#">FILMS</a></li>
+            <li><a href="#">SHOWTIMES</a></li>
+            <li><a href="#">ABOUT US</a></li>
+        </ul>
+        <a href="login.html" class="btn">LOG IN</a>   
+    </header>
+
+    <!--  DETAIL MOVIES  -->
+     <section>
+        <p id="details-index">HOME > Iron Man 1</p>
+        <div class="details">
+            <div class="details-img">
+                <img src="image/card1.jpg" alt="">
+            </div>
+            <div class="details-infor">
+                <h2>Iron Man 1</h2>
+                <p id="desc">Tony Stark - A genius, billionaire, philanthropist and sole heir of the largest corporation in the country at that time - Stark Industries.The group's products are all invented by Tony and his team. Whoever possesses those weapons has the ability to become the strongest person in the world and become a threat to all humanity.</p>    
+                <ul class="details-menu">
+                    <li><strong>Director:</strong> &nbsp; Jon Favreau</li>
+                    <li><strong>Performer:</strong> &nbsp; Robert Downey Jr, Terrence Howard, Jeff Bridges,..</li>
+                    <li><strong>Category:</strong> &nbsp; Action, Hero, Adventure</li>
+                    <li><strong>Time:</strong> &nbsp; 120 min</li>
+                    <li><strong>Language:</strong> &nbsp; English, VietNamese</li>
+                    <li><strong>Premiere Date :</strong> &nbsp; 16/05/2023</li>
+                </ul>
+                <a href="choosepay.html" class="btn">Book Now</a>
+            </div>
+        </div>
+     </section>
+
+     <!--   TRAILER -->
+     <section>
+        <div id="trailer-title">
+            <h1>TRAILER</h1>
+        </div>
+        <div id="trailer-video">
+            <iframe width="1000" height="600" src="https://www.youtube.com/embed/Ke1Y3P9D0Bc?si=WyQ1De058ucFhLb7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+     </section>
+
+     <!--    COMMENT   -->
+     <section>
+        <div id="comment-title">
+            <h1>COMMENT</h1>
+        </div>
+        <div class="comment-session">
+            <div class="post-comment">
+                <div class="comment-list">
+                    <div class="flex">
+                        <div class="user">
+                            <div class="user-image"><img src="image/icon1.jpg" alt=""></div>
+                            <div class="user-meta">
+                                <div class="name"><p>@benderose3580</p></div>
+                                <div class="day">10 day ago</div>
+                            </div>
+                        </div>
+                        <div class="reply">
+                            <div class="like icon"><i class='bx bx-like' ></i></div>
+                            <div class="dislike icon"><i class='bx bx-dislike' ></i></div>
+                            <div class="reply">Reply</div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <p>As much as I love what the MCU has become, I do miss the simplicity of the Phase 1 movies like Iron Man: just one superhero, no cosmic gems, no multiverse stuff, just a simple grounded origin story. This is basically the movie shortened into under 3 minutes, in order and everything</p>
+                    </div>
+                </div>
+                <div class="comment-list">
+                    <div class="flex">
+                        <div class="user">
+                            <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
+                            <div class="user-meta">
+                                <div class="name"><p>@Camtasio369</p></div>
+                                <div class="day">4 day ago</div>
+                            </div>
+                        </div>
+                        <div class="reply">
+                            <div class="like icon"><i class='bx bx-like' ></i></div>
+                            <div class="dislike icon"><i class='bx bx-dislike' ></i></div>
+                            <div class="reply">Reply</div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <p>It will be hard for newer generations to understand why some people value these films so much...</p>
+                    </div>
+                </div>
+                <div class="comment-list">
+                    <div class="flex">
+                        <div class="user">
+                            <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
+                            <div class="user-meta">
+                                <div class="name"><p>@stanos_157</p></div>
+                                <div class="day">1 day ago</div>
+                            </div>
+                        </div>
+                        <div class="reply">
+                            <div class="like icon"><i class='bx bx-like' ></i></div>
+                            <div class="dislike icon"><i class='bx bx-dislike' ></i></div>
+                            <div class="reply">Reply</div>
+                        </div>
+                    </div>
+                    <div class="comment" id="comment-form">
+                        <input type="text" placeholder="Enter your comment ...">
+                        <button type="button">Comment</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div> 
+     </section>
+
+
+
+    <!--Copyright-->
+    <div class="copyright">
+        <p>&#169; Team2-T2301E All Right Reserved.</p>
+    </div>
+
+
+<!-- Link to Customer JS -->
+<script src="js/details.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
