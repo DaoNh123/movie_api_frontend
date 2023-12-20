@@ -24,13 +24,14 @@
         <!--   MENU NAVBAR   -->
         <ul class="navbar">
             <li><a href="index.html" class="home-active">HOME</a></li>
-            <li><a href="#">MOVIES</a></li>
-            <li><a href="#">SHOWTIMES</a></li>
-            <li><a href="#">ABOUT US</a></li>
+            <li><a href="commingsoon.html">COMMING SOON</a></li>
+            <li><a href="news.html">NEWS</a></li>
+            <li><a href="aboutus.html">ABOUT US</a></li>
         </ul>
         <a href="login.html" class="btn">LOG IN</a>   
     </header>
 
+    <!-- BODY -->
     <img src="image/background1.jpg" alt="" class="body-container-img">
     <div class="body-container">
         <div class="choice-container">
@@ -42,7 +43,7 @@
                             <p>Available</p>
                         </li>
                         <li>
-                            <div class="seat selected"></div>
+                            <div class="seat" style="background-color: #6feaf6;"></div>
                             <p>Selected</p>
                         </li>
                         <li>
@@ -239,12 +240,14 @@
                     <span id="totalAmount">$0</span>
                 </div>
 
-                <div class="button-choices" style="margin-top: 58px;margin-left: 45px;">
+                <!-- <div class="button-choices" style="margin-top: 58px;margin-left: 45px;">
                     <a href="details.html" class="btn">BACK</a>   
-                    <!-- <a href="#" class="btn">CONTINUE</a>    -->
-                    <!-- <button class="btn" id="continue">CONTINUE</button> -->
+                    <a href="#" class="btn">CONTINUE</a>   
+                     <button class="btn" id="continue">CONTINUE</button>
                       
-                </div>  
+                </div>   -->
+                <!-- <a href="details.html" class="btn">BACK</a>   -->
+
                 <section>
                     <button class="show-modal">CONTINUE</button>
                     <span class="overlay"></span>
@@ -259,13 +262,10 @@
                         </div>
                     </div>
                 </section>  
+
             </div>
         </div>
     </div>    
 
-
-  <!-- <p class="text">
-    You have selected <span id="count">0</span> seats for a total price of $<span id="total">0</span>
-  </p> -->
   <script src="js/choosepay.js"></script>
 </body>

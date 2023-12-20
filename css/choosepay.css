@@ -9,6 +9,7 @@
     text-decoration: none;
     scroll-padding-top: 2rem;
     scroll-behavior: smooth;
+      
 }
 
 /* Variavles */
@@ -105,6 +106,7 @@ section{
     justify-content: center;
     font-weight: 800;
     font-size: 16px;
+    cursor: pointer;
   }
   .seat.selected{
     background-color: #6feaf6;

@@ -14,7 +14,7 @@ close.addEventListener('click',()=>{
    popup.style.display = "none"
 })
 
-
+// SCROLL HEADER
 let header = document.querySelector('header');
 let menu = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
@@ -33,7 +33,7 @@ window.onscroll = () =>{
   navbar.classList.remove('active');
 }
 
-
+// SLIDE 
 var swiper = new Swiper(".home", {
     spaceBetween: 30,
     centeredSlides: true,
@@ -47,6 +47,7 @@ var swiper = new Swiper(".home", {
     },
   }); 
 
+  // SLIDE WRAPPER
   var swiper = new Swiper(".coming-container",{
     spaceBetween: 20,
     loop:true,
@@ -70,3 +71,59 @@ var swiper = new Swiper(".home", {
       },
     },
   });
+
+  
+// Render API ra ngoài trình duyệt
+const fetchApi = async (api) => {
+  const response = await fetch(api);
+  const data = await response.json();
+  return data;
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const moviesSection = document.getElementById("movie");
+
+  fetchApi("http://localhost:8080/api/movies").then((data) => {
+    let movies = data.content;
+
+    let html = `
+      <h2 class="heading">
+        Opening This Week
+      </h2>
+      <div class="grid-container">
+    `;
+
+    movies.forEach((movie) => {
+      html += `
+        <div class="box" id="movieDetails">
+          <div class="box-img">
+            <a href="details.html"><img src="${movie.posterUrl}" alt=""></a>
+            <div class="overlay">
+              <div class="button-container">
+                <a href="choosepay.html" class="book-button">Book</a>
+                <a href="details.html" class="detail-button">Detail</a>
+              </div>
+            </div>
+            <div class="movie-label">${movie.movieLabel}</div>
+          </div>
+          <a href="details.html"><h3 id="movieName">${movie.movieName}</h3></a>
+          <span id="duration">${movie.duration} min |</span>
+          <span id="category">${movie.category}</span>
+        </div>
+      `;
+    });
+
+    html += `
+      </div>
+    `;
+
+    moviesSection.innerHTML = html;
+  });
+});
+
+  
+  
+  
+
+
+

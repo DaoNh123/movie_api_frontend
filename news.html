@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--     LINK CSS      -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/news.css">
+    <!--      BOX ICONS      -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!--   Link Swiper's CSS   -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+</head>
+<body>
+    <!--   HEADER  -->
+    <header>
+        <a href="index.html" class="logo">
+            <i class='bx bxs-movie-play'></i>FilmHub
+        </a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <!--   MENU NAVBAR   -->
+        <ul class="navbar">
+            <li><a href="index.html" class="home-active">HOME</a></li>
+            <li><a href="commingsoon.html">COMMING SOON</a></li>
+            <li><a href="news.html">NEWS</a></li>
+            <li><a href="aboutus.html">ABOUT US</a></li>
+        </ul>
+        <a href="login.html" class="btn">LOG IN</a>   
+    </header>
+
+    <!-- BANNER-->
+    <div class="news-banner" id="news-banner">
+        <img src="https://images.pexels.com/photos/6899765/pexels-photo-6899765.jpeg" alt="" style="width: 100%;height: 400px;">
+        <div class="new-items">
+            <h2>NEWS</h2>
+            <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+        </div> 
+    </div>
+    <!--  NEWS CARD  -->
+    <div class="card-container">
+        <div class="card">
+          <div class="card__header">
+            <a href="#"><img src="https://source.unsplash.com/600x400/?computer" alt="card__image" class="card__image" width="600"></a>
+          </div>
+          <div class="card__body">
+            <h4><a href="#">What's new in 2022 Tech</a></h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+          </div>
+          <div class="card__footer">
+            <div class="user">
+              <img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
+              <div class="user__info">
+                <h5>Jane Doe</h5>
+                <small>2h ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    </div>    
+
+    <!-- Link to Customer JS -->
+    <script src="js/news.js"></script>
+</body>
+</html>
