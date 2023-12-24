@@ -48,16 +48,16 @@ replyDiv.forEach((replyDivs) => {
  
 
 // Render API ra ngoài trình duyệt
-const fetchSingleApi = async (api) => {
-  const response = await fetch(api);
-  const data = await response.json();
-  return data;
-};
+// const fetchSingleApi = async (api) => {
+//   const response = await fetch(api);
+//   const data = await response.json();
+//   return data;
+// };
 
 document.addEventListener("DOMContentLoaded", () => {
   const detailsSection = document.querySelector("movie");
 
-  fetchApi("http://localhost:8080/api/movies").then((data) => {
+  fetchApi.get("http://localhost:8080/api/movies").then((data) => {
     let html = `
     <section>
       <p id="details-index">HOME > ${movie.movieName}</p>

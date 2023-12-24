@@ -74,16 +74,16 @@ var swiper = new Swiper(".home", {
 
   
 // Render API ra ngoài trình duyệt
-const fetchApi = async (api) => {
-  const response = await fetch(api);
-  const data = await response.json();
-  return data;
-};
+// const fetchApi = async (api) => {
+//   const response = await fetch(api);
+//   const data = await response.json();
+//   return data;
+// };
 
 document.addEventListener("DOMContentLoaded", () => {
   const moviesSection = document.getElementById("movie");
 
-  fetchApi("http://localhost:8080/api/movies").then((data) => {
+  fetchApi.get("http://localhost:8080/api/movies").then((data) => {
     let movies = data.content;
 
     let html = `
