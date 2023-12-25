@@ -40,30 +40,17 @@ section{
     position: relative;
     height: 100vh;
     display: grid;
-    align-items: center;
-
-    
+    align-items: center; 
 }
 .login form{
     width: 450px;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-
     animation-name: slide-in;
     animation-duration: 2s;
     animation-fill-mode:forwards;
 }
-
-@keyframes slide-in {
-    0% {
-      transform: translateX(-150%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
 .login__bg{
     position: absolute;
     width: 100%;

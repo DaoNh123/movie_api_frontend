@@ -15,7 +15,6 @@
 
 </head>
 <body>
-
      <!--   NOTIFICATION   -->
      <div class="popup">
         <span class="overlay-popup"></span>
@@ -37,7 +36,6 @@
         </div>
     </div>
 
-
     <!--NAVBAR-->
     <header>
         <a href="index.html" class="logo">
@@ -47,36 +45,14 @@
         <!--   MENU NAVBAR   -->
         <ul class="navbar">
             <li><a href="index.html" class="home-active">HOME</a></li>
-            <li><a href="#">MOVIES</a></li>
-            <li><a href="#">SHOWTIMES</a></li>
+            <li><a href="commingsoon.html">COMMING SOON</a></li>
+            <li><a href="news.html">NEWS</a></li>
             <li><a href="aboutus.html">ABOUT US</a></li>
         </ul>
         <a href="login.html" class="btn">LOG IN</a>   
     </header>
 
     <!--  BODY  -->
-
-    <!--   NOTIFICATION   -->
-    <!-- <div class="popup">
-        <div class="contentBox">
-            <div class="close-popup">
-                <i class='bx bx-x'></i>
-            </div>
-            <div class="imgBx">
-                <img src="image/icon3.png" alt="">
-            </div>
-            <div class="content-popup">
-                <div>
-                    <h2>Special Offer</h2>
-                    <h1>80<sup>%</sup><span>Off</span></h1>
-                    <p>Enhance your movie watching experience with your loved ones. If you have comments, please use the following methods</p>
-                    <a href="login.html" class="btn">LOG IN</a>   
-                </div> 
-            </div>
-        </div>
-    </div>  -->
-
-
     <!-- SLIDE  -->
      <section class="home swiper" id="home">
         <div class="swiper-wrapper">
@@ -117,7 +93,7 @@
                 </div>
             </div>
         </div> 
-          <div class="swiper-pagination"></div>
+        <div class="swiper-pagination"></div>
     </section> 
  
     <!-- Movies --> 
@@ -126,153 +102,24 @@
             Opening This Week
         </h2>
         <!-- Movies Container-->
-        <div class="movies-container">
-            <div class="movies-container-top">
+        <div class="grid-container">
                 <!-- Box 1 -->
-                <div class="box">
+                <div class="box" id="movieDetails">
                     <div class="box-img">
-                        <a href="details.html"><img src="image/card1.jpg" alt=""></a>
+                        <a href="details.html"><img src="#" alt=""></a>
                         <div class="overlay">
                             <div class="button-container">
                                 <a href="choosepay.html" class="book-button">Book</a>
                                 <a href="details.html" class="detail-button">Detail</a>
                             </div>
                         </div>
+                        <div class="movie-label">PG</div>
                     </div>
-                    <a href="details.html" ><h3>Iron Man 1</h3></a>
-                    <span>120 min | Action</span>
-                </div>
-                <!-- Box 2 -->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card2.jpg " alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Thor : The Dark World</h3></a>
-                    <span>140 min | Action</span>
-                </div>
-                <!-- Box 3 -->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card3.jpg" alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Mision Imposible 4</h3></a>
-                    <span>120 min | Action</span>
-                </div>
-                <!-- Box 4 -->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card4.jpg" alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Kungfu Hustle</h3></a>
-                    <span>120 min | Action</span>
-                </div>
-                <!-- Box 5 -->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card5.jpg" alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Shaolin Soccer</h3></a>
-                    <span>130 min | Action</span>
-                </div>
+                    <a href="details.html"><h3 id="movieName">Iron Man 1</h3></a>
+                    <span id="duration">120 min |</span>
+                    <span id="category">Action</span>
+                </div>          
             </div>
-
-            <div class="movies-container-bottom">
-                <!-- Box 6-->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card6.jpg" alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Thor: Love And Thunder</h3></a>
-                    <span>120 min | Action</span>
-                </div>
-                <!-- Box 7-->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card7.jpg" alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Avenger: Infinity War</h3></a>
-                    <span>140 min | Action</span>
-                </div>
-                <!-- Box 8-->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card8.jpg" alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Doctor Strange</h3></a>
-                    <span>120 min | Action</span>
-                </div>
-                <!-- Box 9-->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card9.png" alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Captain Marvel</h3></a>
-                    <span>120 min | Action</span>
-                </div>
-                <!-- Box 10-->
-                <div class="box">
-                    <div class="box-img">
-                        <a href="details.html"><img src="image/card10.jpg" alt=""></a>
-                        <div class="overlay">
-                            <div class="button-container">
-                                <a href="choosepay.html" class="book-button">Book</a>
-                                <a href="details.html" class="detail-button">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="details.html"><h3>Tranformer 3</h3></a>
-                    <span>130 min | Action</span>
-                </div>
-            </div>
-        </div>      
     </section>
 
     <!-- COMING SOON-->
@@ -365,26 +212,8 @@
         </div>
     </section>
 
-    <!-- <div class="footer-right" id="newsletter"> 
-        <h2>Subscribe To Get <br> Newsletter</h2> 
-        <form action="">
-            <input type="text" class="email" placeholder="Enter Email..." required>
-            <input type="submit" value="Subcribe" class="btn">
-        </form> 
-    </div> -->
-
-
     <!--  FOOTER  -->
     <section class="footer">
-        <!-- <a href="#" class="logo">
-            <i class='bx bxs-movie-play'></i>FilmHub
-        </a>
-        <div class="social">
-            <a href="#"><i class='bx bxl-facebook'></i></a>
-            <a href="#"><i class='bx bxl-instagram' ></i></a>
-            <a href="#"><i class='bx bxl-youtube' ></i></a>
-            <a href="#"><i class='bx bxl-tiktok' ></i></a>
-        </div> -->
         <div class="footer-left">
             <div class="footer-address">
                 <i class='bx bx-location-plus' ></i>

@@ -1,6 +1,8 @@
- /* GOOGLE FONTS */
+/* GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
+
+/* RESET CSS */
+*{ 
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding:0;
@@ -34,85 +36,43 @@ section{
     padding: 4.5rem 0 1.5rem;
 }
 
-/*            HEADER             */
-header{
-    position: fixed;
-    width: 100%;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 100px;
-    transition: 0.5s;
-}
-header.shadow{
-    background: var(--bg-color);
-    box-shadow:  0 0 4px rgb(14 55 54 / 15%);
-}
-header.shadow .navbar a{
-     color: var(--text-color);
-}
-header.shadow .logo{
-    color: var(--text-color);
-}
-.logo{
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--bg-color);
-    display: flex;
-    align-items: center;
-    column-gap: 0.5rem;
-}
-.logo .bx{
-    font-size: 24px;
-    color: var(--main-color);
-}
-.navbar{
-    display: flex;
-    column-gap: 5rem;
-}
-.navbar li{
+/****  BANNER *****/
+.banner {
     position: relative;
-
 }
-.navbar a{
-    font-size: 1rem;
-    font-weight: 550;
-    color: var(--bg-color);
-}
-.navbar a::after{
-    content: '';
-    width: 0;
-    height: 2px;
-    background: var(--main-color);
+  
+.banner-content {
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    transition: 0.4s all linear;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: rgba(255, 44, 31, 0.8); */
+    padding: 20px;
+    text-align: center;
+    color: white;
+} 
+.banner-content h2{
+    font-size: 26px;
 }
-.navbar a:hover::after,
-.navbar .home-active::after {
-    width: 100%;
-}
-#menu-icon{
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1000001;
-    display: none ;
-}
-.btn{
-    padding: 0.7rem 1.4rem;
-    background: var(--main-color);
-    color: var(--bg-color);
+.banner-content button {
+    background-color: #ff2c1f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     font-weight: 500;
-    border-radius: 0.5rem;
+    text-decoration: none;
+    margin-top:10px ;
 }
-.btn:hover{
-    background: #fa1216 ;
+  
+.banner-content button a {
+    color: white;
+    text-decoration: none;
 }
-
+  
+.banner-content button:hover {
+    background-color: #cc2017;
+  }
 
 /* About us section */
 .about {
@@ -128,14 +88,23 @@ header.shadow .logo{
     text-align: center;
 }
 .about-top{
+    text-align: center;
+    padding: 0 auto;
     margin-bottom: 20px;
 }
-#about-title{
-    border-bottom: 2px solid var(--main-color);
-    width: 130px;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+#about-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}  
+#about-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: #ff2c1f;
 }
 .about-content{
     display: flex;
@@ -148,6 +117,133 @@ header.shadow .logo{
 .about-img img{
     width: 620px;
     margin-left: 30px;
+}
+
+/**  POLICY US  **/
+.policy-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#policy-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}  
+#policy-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: #ff2c1f;
+}
+.policy-content{
+    width: 1100px;
+    align-items: center;
+    margin: 0 auto;
+}
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    padding-left: 25px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+} 
+  .active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 10px 25px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+/**  TEAM  **/
+.team-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#team-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}  
+#team-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: #ff2c1f;
+}
+.team-content {
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+.team-card {
+    width: 25%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 10px;
+    text-align: center;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.team-card img{
+    border-radius: 50%;
+    padding: 10px;
+}
+ .team-card h1{
+    font-size: 20px;
+ } 
+.team-title {
+    color: grey;
+    font-size: 18px;
+}
+.team-card .social{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: var(--bg-color);
+    background-color: var(--main-color);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+button:hover, a:hover {
+    opacity: 0.9;
 }
 
 /** CONTACT US **/
@@ -164,14 +260,21 @@ header.shadow .logo{
 .contact-top{
     margin-bottom: 30px;
 }
-#contact-title{
-    border-bottom: 2px solid var(--main-color);
-    width: 220px;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
+#contact-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
 }
+#contact-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: #ff2c1f;
+
+  }
 .contact-content{
     display: flex;
     justify-content: space-between;
@@ -266,4 +369,8 @@ header.shadow .logo{
     margin-left: 25px;
     margin-right: 25px;
     border-radius: 20px;
+    border: 2px solid var(--main-color);
+}
+.contact__button:hover{
+    background-color: #e50d02;
 }
