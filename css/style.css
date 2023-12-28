@@ -529,8 +529,8 @@ header.shadow .logo{
 
 
 /**   Responsive CSS   **/
-
- /* @media(max-with:1080px){
+/* 
+ @media(max-with:1080px){
     .home-text{
         padding: 0 100px;
     }
@@ -630,4 +630,4 @@ header.shadow .logo{
     .box ,.box-img{
         height:  240px;
     } 
-} */
+}  */

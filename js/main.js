@@ -74,16 +74,16 @@ var swiper = new Swiper(".home", {
 
   
 // Render API ra ngoài trình duyệt
-// const fetchApi = async (api) => {
-//   const response = await fetch(api);
-//   const data = await response.json();
-//   return data;
-// };
+const fetchApi = async (api) => {
+  const response = await fetch(api);
+  const data = await response.json();
+  return data;
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const moviesSection = document.getElementById("movie");
 
-  fetchApi.get("http://localhost:8080/api/movies").then((data) => {
+  fetchApi("http://localhost:8080/api/movies").then((data) => {
     let movies = data.content;
 
     let html = `
@@ -97,18 +97,17 @@ document.addEventListener("DOMContentLoaded", () => {
       html += `
         <div class="box" id="movieDetails">
           <div class="box-img">
-            <a href="details.html"><img src="${movie.posterUrl}" alt=""></a>
+            <a href="details.html?id=${movie.id}"><img src="${movie.posterUrl}" alt=""></a>
             <div class="overlay">
               <div class="button-container">
                 <a href="choosepay.html" class="book-button">Book</a>
-                <a href="details.html" class="detail-button">Detail</a>
+                <a href="details.html?id=${movie.id}" class="detail-button">Detail</a>
               </div>
             </div>
             <div class="movie-label">${movie.movieLabel}</div>
           </div>
-          <a href="details.html"><h3 id="movieName">${movie.movieName}</h3></a>
-          <span id="duration">${movie.duration} min |</span>
-          <span id="category">${movie.category}</span>
+          <a href="details.html?id=${movie.id}"><h3 id="movieName">${movie.movieName}</h3></a>
+          <span id="duration">${movie.duration} min </span>
         </div>
       `;
     });
@@ -120,10 +119,3 @@ document.addEventListener("DOMContentLoaded", () => {
     moviesSection.innerHTML = html;
   });
 });
-
-  
-  
-  
-
-
-
