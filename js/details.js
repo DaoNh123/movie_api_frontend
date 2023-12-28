@@ -17,6 +17,63 @@ window.onscroll = () =>{
   navbar.classList.remove('active');
 }
 
+// let urlParams = new URLSearchParams(window.location.search);
+// let movieId  = decodeURIComponent(urlParams.get('movie.id'));
+
+// // Fetch API data
+fetch('http://localhost:8080/api/movies')
+  .then(response => response.json())
+  .then(data => {
+    const movieNameElements = document.querySelectorAll('.movieName');
+    const description = document.querySelector('.description');
+    const director = document.querySelector('.director');
+    const categoryNameList = document.querySelector('.categoryNameList');
+    const duration = document.querySelector('.duration');
+    const language = document.querySelector('.language');
+    const openingTime = document.querySelector('.openingTime');
+    const closingTime = document.querySelector('.closingTime');
+    const posterUrl = document.querySelector('.posterUrl img');
+    const detailsIndexMovieName = document.querySelector('#details-index .movieName');
+    const trailerIframe = document.querySelector('.iframe iframe');
+    const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
+
+    const updateMovieDetails = (movie) => {
+      movieNameElements.forEach(movieNameElement => {
+        movieNameElement.textContent = movie.movieName;
+      });
+      description.textContent = movie.description;
+      director.textContent = `Director: ${movie.director || 'Unknown'}`;
+      categoryNameList.textContent = `Category: ${movie.categoryNameList.join(', ')}`;
+      duration.textContent = `Duration: ${movie.duration} min`;
+      language.textContent = `Language: ${movie.language}`;
+      openingTime.textContent = `Premiere Date: ${new Date(movie.openingTime).toLocaleDateString()}`;
+      closingTime.textContent = `End Date: ${new Date(movie.closingTime).toLocaleDateString()}`;
+      posterUrl.src = movie.posterUrl;
+      detailsIndexMovieName.textContent = movie.movieName;
+      trailerIframe.src = movie.iframe;
+    };
+
+    movieLinks.forEach(movieLink => {
+      const movieId = movieLink.getAttribute('href').split('=')[1];
+      const movie = data.content.find(movie => movie.id === parseInt(movieId));
+      if (movie) {
+        movieLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          updateMovieDetails(movie);
+        });
+      }
+    });
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialMovieId = urlParams.get('id');
+    const initialMovie = data.content.find(movie => movie.id === parseInt(initialMovieId));
+    if (initialMovie) {
+      updateMovieDetails(initialMovie);
+    }
+
+  })
+  .catch(error => { console.log(error); });
+
 // COMMENT
 const replyDiv = document.querySelectorAll('.reply');
 
@@ -43,43 +100,55 @@ replyDiv.forEach((replyDivs) => {
     likeCountElement.textContent = likesCount;
     dislikeCountElement.textContent = dislikesCount;
   }
-});
+});  
 
- 
+// POST COMMENT
+const commentForm = document.querySelector('#comment-form');
+const commentInput = commentForm.querySelector('input[type="text"]');
+const commentButton = commentForm.querySelector('button');
 
-// Render API ra ngoài trình duyệt
-// const fetchSingleApi = async (api) => {
-//   const response = await fetch(api);
-//   const data = await response.json();
-//   return data;
-// };
+const handleCommentSubmission = () => {
+  const commentContent = commentInput.value;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const detailsSection = document.querySelector("movie");
+  const newCommentList = document.createElement('div');
+  newCommentList.classList.add('comment-list');
 
-  fetchApi.get("http://localhost:8080/api/movies").then((data) => {
-    let html = `
-    <section>
-      <p id="details-index">HOME > ${movie.movieName}</p>
-        <div class="details-img">
-          <img src="${movie.posterUrl}" alt="">
+  const newCommentBox = document.createElement('div');
+  newCommentBox.classList.add('comment-box');
+
+  newCommentBox.innerHTML = `
+    <div class="flex">
+      <div class="user">
+        <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
+        <div class="user-meta">
+          <div class="name"><p>@YourUsername</p></div>
+          <div class="day">Just now</div>
         </div>
-        <div class="details-infor">
-          <h2>${movie.movieName}</h2>
-          <p id="desc">${movie.description}</p>    
-          <ul class="details-menu">
-            <li><strong>Director:</strong> &nbsp; ${movie.director}</li>
-            <li><strong>Category:</strong> &nbsp; ${movie.category}</li>
-            <li><strong>Time:</strong> &nbsp; ${movie.duration }</li>
-            <li><strong>Language:</strong> &nbsp; ${movie.language }</li>
-            <li><strong>Premiere Date :</strong> &nbsp; ${movie.openingDay}</li>
-          </ul>
-          <a href="choosepay.html" class="btn">Book Now</a>
-        </div>
-      </section>
-      `;
+      </div>
+      <div class="reply">
+        <div class="like icon"><i class='bx bx-like'></i></div>
+        <div class="dislike icon"><i class='bx bx-dislike'></i></div>
+        <div class="">Reply</div>
+      </div>
+    </div>
+    <div class="comment">
+      <p>${commentContent}</p>
+    </div>
+  `;
 
-    detailsSection.innerHTML = html;
-  });
-});
+  const commentLists = document.querySelectorAll('.comment-list');
+  const lastCommentList = commentLists[commentLists.length - 1];
+
+  if (lastCommentList) {
+    lastCommentList.after(newCommentList);
+    lastCommentList.after(newCommentBox);
+  } else {
+    commentForm.after(newCommentList);
+    commentForm.after(newCommentBox);
+  }
+
+  commentInput.value = '';
+};
+
+commentButton.addEventListener('click', handleCommentSubmission);
 
