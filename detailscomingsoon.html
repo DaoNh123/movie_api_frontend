@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Details</title>
 
     <!--     LINK CSS      -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/category.css">
+    <link rel="stylesheet" href="css/detailscomingsoon.css">
     <!--      BOX ICONS      -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!--   Link Swiper's CSS   -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
-<body onload="showAllMovies()">
-      <!--NAVBAR-->
-      <header>
+<body>
+    <!--NAVBAR-->
+    <header>
         <a href="index.html" class="logo">
             <i class='bx bxs-movie-play'></i>FilmHub
         </a>
@@ -30,54 +30,50 @@
         <a href="login.html" class="btn">LOG IN</a>   
     </header>
 
-    <!--  BODY   -->
-    <!--        BANNER     -->
-    <div class="banner" id="banner">
-        <img src="https://images.pexels.com/photos/6899765/pexels-photo-6899765.jpeg" alt="" style="width: 100%;height: 400px;">
-        <div class="banner-content">
-             <h2 id="banner-title">COMING SOON</h2>
-             <p>Enhance your movie watching experience with your loved ones. If you have comments, please use the following methods</p>
-        </div>
-    </div>
-
-    <!--    CATEGORY   -->
-    <div class="movies-button">
-        <button id="opening"><p>OPENING</p></button>
-        <button id="coming-soon"><p>COMING SOON</p></button>
-    </div>
-      
-    <div class="category-button">
-        <button class="btn" onclick="showAllMovies()">Show All</button>
-        <button class="btn" onclick="getMoviesByCategory('Adventure')">Adventure</button>
-        <button class="btn" onclick="getMoviesByCategory('Action')">Action</button>
-        <button class="btn" onclick="getMoviesByCategory('Science Fiction')">Science Fiction</button>
-        <button class="btn" onclick="getMoviesByCategory('Fantasy')">Fantasy</button>
-        <button class="btn" onclick="getMoviesByCategory('Animation')">Animation</button>
-        <button class="btn" onclick="getMoviesByCategory('Drama')">Drama</button>
-        <button class="btn" onclick="getMoviesByCategory('Thriller')">Thriller</button>
-        <button class="btn" onclick="getMoviesByCategory('Horror')">Horror</button>
-        <button class="btn" onclick="getMoviesByCategory('Comedy')">Comedy</button>
-    </div>
-
-    <!-- Movies Container-->
-    <div class="grid-container" id="moviesContainer">
-        <!-- Box 1 -->
-        <div class="box" id="movieDetails">
-            <div class="box-img">
-                <a href="details.html"><img src="#" alt=""></a>
-                <div class="overlay">
-                    <div class="button-container">
-                        <a href="details.html" class="detail-button">Detail</a>
-                    </div>
-                </div>
-                <div class="movie-label">PG</div>
+    <!--  DETAIL MOVIES COMMING SOON -->
+    <section>
+        <p id="details-index">COMING SOON > <span class="movieName">Iron man 1</span></p>
+        <div class="details">
+            <div class="posterUrl">
+                <img src="image/card1.jpg" alt="">
             </div>
-            <a href="details.html"><h3 id="movieName">Iron Man 1</h3></a>
-            <span id="duration">120 min |</span>
-        </div>          
-    </div>
+            <div class="details-infor">
+                <h2 class="movieName">Iron Man 1</h2>
+                <p class="description">Tony Stark - A genius, billionaire, philanthropist and sole heir of the largest corporation in the country at that time - Stark Industries.The group's products are all invented by Tony and his team. Whoever possesses those weapons has the ability to become the strongest person in the world and become a threat to all humanity.</p>    
+                <ul class="details-menu">
+                    <li class="director">Director: Jon Favreau</li>
+                    <!-- <li><strong>Performer:</strong> &nbsp; Robert Downey Jr, Terrence Howard, Jeff Bridges,..</li> -->
+                    <li class="categoryNameList">Category: Action, Hero, Adventure</li> 
+                    <li class="duration">Duration: 120 min</li>
+                    <li class="language">Language: English, VietNamese</li>
+                    <li class="openingTime">Premiere Date : 16/05/2023</li>
+                    <li class="closingTime">End Date : 16/05/2023</li>
+                </ul>
+                <a href="#" class="btn" onclick="showNotification()">Book Now</a>
+                <!-- NOFICATION COMING SOON -->
+                <div id="overlay" class="hidden"></div>
+                <div id="notification" class="hidden">
+                <div class="content-notification">
+                    <i class='bx bx-error'></i>
+                    <h3>This movie will be shown on May 16, 2023 and tickets will open 3 days before</h3>
+                    <button onclick="hideNotification()" class="btn">Thanks</button>
+                </div>
+                </div>
+            </div>
+        </div>
+     </section>
 
-    <!--  FOOTER  -->
+     <!--   TRAILER -->
+     <section>
+        <div id="trailer-title">
+            <h1>TRAILER</h1>
+        </div>
+        <div class="iframe">
+            <iframe width="1100" height="700" src="https://www.youtube.com/embed/Ke1Y3P9D0Bc?si=WyQ1De058ucFhLb7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+     </section>
+
+      <!--  FOOTER  -->
     <section class="footer">
         <div class="footer-left">
             <div class="footer-address">
@@ -93,6 +89,7 @@
                 <p>team2t2203e@gmail.com</p>
             </div>
         </div>
+
         <div class="footer-center">
             <a href="index.html" class="logo">
                 <i class='bx bxs-movie-play'></i>FilmHub
@@ -105,6 +102,7 @@
                 <a href="#"><i class='bx bxl-tiktok' ></i></a>
             </div>
         </div>
+
         <div class="footer-right" id="newsletter"> 
             <h2>Subscribe To Get <br> Newsletter</h2> 
             <form action="">
@@ -112,8 +110,8 @@
                 <input type="submit" value="Subcribe" class="btn">
             </form> 
         </div>
-    
     </section>
+
 
 
     <!--Copyright-->
@@ -121,6 +119,7 @@
         <p>&#169; Team2-T2301E All Right Reserved.</p>
     </div>
 
-    <script src="js/category.js"></script>
+    
+    <script src="js/detailscomingsoon.js"></script>
 </body>
 </html>

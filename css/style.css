@@ -118,7 +118,7 @@ header.shadow .logo{
 
 /** BODY **/
 
-/* Notification */
+/** NOTIFICATION HOME PAGE **/
 .overlay-popup{
     position: absolute;
     height: 100%;
@@ -218,8 +218,7 @@ header.shadow .logo{
   
 }
 
-
-/** SLIDE **/
+/**     SLIDER    **/
 .container{
     width: 100%;
     min-height: 640px; 
@@ -281,7 +280,7 @@ header.shadow .logo{
     transition: 0.2s all linear;
 }
 
-/**  Movies  **/
+/**  MOVIES HOME CONTAINER  **/
 .heading{
     color: var(--bg-color);
     max-width: 1000px;
@@ -293,7 +292,7 @@ header.shadow .logo{
     border-bottom: 2px solid var(--main-color);
 }
 
-.grid-container{
+/* .grid-container{
     width: 1000px;
     margin-right: auto;
     margin-left: auto; 
@@ -306,13 +305,28 @@ header.shadow .logo{
 
 .box{
     margin-top: 20px;
-    /* margin-right: 10px; */
     width: 185px !important; 
+} */
+
+.grid-container {
+    margin-top: 2 rem;
+    width: 1000px;
+    margin: 0 auto; 
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    justify-content: center; 
+    grid-gap: 20px; 
+}
+
+.box {
+    margin-top: 20px;
+    width: 100%; 
+    height: auto; 
+  
 }
 .box .box-img{
     width:100%;
     height: 270px;
-    /**/
     position: relative;
     display: inline-block;
 }
@@ -332,10 +346,10 @@ header.shadow .logo{
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: var(--main-color); /* Màu nền của nhãn R */
-    color: white; /* Màu chữ của nhãn R */
-    padding: 5px; /* Kích thước padding của nhãn R */
-    border-radius: 5px; /* Bo tròn góc cho nhãn R */
+    background-color: var(--main-color); 
+    color: white; 
+    padding: 5px; 
+    border-radius: 5px; 
     font-weight: 600;
 }
 .box h3{
@@ -349,7 +363,7 @@ header.shadow .logo{
     /* color: var(--text-color); */
 }
 
-/*****/
+/**  HOVER CARD FILM  **/
 .overlay {
     position: absolute;
     top: 0;
@@ -362,41 +376,41 @@ header.shadow .logo{
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
   
-  .box-img:hover .overlay {
+.box-img:hover .overlay {
     opacity: 1;
-  }
+}
   
-  .button-container a{
+.button-container a{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--text-color);
     font-weight: 500;
-  }
+}
   
-  .book-button,
-  .detail-button {
+.book-button,
+.detail-button {
     padding: 10px 20px;
     background-color: var(--bg-color);
     color: var(--text-color);
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease-in-out;
     text-decoration: none; 
     border-radius: 5px;
     margin-bottom: 10px;
-  }
+}
  
-  .book-button:hover,
-  .detail-button:hover {
+.book-button:hover,
+.detail-button:hover {
     background-color: #ff2c1f;
     color: white;
-  }
+}
 
-/** Cooming Soon**/
+/**   COMING SOON  **/
 .coming-container{
     display: grid;
     gap: 1rem;
@@ -412,8 +426,43 @@ header.shadow .logo{
     width: 100px;
 }
 
+/**   PAGINATION   **/
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .page-button {
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+    border-radius: 3px;
+    border: 1px solid var(--bg-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 550;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .page-button.active {
+    background-color: var(--main-color);
+    color: var(--bg-color); 
+    border: 1px solid var(--main-color); 
+  }
+  
+  .page-button:hover {
+    background-color: var(--main-color);
+    color: var(--bg-color);
+    border: 1px solid var(--main-color);
+  }
 
-/** Footer **/
+/**   FOOTER   **/
 .footer{
     width: 100%;
     margin-top: 50px;
@@ -468,10 +517,10 @@ header.shadow .logo{
 }
 .social .bx{
     background: var(--bg-color);
-    padding: 2px;
+    padding: 4px;
     font-size: 20px;
     border-radius: 50%;
-    border: 4px solid rgb(2, 3, 7,0.4);
+    border: 2px solid rgb(2, 3, 7,0.4);
     color: var(--main-color)
 }
 .social .bx:hover{
