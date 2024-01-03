@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
 // Modal box
 const section = document.querySelector("section"),
 overlay = document.querySelector(".overlay"),
