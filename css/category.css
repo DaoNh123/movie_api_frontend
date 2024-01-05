@@ -65,6 +65,7 @@ section{
 .movies-button  button{
     font-size: 35px;
     font-weight: 550;
+    padding-left: 20px;
     border: none; 
     background-color: transparent;
     text-decoration: underline;
@@ -72,7 +73,7 @@ section{
     background-color: var(--text-color);
     color: var(--bg-color);
 }
-  
+
 .movies-button button:focus {
     outline: none;
 }
@@ -86,6 +87,7 @@ section{
     background-color: var(--text-color);
     color: var(--main-color);
 }
+
 
 .category-button{
     width: 1000px;

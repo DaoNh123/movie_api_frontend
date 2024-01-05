@@ -17,7 +17,7 @@ window.onscroll = () =>{
   navbar.classList.remove('active');
 }
 
-// POLICY
+// POLICY US
 var acc = document.getElementsByClassName("accordion");
 var i;
 
@@ -32,3 +32,14 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+
+  // NOTIFICATION TO CREATE MOVIE
+  function showNotification() {
+    document.getElementById("overlay").classList.remove("hidden");
+    document.getElementById("notification").classList.remove("hidden");
+  }
+  
+  function hideNotification() {
+    document.getElementById("overlay").classList.add("hidden");
+    document.getElementById("notification").classList.add("hidden");
+  }

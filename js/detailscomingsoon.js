@@ -74,7 +74,7 @@ fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
   })
   .catch(error => { console.log(error); });
 
-  // NOTIFICATION
+  // NOTITIFICATION
   function showNotification() {
     document.getElementById("overlay").classList.remove("hidden");
     document.getElementById("notification").classList.remove("hidden");
@@ -84,3 +84,5 @@ fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
     document.getElementById("overlay").classList.add("hidden");
     document.getElementById("notification").classList.add("hidden");
   }
+
+  
