@@ -1,134 +1,171 @@
 // SCROLL HEADER
-let header = document.querySelector('header');
-let menu = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+let header = document.querySelector("header");
+let menu = document.querySelector("#menu-icon");
+let navbar = document.querySelector(".navbar");
 
-window.addEventListener('scroll',()=>{
-  header.classList.toggle('shadow',window.scrollY > 0);
+window.addEventListener("scroll", () => {
+  header.classList.toggle("shadow", window.scrollY > 0);
 });
 
-menu.onclick = () =>{
-  menu.classList.toggle('bx-x');
-  navbar.classList.toggle('active');
-}
-
-window.onscroll = () =>{
-  menu.classList.remove('bx-x');
-  navbar.classList.remove('active');
-}
-
-// COMMENT
-const replyDiv = document.querySelectorAll('.reply');
-
-replyDiv.forEach((replyDivs) => {
-  const likeBtn = replyDivs.querySelector('.like');
-  const dislikeBtn = replyDivs.querySelector('.dislike');
-  let likesCount = 0;
-  let dislikesCount = 0;
-
-  likeBtn.addEventListener('click', () => {
-    likesCount++;
-    updateCounts();
-  });
-
-  dislikeBtn.addEventListener('click', () => {
-    dislikesCount++;
-    updateCounts();
-  });
-
-  function updateCounts() {
-    const likeCountElement = likeBtn.querySelector('i');
-    const dislikeCountElement = dislikeBtn.querySelector('i');
-
-    likeCountElement.textContent = likesCount;
-    dislikeCountElement.textContent = dislikesCount;
-  }
-});  
-
-
-
-// ...
-
-// Render Infor Movie + Comment and Post Comment
-const updateMovieDetails = (movie) => {
-  const movieNameElements = document.querySelectorAll('.movieName');
-  const description = document.querySelector('.description');
-  const director = document.querySelector('.director');
-  const categoryNameList = document.querySelector('.categoryNameList');
-  const duration = document.querySelector('.duration');
-  const language = document.querySelector('.language');
-  const openingTime = document.querySelector('.openingTime');
-  const closingTime = document.querySelector('.closingTime');
-  const posterUrl = document.querySelector('.posterUrl img');
-  const detailsIndexMovieName = document.querySelector('#details-index .movieName');
-
-  movieNameElements.forEach(movieNameElement => {
-    movieNameElement.textContent = movie.movieName;
-  });
-  description.textContent = movie.description;
-  director.textContent = `Director: ${movie.director || 'Unknown'}`;
-  categoryNameList.textContent = `Category: ${movie.categoryNameList.join(', ')}`;
-  duration.textContent = `Duration: ${movie.duration} min`;
-  language.textContent = `Language: ${movie.language}`;
-  openingTime.textContent = `Premiere Date: ${new Date(movie.openingTime).toLocaleDateString()}`;
-  closingTime.textContent = `End Date: ${new Date(movie.closingTime).toLocaleDateString()}`;
-  posterUrl.src = movie.posterUrl;
-  detailsIndexMovieName.textContent = movie.movieName;
+menu.onclick = () => {
+  menu.classList.toggle("bx-x");
+  navbar.classList.toggle("active");
 };
 
-// Fetch the list of movies
-fetch('http://localhost:8080/api/movies/now-showing?page=0&size=28')
-  .then(response => response.json())
-  .then(data => {
+window.onscroll = () => {
+  menu.classList.remove("bx-x");
+  navbar.classList.remove("active");
+};
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const initialMovieId = urlParams.get('id');
-    const initialMovie = data.content.find(movie => movie.id === parseInt(initialMovieId));
+const movieNameElements = document.querySelectorAll(".movieName");
+const description = document.querySelector(".description");
+const director = document.querySelector(".director");
+const categoryNameList = document.querySelector(".categoryNameList");
+const duration = document.querySelector(".duration");
+const language = document.querySelector(".language");
+const openingTime = document.querySelector(".openingTime");
+const closingTime = document.querySelector(".closingTime");
+const posterUrl = document.querySelector(".posterUrl img");
+const detailsIndexMovieName = document.querySelector("#details-index .movieName");
+const trailerIframe = document.querySelector(".iframe iframe");
+const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
 
-    if (initialMovie) {
-      updateMovieDetails(initialMovie);
+// // Fetch API data
+let urlParams = new URLSearchParams(window.location.search);
+let movieId = decodeURIComponent(urlParams.get("id"));
 
-      fetch(`http://localhost:8080/api/movies/${initialMovieId}/comments`)
-        .then(response => response.json())
-        .then(data => {
-          const comments = data.commentList ? Object.values(data.commentList) : [];
-          comments.forEach(comment => {
-            console.log(comment);
-          });
-        })
-        .catch(error => {
-          console.log(error);
+fetch(`http://localhost:8080/api/movies/${movieId}`)
+  .then((response) => response.json())
+  .then((movie) => {
+    console.log(movie);
+    const movieNameElements = document.querySelectorAll(".movieName");
+    const description = document.querySelector(".description");
+    const director = document.querySelector(".director");
+    const categoryNameList = document.querySelector(".categoryNameList");
+    const duration = document.querySelector(".duration");
+    const language = document.querySelector(".language");
+    const openingTime = document.querySelector(".openingTime");
+    const closingTime = document.querySelector(".closingTime");
+    const posterUrl = document.querySelector(".posterUrl img");
+    const detailsIndexMovieName = document.querySelector("#details-index .movieName");
+    const trailerIframe = document.querySelector(".iframe iframe");
+    // const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
+    const commentList = document.querySelector(".comment-list");
+    console.log(commentList);
+
+    movieNameElements.forEach((e) => (e.textContent = movie.movieName));
+    description.textContent = movie.description;
+    categoryNameList.textContent = `Category: ${movie.categoryNameList.join(", ")}`;
+    duration.textContent = `Duration: ${movie.duration} min`;
+    language.textContent = `Language: ${movie.language}`;
+    openingTime.textContent = `Premiere Date: ${new Date(movie.openingTime).toLocaleDateString()}`;
+    closingTime.textContent = `End Date: ${new Date(movie.closingTime).toLocaleDateString()}`;
+    posterUrl.src = movie.posterUrl;
+    detailsIndexMovieName.textContent = movie.movieName;
+    trailerIframe.src = movie.trailerUrl;
+
+    commentList.innerHTML = "";
+
+    movie.commentList.forEach((comment) => {
+      commentList.innerHTML += `
+      <div class="flex">
+              <div class="user">
+                <div class="user-image"><img src="image/icon2.jpg" alt="" /></div>
+                <div class="user-meta">
+                  <div class="commentUsername"><p>${comment.commentUsername}</p></div>
+                  <div class="day">4 day ago</div>
+                </div>
+              </div>
+              <div class="reply">
+                <div class="like icon"><i class="bx bx-like"></i></div>
+                <div class="dislike icon"><i class="bx bx-dislike"></i></div>
+                <div class="">Reply</div>
+              </div>
+            </div>
+            <div class="commentContent">
+              <p>${comment.commentContent} with rating ${comment.starRate} stars</p>
+            </div>
+      `;
+
+      // Add "Like" or "Dislike"
+      const replyDiv = document.querySelectorAll(".reply");
+
+      replyDiv.forEach((replyDivs) => {
+        const likeBtn = replyDivs.querySelector(".like");
+        const dislikeBtn = replyDivs.querySelector(".dislike");
+        let likesCount = 0;
+        let dislikesCount = 0;
+
+        likeBtn.addEventListener("click", () => {
+          likesCount++;
+          updateCounts();
         });
-    }
-  })
-  .catch(error => {
-    console.log(error);
+
+        dislikeBtn.addEventListener("click", () => {
+          dislikesCount++;
+          updateCounts();
+        });
+
+        function updateCounts() {
+          const likeCountElement = likeBtn.querySelector("i");
+          const dislikeCountElement = dislikeBtn.querySelector("i");
+
+          likeCountElement.textContent = likesCount;
+          dislikeCountElement.textContent = dislikesCount;
+        }
+      });
+    });
   });
 
-const form = document.querySelector('#comment-input');
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+// POST COMMENT
 
-  const commentInput = document.querySelector('#comment-input input');
-  const comment = commentInput.value;
 
-  // debugger;
+// // POST COMMENT
+// const commentForm = document.querySelector("#comment-form");
+// const commentInput = commentForm.querySelector('input[type="text"]');
+// const commentButton = commentForm.querySelector("button");
 
-  fetch(`http://localhost:8080/api/movies/${initialMovieId}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ comment: comment })
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
+// const handleCommentSubmission = () => {
+//   const commentContent = commentInput.value;
 
-    })
-    .catch(error => {
-      console.error(error);
-    });
+//   const newCommentList = document.createElement("div");
+//   newCommentList.classList.add("comment-list");
 
-  commentInput.value = '';
-});
+//   const newCommentBox = document.createElement("div");
+//   newCommentBox.classList.add("comment-box");
+
+//   newCommentBox.innerHTML = `
+//     <div class="flex">
+//       <div class="user">
+//         <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
+//         <div class="user-meta">
+//           <div class="name"><p>@YourUsername</p></div>
+//           <div class="day">Just now</div>
+//         </div>
+//       </div>
+//       <div class="reply">
+//         <div class="like icon"><i class='bx bx-like'></i></div>
+//         <div class="dislike icon"><i class='bx bx-dislike'></i></div>
+//         <div class="">Reply</div>
+//       </div>
+//     </div>
+//     <div class="comment">
+//       <p>${commentContent}</p>
+//     </div>
+//   `;
+
+//   const commentLists = document.querySelectorAll(".comment-list");
+//   const lastCommentList = commentLists[commentLists.length - 1];
+
+//   if (lastCommentList) {
+//     lastCommentList.after(newCommentList);
+//     lastCommentList.after(newCommentBox);
+//   } else {
+//     commentForm.after(newCommentList);
+//     commentForm.after(newCommentBox);
+//   }
+
+//   commentInput.value = "";
+// };
+
+// commentButton.addEventListener("click", handleCommentSubmission);
