@@ -27,63 +27,104 @@
             <li><a href="category.html">CATEGORY</a></li>
             <li><a href="aboutus.html">ABOUT US</a></li>
         </ul>
-        <a href="#" class="btn">LOG IN</a>  
+        <a href="login.html" class="btn">LOG IN</a>  
     </header>
 
+    <body class="post-form">
+        <img src="image/background8.jpg" alt="image" class="post-banner">
 
-    <!--  FOOTER  -->
-    <footer>
-        <div class="footer-content">
-            <div class="left box-footer">
-                <a href="index.html" class="logo">
-                    <i class='bx bxs-movie-play'></i>FilmHub
-                </a>
-                <div class="content-box-footer">
-                    <p>Enhance your movie watching experience with your loved ones. If you have comments, please use the following methods</p>
-                <div class="social">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-instagram' ></i></a>
-                    <a href="#"><i class='bx bxl-youtube' ></i></a>
-                    <a href="#"><i class='bx bxl-tiktok' ></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="center box-footer">
-                <h2>Address</h2>
-                <div class="content-box-footer">
-                    <div class="footer-address">
-                        <span><i class='bx bx-location-plus' ></i></span>
-                        <span class="footer-text">8A Ton That Thuyet Street, Nam Tu Liem, Ha Noi</span>
+        <div class="wrapper">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <!--Information Start-->
+                <div class="input_group">
+                    <div class="input_box movieName">
+                        <input type="text" placeholder="Movie Name" required class="name" name="movieName">
+                        <i class='bx bxs-user-circle'></i>
                     </div>
-                    <div class="footer-phone">
-                        <span><i class='bx bxs-phone' ></i></span>
-                        <span class="footer-text">+84 441 678910</span>
-                    </div>
-                    <div class="footer-email">
-                        <span><i class='bx bxs-envelope' ></i></span>
-                        <span class="footer-text">team2t2203e@gmail.com</span>
+                    <div class="input_box language">
+                        <select name="language" id="#">
+                            <option value="...">Language</option>
+                            <option value="EN">EN</option>
+                            <option value="VIE">VIE</option>
+                        </select>
+                        <i class='bx bxs-user-voice'></i>
                     </div>
                 </div>
-            </div>
-
-            <div class="right box-footer">
-                <h2>Subscribe To Get <br> Newsletter</h2>
-                <div class="content-box-footer">
-                    <form action="">
-                        <input type="email" class="email" placeholder="Enter Email..." required>
-                        <input type="submit" value="Subcribe" class="btn">
-                    </form>     
+                <!-- INFORMATION MOVIE-->
+                <div class="input_group">
+                    <div class="input_box poster">
+                        <input type="file" required class="name" name="poster">
+                        <i class='bx bxs-file-image'></i>
+                    </div>
+                    <div class="input_box duration">
+                        <input type="text" placeholder="Duration" required class="name" name="duration">
+                        <i class='bx bxs-time' ></i>
+                    </div>
+                    <div class="input_box imdbRatings">
+                        <input type="text" placeholder="Rating" required class="name" name="imdbRatings">
+                        <i class='bx bx-bar-chart'></i>
+                    </div>
+                    <div class="input_box movieLabel">
+                        <select name="movieLabel" id="">
+                            <option value="...">Label</option>
+                            <option value="P">P</option>
+                            <option value="C12">C12</option>
+                            <option value="C18">C18</option>
+                        </select>
+                        <i class='bx bxs-label' ></i>
+                    </div>
                 </div>
-            </div>      
-        </div>
-    </footer>
 
-    <!--Copyright-->
-    <div class="copyright">
-        <p>&#169; Team2-T2301E All Right Reserved.</p>
-    </div>
+                <!-- URL LINK-->
+                <div class="input_group">
+                    <div class="input_box  iframe">
+                        <input type="url" placeholder="Iframe" required class="name" name="iframe">
+                        <i class='bx bx-link-alt'></i>
+                    </div>
+                </div>
 
+                <!-- Timer -->
+                <div class="input_group">
+                    <div class="input_time">
+                        <h4>OpeningTime</h4>
+                        <div class="input_box openingTime">
+                            <input type="date" placeholder="#" required class="name" name="openingTime">
+                            <i class='bx bxs-calendar'></i>       
+                        </div>
+                    </div>
+                    <div class="input_time">
+                        <h4>ClosingTime</h4>
+                        <div class="input_box closingTime">
+                            <input type="date" placeholder="#" required class="name" name="closingTime">
+                            <i class='bx bxs-calendar'></i>
+                        </div>
+                    </div>    
+                </div>
+    
+                <!--Information End-->
+                <div class="input_group">
+                    <div class="input_box categoryList">
+                        <input type="tel" name="categoryList" class="name" placeholder="Category" required>
+                        <i class='bx bxs-category' ></i>
+                    </div>
+                </div>
+                <div class="input_group">
+                    <div class="input_box description">
+                        <input type="tel" name="description" class="name" placeholder="Description" required>
+                        <i class='bx bxs-comment-detail'></i>
+                    </div>
+                </div>
+
+                <!-- End-->  
+                <div class="input_group">
+                    <div class="input_button">
+                        <button class="btn"><a href="index.html">BACK</a></button>
+                        <button type="submit" class="btn">POST</button>
+                    </div>
+                </div>
+            </form>
+        </div>   
+    </body>  
 
     <script src="js/createmovie.js"></script>
 </body>
