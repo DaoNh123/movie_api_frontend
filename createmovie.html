@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title> Create Movie </title>
 
     <!--     LINK CSS      -->
     <link rel="stylesheet" href="css/createmovie.css">
@@ -34,18 +34,18 @@
         <img src="image/background8.jpg" alt="image" class="post-banner">
 
         <div class="wrapper">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <!-- <form action="" method="POST" enctype="multipart/form-data"> -->
                 <!--Information Start-->
                 <div class="input_group">
                     <div class="input_box movieName">
-                        <input type="text" placeholder="Movie Name" required class="name" name="movieName">
+                        <input type="text" placeholder="Movie Name" required class="name" name="movieName" value="movie">
                         <i class='bx bxs-user-circle'></i>
                     </div>
                     <div class="input_box language">
-                        <select name="language" id="#">
+                        <select name="language" id="#" value="en">
                             <option value="...">Language</option>
-                            <option value="EN">EN</option>
-                            <option value="VIE">VIE</option>
+                            <option value="en" default>en</option>
+                            <option value="VIE">vi</option>
                         </select>
                         <i class='bx bxs-user-voice'></i>
                     </div>
@@ -53,21 +53,21 @@
                 <!-- INFORMATION MOVIE-->
                 <div class="input_group">
                     <div class="input_box poster">
-                        <input type="file" required class="name" name="poster">
+                        <input type="file" required class="name" id="posterFileInput" name="poster">
                         <i class='bx bxs-file-image'></i>
                     </div>
                     <div class="input_box duration">
-                        <input type="text" placeholder="Duration" required class="name" name="duration">
+                        <input type="text" placeholder="Duration" required class="name" name="duration" value="75">
                         <i class='bx bxs-time' ></i>
                     </div>
                     <div class="input_box imdbRatings">
-                        <input type="text" placeholder="Rating" required class="name" name="imdbRatings">
+                        <input type="text" placeholder="Rating" required class="name" name="imdbRatings" value="7.5">
                         <i class='bx bx-bar-chart'></i>
                     </div>
                     <div class="input_box movieLabel">
                         <select name="movieLabel" id="">
                             <option value="...">Label</option>
-                            <option value="P">P</option>
+                            <option value="P" selected>P</option>
                             <option value="C12">C12</option>
                             <option value="C18">C18</option>
                         </select>
@@ -77,8 +77,8 @@
 
                 <!-- URL LINK-->
                 <div class="input_group">
-                    <div class="input_box  iframe">
-                        <input type="url" placeholder="Iframe" required class="name" name="iframe">
+                    <div class="input_box  youtubeLink">
+                        <input type="url" placeholder="Youtube trailer Link" required class="name" name="iframe" id="youtubeLink" value="https://www.youtube.com/watch?v=9i0iWVtmSwI">
                         <i class='bx bx-link-alt'></i>
                     </div>
                 </div>
@@ -88,14 +88,16 @@
                     <div class="input_time">
                         <h4>OpeningTime</h4>
                         <div class="input_box openingTime">
-                            <input type="date" placeholder="#" required class="name" name="openingTime">
+                            <input type="date" placeholder="#" required class="name" name="openingTime"
+                            value="2024-01-01">
                             <i class='bx bxs-calendar'></i>       
                         </div>
                     </div>
                     <div class="input_time">
                         <h4>ClosingTime</h4>
                         <div class="input_box closingTime">
-                            <input type="date" placeholder="#" required class="name" name="closingTime">
+                            <input type="date" placeholder="#" required class="name" name="closingTime"
+                            value="2024-01-31">
                             <i class='bx bxs-calendar'></i>
                         </div>
                     </div>    
@@ -104,13 +106,14 @@
                 <!--Information End-->
                 <div class="input_group">
                     <div class="input_box categoryList">
-                        <input type="tel" name="categoryList" class="name" placeholder="Category" required>
+                        <input type="tel" name="categoryList" class="name" placeholder="Category" required value="Drama, Thriller">
                         <i class='bx bxs-category' ></i>
                     </div>
                 </div>
                 <div class="input_group">
                     <div class="input_box description">
-                        <input type="tel" name="description" class="name" placeholder="Description" required>
+                        <input type="tel" name="description" class="name" placeholder="Description" required
+                        value="Description content">
                         <i class='bx bxs-comment-detail'></i>
                     </div>
                 </div>
@@ -119,10 +122,10 @@
                 <div class="input_group">
                     <div class="input_button">
                         <button class="btn"><a href="index.html">BACK</a></button>
-                        <button type="submit" class="btn">POST</button>
+                        <button type="submit" class="btn" id="btnSubmit">POST</button>
                     </div>
                 </div>
-            </form>
+            <!-- </form> -->
         </div>   
     </body>  
 
