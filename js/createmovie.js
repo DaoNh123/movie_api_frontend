@@ -40,7 +40,7 @@ class CreateMovieRequest {
 
 let submitBtn = document.querySelector("#btnSubmit");
 
-submitBtn.addEventListener("click", (e) => {
+const submitCreateMovieForm = (e) => {
   e.preventDefault();
 
   const movieName = document.querySelector(".movieName input").value;
@@ -49,6 +49,8 @@ submitBtn.addEventListener("click", (e) => {
   const language = document.querySelector(".language select").value;
   const openingTimeInString = document.querySelector(".openingTime input").value;
   const closingTimeInString = document.querySelector(".closingTime input").value.concat("T00:00:00");
+
+  // Category
   const categoryListInString = document.querySelector(".categoryList input").value.concat("T00:00:00");
   const youtubeLink = document.querySelector(".youtubeLink input").value;
   const movieLabel = document.querySelector(".movieLabel select").value;
@@ -101,4 +103,4 @@ const closingTime = new Date(closingTimeInString);
     .catch((error) => {
       console.error("Error:", error);
     });
-});
+};
