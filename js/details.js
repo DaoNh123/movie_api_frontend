@@ -17,63 +17,6 @@ window.onscroll = () =>{
   navbar.classList.remove('active');
 }
 
-// let urlParams = new URLSearchParams(window.location.search);
-// let movieId  = decodeURIComponent(urlParams.get('movie.id'));
-
-// // Fetch API data
-fetch('http://localhost:8080/api/movies/now-showing?page=0&size=25')
-  .then(response => response.json())
-  .then(data => {
-    const movieNameElements = document.querySelectorAll('.movieName');
-    const description = document.querySelector('.description');
-    const director = document.querySelector('.director');
-    const categoryNameList = document.querySelector('.categoryNameList');
-    const duration = document.querySelector('.duration');
-    const language = document.querySelector('.language');
-    const openingTime = document.querySelector('.openingTime');
-    const closingTime = document.querySelector('.closingTime');
-    const posterUrl = document.querySelector('.posterUrl img');
-    const detailsIndexMovieName = document.querySelector('#details-index .movieName');
-    const trailerIframe = document.querySelector('.iframe iframe');
-    const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
-
-    const updateMovieDetails = (movie) => {
-      movieNameElements.forEach(movieNameElement => {
-        movieNameElement.textContent = movie.movieName;
-      });
-      description.textContent = movie.description;
-      director.textContent = `Director: ${movie.director || 'Unknown'}`;
-      categoryNameList.textContent = `Category: ${movie.categoryNameList.join(', ')}`;
-      duration.textContent = `Duration: ${movie.duration} min`;
-      language.textContent = `Language: ${movie.language}`;
-      openingTime.textContent = `Premiere Date: ${new Date(movie.openingTime).toLocaleDateString()}`;
-      closingTime.textContent = `End Date: ${new Date(movie.closingTime).toLocaleDateString()}`;
-      posterUrl.src = movie.posterUrl;
-      detailsIndexMovieName.textContent = movie.movieName;
-      trailerIframe.src = movie.iframe;
-    };
-
-    movieLinks.forEach(movieLink => {
-      const movieId = movieLink.getAttribute('href').split('=')[1];
-      const movie = data.content.find(movie => movie.id === parseInt(movieId));
-      if (movie) {
-        movieLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          updateMovieDetails(movie);
-        });
-      }
-    });
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const initialMovieId = urlParams.get('id');
-    const initialMovie = data.content.find(movie => movie.id === parseInt(initialMovieId));
-    if (initialMovie) {
-      updateMovieDetails(initialMovie);
-    }
-
-  })
-  .catch(error => { console.log(error); });
-
 // COMMENT
 const replyDiv = document.querySelectorAll('.reply');
 
@@ -102,54 +45,90 @@ replyDiv.forEach((replyDivs) => {
   }
 });  
 
-// POST COMMENT
-const commentForm = document.querySelector('#comment-form');
-const commentInput = commentForm.querySelector('input[type="text"]');
-const commentButton = commentForm.querySelector('button');
 
-const handleCommentSubmission = () => {
-  const commentContent = commentInput.value;
 
-  const newCommentList = document.createElement('div');
-  newCommentList.classList.add('comment-list');
+// ...
 
-  const newCommentBox = document.createElement('div');
-  newCommentBox.classList.add('comment-box');
+// Render Infor Movie + Comment and Post Comment
+const updateMovieDetails = (movie) => {
+  const movieNameElements = document.querySelectorAll('.movieName');
+  const description = document.querySelector('.description');
+  const director = document.querySelector('.director');
+  const categoryNameList = document.querySelector('.categoryNameList');
+  const duration = document.querySelector('.duration');
+  const language = document.querySelector('.language');
+  const openingTime = document.querySelector('.openingTime');
+  const closingTime = document.querySelector('.closingTime');
+  const posterUrl = document.querySelector('.posterUrl img');
+  const detailsIndexMovieName = document.querySelector('#details-index .movieName');
 
-  newCommentBox.innerHTML = `
-    <div class="flex">
-      <div class="user">
-        <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
-        <div class="user-meta">
-          <div class="name"><p>@YourUsername</p></div>
-          <div class="day">Just now</div>
-        </div>
-      </div>
-      <div class="reply">
-        <div class="like icon"><i class='bx bx-like'></i></div>
-        <div class="dislike icon"><i class='bx bx-dislike'></i></div>
-        <div class="">Reply</div>
-      </div>
-    </div>
-    <div class="comment">
-      <p>${commentContent}</p>
-    </div>
-  `;
-
-  const commentLists = document.querySelectorAll('.comment-list');
-  const lastCommentList = commentLists[commentLists.length - 1];
-
-  if (lastCommentList) {
-    lastCommentList.after(newCommentList);
-    lastCommentList.after(newCommentBox);
-  } else {
-    commentForm.after(newCommentList);
-    commentForm.after(newCommentBox);
-  }
-
-  commentInput.value = '';
+  movieNameElements.forEach(movieNameElement => {
+    movieNameElement.textContent = movie.movieName;
+  });
+  description.textContent = movie.description;
+  director.textContent = `Director: ${movie.director || 'Unknown'}`;
+  categoryNameList.textContent = `Category: ${movie.categoryNameList.join(', ')}`;
+  duration.textContent = `Duration: ${movie.duration} min`;
+  language.textContent = `Language: ${movie.language}`;
+  openingTime.textContent = `Premiere Date: ${new Date(movie.openingTime).toLocaleDateString()}`;
+  closingTime.textContent = `End Date: ${new Date(movie.closingTime).toLocaleDateString()}`;
+  posterUrl.src = movie.posterUrl;
+  detailsIndexMovieName.textContent = movie.movieName;
 };
 
-commentButton.addEventListener('click', handleCommentSubmission);
+// Fetch the list of movies
+fetch('http://localhost:8080/api/movies/now-showing?page=0&size=28')
+  .then(response => response.json())
+  .then(data => {
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialMovieId = urlParams.get('id');
+    const initialMovie = data.content.find(movie => movie.id === parseInt(initialMovieId));
 
+    if (initialMovie) {
+      updateMovieDetails(initialMovie);
+
+      fetch(`http://localhost:8080/api/movies/${initialMovieId}/comments`)
+        .then(response => response.json())
+        .then(data => {
+          const comments = data.commentList ? Object.values(data.commentList) : [];
+          comments.forEach(comment => {
+            console.log(comment);
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+const form = document.querySelector('#comment-input');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const commentInput = document.querySelector('#comment-input input');
+  const comment = commentInput.value;
+
+  // debugger;
+
+  fetch(`http://localhost:8080/api/movies/${initialMovieId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ comment: comment })
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+  commentInput.value = '';
+});

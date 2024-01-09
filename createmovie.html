@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Create Movie </title>
+
+    <!--     LINK CSS      -->
+    <link rel="stylesheet" href="css/createmovie.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!--      BOX ICONS      -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!--   Link Swiper's CSS   -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+    <!--NAVBAR-->
+    <header>
+        <a href="index.html" class="logo">
+            <i class='bx bxs-movie-play'></i>FilmHub
+        </a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <!--   MENU NAVBAR   -->
+        <ul class="navbar">
+            <li><a href="index.html" class="home-active">HOME</a></li>
+            <li><a href="comingsoon.html">COMING SOON</a></li>
+            <li><a href="category.html">CATEGORY</a></li>
+            <li><a href="aboutus.html">ABOUT US</a></li>
+        </ul>
+        <a href="login.html" class="btn">LOG IN</a>  
+    </header>
+
+    <body class="post-form">
+        <img src="image/background8.jpg" alt="image" class="post-banner">
+
+        <div class="wrapper">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <!--Information Start-->
+                <div class="input_group">
+                    <div class="input_box movieName">
+                        <input type="text" placeholder="Movie Name" required class="name" name="movieName">
+                        <i class='bx bxs-user-circle'></i>
+                    </div>
+                    <div class="input_box language">
+                        <select name="language" id="#">
+                            <option value="...">Language</option>
+                            <option value="EN">EN</option>
+                            <option value="VIE">VIE</option>
+                        </select>
+                        <i class='bx bxs-user-voice'></i>
+                    </div>
+                </div>
+                <!-- INFORMATION MOVIE-->
+                <div class="input_group">
+                    <div class="input_box poster">
+                        <input type="file" required class="name" name="poster">
+                        <i class='bx bxs-file-image'></i>
+                    </div>
+                    <div class="input_box duration">
+                        <input type="text" placeholder="Duration" required class="name" name="duration">
+                        <i class='bx bxs-time' ></i>
+                    </div>
+                    <div class="input_box imdbRatings">
+                        <input type="text" placeholder="Rating" required class="name" name="imdbRatings">
+                        <i class='bx bx-bar-chart'></i>
+                    </div>
+                    <div class="input_box movieLabel">
+                        <select name="movieLabel" id="">
+                            <option value="...">Label</option>
+                            <option value="P">P</option>
+                            <option value="C12">C12</option>
+                            <option value="C18">C18</option>
+                        </select>
+                        <i class='bx bxs-label' ></i>
+                    </div>
+                </div>
+
+                <!-- URL LINK-->
+                <div class="input_group">
+                    <div class="input_box  iframe">
+                        <input type="url" placeholder="Iframe" required class="name" name="iframe">
+                        <i class='bx bx-link-alt'></i>
+                    </div>
+                </div>
+
+                <!-- Timer -->
+                <div class="input_group">
+                    <div class="input_time">
+                        <h4>OpeningTime</h4>
+                        <div class="input_box openingTime">
+                            <input type="date" placeholder="#" required class="name" name="openingTime">
+                            <i class='bx bxs-calendar'></i>       
+                        </div>
+                    </div>
+                    <div class="input_time">
+                        <h4>ClosingTime</h4>
+                        <div class="input_box closingTime">
+                            <input type="date" placeholder="#" required class="name" name="closingTime">
+                            <i class='bx bxs-calendar'></i>
+                        </div>
+                    </div>    
+                </div>
+    
+                <!--Information End-->
+                <div class="input_group">
+                    <div class="input_box categoryList">
+                        <input type="tel" name="categoryList" class="name" placeholder="Category" required>
+                        <i class='bx bxs-category' ></i>
+                    </div>
+                </div>
+                <div class="input_group">
+                    <div class="input_box description">
+                        <input type="tel" name="description" class="name" placeholder="Description" required>
+                        <i class='bx bxs-comment-detail'></i>
+                    </div>
+                </div>
+
+                <!-- End-->  
+                <div class="input_group">
+                    <div class="input_button">
+                        <button class="btn"><a href="index.html">BACK</a></button>
+                        <button type="submit" class="btn" id="btnSubmit">POST</button>
+                    </div>
+                </div>
+            </form>
+        </div>   
+    </body>  
+
+    <script src="js/createmovie.js"></script>
+</body>
+</html>

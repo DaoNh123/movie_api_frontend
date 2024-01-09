@@ -31,7 +31,7 @@
     </header>
 
     <!--  DETAIL MOVIES  -->
-     <section>
+    <section >
         <p id="details-index">HOME > <span class="movieName">Iron man 1</span></p>
         <div class="details">
             <div class="posterUrl">
@@ -55,7 +55,7 @@
      </section>
 
      <!--   TRAILER -->
-     <section>
+     <section class="trailer">
         <div id="trailer-title">
             <h1>TRAILER</h1>
         </div>
@@ -70,32 +70,13 @@
             <h1>COMMENT</h1>
         </div>
         <div class="comment-session">
-            <div class="post-comment">
-                <div class="comment-list">
-                    <div class="flex">
-                        <div class="user">
-                            <div class="user-image"><img src="image/icon1.jpg" alt=""></div>
-                            <div class="user-meta">
-                                <div class="name"><p>@benderose3580</p></div>
-                                <div class="day">10 day ago</div>
-                            </div>
-                        </div>
-                        <div class="reply">
-                            <div class="like icon"><i class='bx bx-like' ></i></div>
-                            <div class="dislike icon"><i class='bx bx-dislike' ></i></div>
-                            <div class="">Reply</div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <p>As much as I love what the MCU has become, I do miss the simplicity of the Phase 1 movies like Iron Man: just one superhero, no cosmic gems, no multiverse stuff, just a simple grounded origin story. This is basically the movie shortened into under 3 minutes, in order and everything</p>
-                    </div>
-                </div>
+            <div class="commentList">
                 <div class="comment-list">
                     <div class="flex">
                         <div class="user">
                             <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
                             <div class="user-meta">
-                                <div class="name"><p>@Camtasio369</p></div>
+                                <div class="commentUsername"><p>@Camtasio369</p></div>
                                 <div class="day">4 day ago</div>
                             </div>
                         </div>
@@ -105,17 +86,19 @@
                             <div class="">Reply</div>
                         </div>
                     </div>
-                    <div class="comment">
+                    <div class="commentContent">
                         <p>It will be hard for newer generations to understand why some people value these films so much...</p>
                     </div>
                 </div>
-                <div class="comment-box">
+
+                <!--INPUT COMMENT -->
+                <div class="comment-list">
                     <div class="flex">
                         <div class="user">
                             <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
                             <div class="user-meta">
-                                <div class="name"><p> @YourUsername</p></div>
-                                <div class="day">Just now</div>
+                                <div class="commentUsername"><p>@Camtasio369</p></div>
+                                <div class="day">4 day ago</div>
                             </div>
                         </div>
                         <div class="reply">
@@ -124,54 +107,64 @@
                             <div class="">Reply</div>
                         </div>
                     </div>
-                    <div class="comment" id="comment-form">
-                        <input type="text" placeholder="Enter your comment ...">
-                        <button type="button">Comment</button>
-                    </div>
+                    <form class="commentContent" id="comment-input">
+                        <input type="text" placeholder="Input Your Comment">
+                        <button type="submit" >Comment</button>
+                    </form>
                 </div>
+
             </div>
         </div> 
      </section>
 
+
      <!--  FOOTER  -->
-    <section class="footer">
-        <div class="footer-left">
-            <div class="footer-address">
-                <i class='bx bx-location-plus' ></i>
-                <p>8A Ton That Thuyet Street, Nam Tu Liem, Ha Noi</p>
+     <footer>
+        <div class="footer-content">
+            <div class="left box-footer">
+                <a href="index.html" class="logo">
+                    <i class='bx bxs-movie-play'></i>FilmHub
+                </a>
+                <div class="content-box-footer">
+                    <p>Enhance your movie watching experience with your loved ones. If you have comments, please use the following methods</p>
+                <div class="social">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-instagram' ></i></a>
+                    <a href="#"><i class='bx bxl-youtube' ></i></a>
+                    <a href="#"><i class='bx bxl-tiktok' ></i></a>
+                </div>
+              </div>
             </div>
-            <div class="footer-phone">
-                <i class='bx bxs-phone' ></i>
-                <p>+84 441 678910</p>
-            </div>
-            <div class="footer-email">
-                <i class='bx bxs-envelope' ></i>
-                <p>team2t2203e@gmail.com</p>
-            </div>
-        </div>
 
-        <div class="footer-center">
-            <a href="index.html" class="logo">
-                <i class='bx bxs-movie-play'></i>FilmHub
-            </a>
-            <p>Enhance your movie watching experience with your loved ones. If you have comments, please use the following methods</p>
-            <div class="social">
-                <a href="#"><i class='bx bxl-facebook'></i></a>
-                <a href="#"><i class='bx bxl-instagram' ></i></a>
-                <a href="#"><i class='bx bxl-youtube' ></i></a>
-                <a href="#"><i class='bx bxl-tiktok' ></i></a>
+            <div class="center box-footer">
+                <h2>Address</h2>
+                <div class="content-box-footer">
+                    <div class="footer-address">
+                        <span><i class='bx bx-location-plus' ></i></span>
+                        <span class="footer-text">8A Ton That Thuyet Street, Nam Tu Liem, Ha Noi</span>
+                    </div>
+                    <div class="footer-phone">
+                        <span><i class='bx bxs-phone' ></i></span>
+                        <span class="footer-text">+84 441 678910</span>
+                    </div>
+                    <div class="footer-email">
+                        <span><i class='bx bxs-envelope' ></i></span>
+                        <span class="footer-text">team2t2203e@gmail.com</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="footer-right" id="newsletter"> 
-            <h2>Subscribe To Get <br> Newsletter</h2> 
-            <form action="">
-                <input type="email" class="email" placeholder="Enter Email..." required>
-                <input type="submit" value="Subcribe" class="btn">
-            </form> 
+            <div class="right box-footer">
+                <h2>Subscribe To Get <br> Newsletter</h2>
+                <div class="content-box-footer">
+                    <form action="">
+                        <input type="email" class="email" placeholder="Enter Email..." required>
+                        <input type="submit" value="Subcribe" class="btn">
+                    </form>     
+                </div>
+            </div>      
         </div>
-    
-    </section>
+    </footer>
 
 
 

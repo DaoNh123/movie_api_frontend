@@ -56,7 +56,6 @@ section{
 .banner-content h2{
     font-size: 26px;
 }
-
 /*   CATEGORY   */
 .movies-button {
    margin-top: 20px;
@@ -65,6 +64,7 @@ section{
 .movies-button  button{
     font-size: 35px;
     font-weight: 550;
+    padding-left: 20px;
     border: none; 
     background-color: transparent;
     text-decoration: underline;
@@ -72,20 +72,13 @@ section{
     background-color: var(--text-color);
     color: var(--bg-color);
 }
-  
 .movies-button button:focus {
     outline: none;
 }
-  
 #opening:focus {
     background-color: var(--text-color);
     color: var(--main-color);
-}
-  
-#coming-soon:focus {
-    background-color: var(--text-color);
-    color: var(--main-color);
-}
+}  
 
 .category-button{
     width: 1000px;
@@ -101,3 +94,35 @@ section{
 .category-button .btn:hover{
     background-color: #a60f07;
 }
+
+
+/**   Responsive CSS   **/
+@media(max-with:1080px){
+    .category-button {
+        width: 90%;
+    }
+}
+
+@media(max-width:991px){
+    .category-button {
+        width: 90%;
+    }    
+}
+
+@media(max-width:774px){
+    .category-button {
+        width: 80%;
+    }
+}
+@media(max-width:472px){
+    .category-button {
+        width: 70%;
+    }
+    
+}
+@media(max-width:370px){
+    .category-button {
+        width: 60%;
+    }
+}
+
