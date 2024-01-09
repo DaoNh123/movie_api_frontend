@@ -37,7 +37,7 @@ section{
 }
 
 /* HEADER */
-/* HEADER */
+/* LOGO + Navbar */
 header{
     position: fixed;
     width: 100%;
@@ -120,8 +120,6 @@ header.shadow .logo{
 .btn:hover{
     background: #fa1216 ;
 }
-
-
 
 /** BODY **/
 /** NOTIFICATION HOME PAGE **/
@@ -420,8 +418,7 @@ header.shadow .logo{
     display: flex;
     justify-content: center;
     margin-top: 20px;
-}
-  
+} 
 .page-button {
     width: 35px;
     height: 35px;
@@ -438,19 +435,16 @@ header.shadow .logo{
     align-items: center;
     text-decoration: none;
 }
-
 .page-button.active {
     background-color: var(--main-color);
     color: var(--bg-color); 
     border: 1px solid var(--main-color); 
 }
-
 .page-button:hover {
     background-color: var(--main-color);
     color: var(--bg-color);
     border: 1px solid var(--main-color);
 }
-
 
 /**   FOOTER   **/
 footer{

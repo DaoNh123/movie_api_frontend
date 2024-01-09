@@ -197,3 +197,22 @@ section{
     color: var(--bg-color);
     border: 1px solid var(--main-color);
 }
+/**   Responsive CSS   **/
+@media(max-with:1080px){
+
+}
+
+@media(max-width:991px){
+
+}
+
+@media(max-width:774px){
+
+}
+@media(max-width:472px){
+  
+}
+@media(max-width:370px){
+
+
+}

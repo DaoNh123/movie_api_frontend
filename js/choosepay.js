@@ -1,4 +1,14 @@
-
+// CHOICE SEAT
+document.addEventListener('DOMContentLoaded', function () {
+  var seats = document.querySelectorAll('.seat, .vip');
+  seats.forEach(function (seat) {
+      seat.addEventListener('click', function () {
+          if (!seat.classList.contains('occupied')) {
+              seat.classList.toggle('selected');
+          }
+      });
+  });
+});
 
 
   // NOTIFICATION TO PAYMENT FORM

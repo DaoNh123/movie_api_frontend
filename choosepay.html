@@ -36,31 +36,32 @@
     <div class="body-container">
         <div class="choice-container">
             <div class="choice-container-left">
-                <div class="movie-content">
+                <div class="movie-seat">
                     <ul class="showcase">
                         <li>
-                            <div class="seat" style="background-color: #6feaf6;"></div>
-                            <p>Selected</p>
+                            <div class="seat selected" ></div>
+                            <p>SELECTED</p>
                         </li>
-                        <li>
-                            <div class="seat occupied"></div>
-                            <p>Occupied</p>
-                        </li>
-                    </ul>
-                    <ul class="showcase">
                         <li>
                             <div class="seat vip"></div>
-                            <p>VIP</p>
+                            <p>VIP: 200000 VND</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="movie-seat">
+                    <ul class="showcase">
+                        <li>
+                            <div class="seat occupied"></div>
+                            <p>OCCUPIED</p>
                         </li>
                         <li>
-                            <div class="seat nor"></div>
-                            <p>NOR</p>
+                            <div class="seat "></div>
+                            <p>NOR: 160000 VND</p>
                         </li>
                     </ul>
                 </div>
                 <div class="seat-container">
-                    <div class="screen"></div>
-
+                    <div class="screen"> SCREEN</div>
                     <div class="row">
                         <div class="seat">A1</div>
                         <div class="seat">A2</div>
@@ -92,56 +93,56 @@
                     <div class="row">
                         <div class="seat occupied">C1</div>
                         <div class="seat occupied">C2</div>
-                        <div class="seat">C3</div>
-                        <div class="seat">C4</div>
-                        <div class="seat">C5</div>
-                        <div class="seat occupied">C6</div>
-                        <div class="seat">C7</div>
-                        <div class="seat">C8</div>
-                        <div class="seat">C9</div>
-                        <div class="seat">C10</div>
+                        <div class="seat vip">C3</div>
+                        <div class="seat vip">C4</div>
+                        <div class="seat vip">C5</div>
+                        <div class="seat vip">C6</div>
+                        <div class="seat vip">C7</div>
+                        <div class="seat vip">C8</div>
+                        <div class="seat vip">C9</div>
+                        <div class="seat vip">C10</div>
                         <div class="seat occupied">C11</div>
                         <div class="seat">C12</div>
                     </div>
                     <div class="row">
                         <div class="seat">D1</div>
                         <div class="seat">D2</div>
-                        <div class="seat">D3</div>
-                        <div class="seat occupied">D4</div>
-                        <div class="seat occupied">D5</div>
-                        <div class="seat">D6</div>
-                        <div class="seat">D7</div>
-                        <div class="seat">D8</div>
-                        <div class="seat">D9</div>
-                        <div class="seat">D10</div>
+                        <div class="seat vip">D3</div>
+                        <div class="seat vip">D4</div>
+                        <div class="seat vip">D5</div>
+                        <div class="seat vip">D6</div>
+                        <div class="seat vip">D7</div>
+                        <div class="seat vip">D8</div>
+                        <div class="seat vip">D9</div>
+                        <div class="seat vip" >D10</div>
                         <div class="seat">D11</div>
                         <div class="seat occupied">D12</div>
                     </div>
                     <div class="row">
                         <div class="seat occupied">E1</div>
                         <div class="seat">E2</div>
-                        <div class="seat occupied">E3</div>
-                        <div class="seat">E4</div>
-                        <div class="seat">E5</div>
-                        <div class="seat">E6</div>
-                        <div class="seat">E7</div>
-                        <div class="seat">E8</div>
-                        <div class="seat">E9</div>
-                        <div class="seat">E10</div>
+                        <div class="seat vip">E3</div>
+                        <div class="seat vip">E4</div>
+                        <div class="seat vip">E5</div>
+                        <div class="seat vip">E6</div>
+                        <div class="seat vip">E7</div>
+                        <div class="seat vip">E8</div>
+                        <div class="seat vip">E9</div>
+                        <div class="seat vip">E10</div>
                         <div class="seat">E11</div>
                         <div class="seat">E12</div>
                     </div>
                     <div class="row">
                         <div class="seat occupied">F1</div>
                         <div class="seat">F2</div>
-                        <div class="seat">F3</div>
-                        <div class="seat">F4</div>
-                        <div class="seat">F5</div>
-                        <div class="seat">F6</div>
-                        <div class="seat">F7</div>
-                        <div class="seat">F8</div>
-                        <div class="seat">F9</div>
-                        <div class="seat">F10</div>
+                        <div class="seat vip">F3</div>
+                        <div class="seat vip">F4</div>
+                        <div class="seat vip">F5</div>
+                        <div class="seat vip">F6</div>
+                        <div class="seat vip">F7</div>
+                        <div class="seat vip">F8</div>
+                        <div class="seat vip">F9</div>
+                        <div class="seat vip">F10</div>
                         <div class="seat occupied">F11</div>
                         <div class="seat occupied">F12</div>
                     </div>
@@ -203,14 +204,20 @@
                     </div>
                 </div>
             </div>    
-            <div class="pay-container-right">   
+            <div class="pay-container-right"> 
+                <!-- CHOICE THEATER   -->
                 <div class="theater-choices">  
                     <label>Theater : </label>
                     <select id="Theater">
-                        <option value="#"><p>8A Tôn Thất Thuyết</p></option>
-                        <option value="#">...</option>
+                        <option value="" selected><p>8A Tôn Thất Thuyết</p></option>
+                        <option value="a001">A001</option>
+                        <option value="a002">A002</option>
+                        <option value="a003">A003</option>
+                        <option value="a004">A004</option>
+                        <option value="a005">A005</option>
                     </select>
-                </div>   
+                </div>
+                <!-- CHOICE DAY -->   
                 <div class="day-choices">
                     <label>Day : </label>
                     <select id="day">
@@ -220,6 +227,7 @@
                         <option value="#">19/05/2023</option>
                     </select> 
                 </div>
+                <!-- CHOICE TIME -->
                 <div class="time-choices">
                     <label>Time : </label>
                     <select id="day">
@@ -229,13 +237,13 @@
                         <option value="#">11:00 PM</option>
                     </select>
                 </div>
-                <div class="seat-choices">
+                <!-- <div class="seat-choices">
                     <label>Seat : </label>
                     <select id="chair">
                         <option value="15">VIP Seats(A3-A10; B3-B10; C3-C10) ($15)</option>
                         <option value="12">Normal Seats ($12)</option>
                     </select>
-                </div>    
+                </div>     -->
                 <div class="total">
                     <label>Total Amount : </label>
                     <span id="totalAmount">$0</span>

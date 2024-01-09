@@ -288,7 +288,7 @@ button:hover{
     border-radius: 20px;
   }
   .content-notification i{
-    font-size: 35px;
+    font-size: 40px;
     font-weight: 600;
     color: var(--main-color);
   }
@@ -303,8 +303,12 @@ button:hover{
 .button-notification #back{
     margin-right:25px ;
 }
-
-
+.button-notification a{
+    color: var(--bg-color);
+}
+.button-notification:hover button{
+    background-color: #cc2017;
+}
 
 /** CONTACT US **/
 .contact{
@@ -433,4 +437,24 @@ button:hover{
 }
 .contact__button:hover{
     background-color: #e50d02;
+}
+
+/**   Responsive CSS   **/
+@media(max-with:1080px){
+
+}
+
+@media(max-width:991px){
+
+}
+
+@media(max-width:774px){
+
+}
+@media(max-width:472px){
+  
+}
+@media(max-width:370px){
+
+
 }
