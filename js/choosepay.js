@@ -132,49 +132,41 @@
 
     // Fetch dữ liệu ghế và cập nhật giao diện
     getMapRowSeat()
-      .then(mapRowSeat => updateSeatUI(mapRowSeat))
-      .catch(error => console.error('Error fetching seat data:', error));
-  });
+    .then(mapRowSeat => {
+      let rows = mapRowSeat.keys();
+      for (const row of rows) {
+        // Tạo phần tử div để chứa ghế trong mỗi dãy
+        let rowContainer = document.createElement('div');
+        rowContainer.classList.add('row-container');
 
-  document.addEventListener('DOMContentLoaded', function () {
-    let seatsContainer = document.querySelector('.seats-container');
-  
-    getMapRowSeat()
-      .then(mapRowSeat => {
-        let rows = mapRowSeat.keys();
-        for (const row of rows) {
-          // Tạo phần tử div để chứa ghế trong mỗi dãy
-          let rowContainer = document.createElement('div');
-          rowContainer.classList.add('row-container');
-  
-          // Hiển thị số dãy
-          let rowLabel = document.createElement('div');
-          rowLabel.classList.add('row-label');
-          rowLabel.textContent = `Row ${row}`;
-          rowContainer.appendChild(rowLabel);
-  
-          // Hiển thị các ghế trong dãy
-          let seatsInRow = mapRowSeat.get(row);
-          seatsInRow.forEach(seat => {
-            let seatElement = document.createElement('div');
-            seatElement.classList.add('seat');
-            seatElement.textContent = seat.seatName;
-  
-            // Thêm màu sắc tương ứng dựa trên trạng thái ghế
-            if (seat.status === 'occupied') {
-              seatElement.classList.add('occupied');
-            } else {
-              seatElement.classList.add('available');
-              seatElement.addEventListener('click', seatClickHandler);
-            }
-  
-            rowContainer.appendChild(seatElement);
-          });
-  
-          // Thêm dãy ghế vào container chính
-          seatsContainer.appendChild(rowContainer);
-        }
-      })
+        // Hiển thị số dãy
+        let rowLabel = document.createElement('div');
+        rowLabel.classList.add('row-label');
+        rowLabel.textContent = `Row ${row}`;
+        rowContainer.appendChild(rowLabel);
+
+        // Hiển thị các ghế trong dãy
+        let seatsInRow = mapRowSeat.get(row);
+        seatsInRow.forEach(seat => {
+          let seatElement = document.createElement('div');
+          seatElement.classList.add('seat');
+          seatElement.textContent = seat.seatName;
+
+          // Thêm màu sắc tương ứng dựa trên trạng thái ghế
+          if (seat.status === 'occupied') {
+            seatElement.classList.add('occupied');
+          } else {
+            seatElement.classList.add('available');
+            seatElement.addEventListener('click', seatClickHandler);
+          }
+
+          rowContainer.appendChild(seatElement);
+        });
+
+        // Thêm dãy ghế vào container chính
+        seatsContainer.appendChild(rowContainer);
+      }
+    })
       .catch(error => console.error('Error fetching seat data:', error));
   });
   
