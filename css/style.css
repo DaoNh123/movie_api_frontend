@@ -1,6 +1,8 @@
 /* GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
+
+/* RESET CSS */
+*{ 
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding:0;
@@ -34,7 +36,7 @@ section{
     padding: 4.5rem 0 1.5rem;
 }
 
-/*            HEADER             */
+/* HEADER */
 header{
     position: fixed;
     width: 100%;
@@ -114,16 +116,17 @@ header.shadow .logo{
     background: #fa1216 ;
 }
 
-/**      BODY      **/
+/** BODY **/
 
-/* Notification */
+/** NOTIFICATION HOME PAGE **/
 .overlay-popup{
     position: absolute;
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    opacity: 1;
+    opacity: 0.8;
     pointer-events: none;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
 }
 .popup{
     position:fixed;
@@ -169,8 +172,8 @@ header.shadow .logo{
     width: 300px;
     height: 400px;
     display: flex;
-   justify-content: center;
-   align-items: center;
+    justify-content: center;
+    align-items: center;
 }
 .contentBox .content-popup h2{
     color: #333;
@@ -215,11 +218,10 @@ header.shadow .logo{
   
 }
 
-
-/**     SLIDE      **/
+/**     SLIDER    **/
 .container{
     width: 100%;
-    min-height: 640px;
+    min-height: 640px; 
     position: relative;
     display: flex;
     align-items: center;
@@ -278,7 +280,7 @@ header.shadow .logo{
     transition: 0.2s all linear;
 }
 
-/**  Movies  **/
+/**  MOVIES HOME CONTAINER  **/
 .heading{
     color: var(--bg-color);
     max-width: 1000px;
@@ -290,39 +292,41 @@ header.shadow .logo{
     border-bottom: 2px solid var(--main-color);
 }
 
-.movies-container{
-    max-width: 1000px;
+/* .grid-container{
+    width: 1000px;
     margin-right: auto;
-    margin-left: auto;     
+    margin-left: auto; 
+    display: grid;    
     grid-template-columns: repeat(auto-fit,minmax(180px,auto));
-    gap: 1 rem;
+    gap: 15 px;
     margin-top: 2 rem;
-}
-/* .movies-container-top,
-.movies-container-bottom{
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-} */
-.movies-container-top{
-    display: flex;
-    justify-content: space-between;    
-} 
+}
 
-.movies-container-bottom{
-    display: flex;
-    justify-content: space-between;
-}
 .box{
     margin-top: 20px;
-    /* margin-right: 10px; */
-    width: 185px !important;
+    width: 185px !important; 
+} */
+
+.grid-container {
+    margin-top: 2 rem;
+    width: 1000px;
+    margin: 0 auto; 
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    justify-content: center; 
+    grid-gap: 20px; 
+}
+
+.box {
+    margin-top: 20px;
+    width: 100%; 
+    height: auto; 
+  
 }
 .box .box-img{
     width:100%;
     height: 270px;
-
-    /**/
     position: relative;
     display: inline-block;
 }
@@ -338,19 +342,28 @@ header.shadow .logo{
 .box a{
     color: var(--bg-color);
 }
+.movie-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--main-color); 
+    color: white; 
+    padding: 5px; 
+    border-radius: 5px; 
+    font-weight: 600;
+}
 .box h3{
     margin-top: 20px;
     font-size: 1rem;
     font-weight: 550;
-    /* color: var(--text-color); */
+    color: var(--bg-color); 
 }
 .box span{
     font-size: 14px;
     /* color: var(--text-color); */
 }
 
-/*****/
-
+/**  HOVER CARD FILM  **/
 .overlay {
     position: absolute;
     top: 0;
@@ -363,41 +376,41 @@ header.shadow .logo{
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
   
-  .box-img:hover .overlay {
+.box-img:hover .overlay {
     opacity: 1;
-  }
+}
   
-  .button-container a{
+.button-container a{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--text-color);
     font-weight: 500;
-  }
+}
   
-  .book-button,
-  .detail-button {
+.book-button,
+.detail-button {
     padding: 10px 20px;
     background-color: var(--bg-color);
     color: var(--text-color);
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease-in-out;
     text-decoration: none; 
     border-radius: 5px;
     margin-bottom: 10px;
-  }
+}
  
-  .book-button:hover,
-  .detail-button:hover {
+.book-button:hover,
+.detail-button:hover {
     background-color: #ff2c1f;
     color: white;
-  }
+}
 
-/** Cooming Soon**/
+/**   COMING SOON  **/
 .coming-container{
     display: grid;
     gap: 1rem;
@@ -413,8 +426,43 @@ header.shadow .logo{
     width: 100px;
 }
 
+/**   PAGINATION   **/
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .page-button {
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+    border-radius: 3px;
+    border: 1px solid var(--bg-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 550;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .page-button.active {
+    background-color: var(--main-color);
+    color: var(--bg-color); 
+    border: 1px solid var(--main-color); 
+  }
+  
+  .page-button:hover {
+    background-color: var(--main-color);
+    color: var(--bg-color);
+    border: 1px solid var(--main-color);
+  }
 
-/** Footer **/
+/**   FOOTER   **/
 .footer{
     width: 100%;
     margin-top: 50px;
@@ -469,10 +517,10 @@ header.shadow .logo{
 }
 .social .bx{
     background: var(--bg-color);
-    padding: 2px;
+    padding: 4px;
     font-size: 20px;
     border-radius: 50%;
-    border: 4px solid rgb(2, 3, 7,0.4);
+    border: 2px solid rgb(2, 3, 7,0.4);
     color: var(--main-color)
 }
 .social .bx:hover{
@@ -530,8 +578,8 @@ header.shadow .logo{
 
 
 /**   Responsive CSS   **/
-
- /* @media(max-with:1080px){
+/* 
+ @media(max-with:1080px){
     .home-text{
         padding: 0 100px;
     }
@@ -631,4 +679,4 @@ header.shadow .logo{
     .box ,.box-img{
         height:  240px;
     } 
-} */
+}  */

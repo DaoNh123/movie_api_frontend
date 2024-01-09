@@ -21,7 +21,7 @@ window.onscroll = () =>{
 // let movieId  = decodeURIComponent(urlParams.get('movie.id'));
 
 // // Fetch API data
-fetch('http://localhost:8080/api/movies/now-showing?page=0&size=25')
+fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
   .then(response => response.json())
   .then(data => {
     const movieNameElements = document.querySelectorAll('.movieName');
@@ -74,82 +74,13 @@ fetch('http://localhost:8080/api/movies/now-showing?page=0&size=25')
   })
   .catch(error => { console.log(error); });
 
-// COMMENT
-const replyDiv = document.querySelectorAll('.reply');
-
-replyDiv.forEach((replyDivs) => {
-  const likeBtn = replyDivs.querySelector('.like');
-  const dislikeBtn = replyDivs.querySelector('.dislike');
-  let likesCount = 0;
-  let dislikesCount = 0;
-
-  likeBtn.addEventListener('click', () => {
-    likesCount++;
-    updateCounts();
-  });
-
-  dislikeBtn.addEventListener('click', () => {
-    dislikesCount++;
-    updateCounts();
-  });
-
-  function updateCounts() {
-    const likeCountElement = likeBtn.querySelector('i');
-    const dislikeCountElement = dislikeBtn.querySelector('i');
-
-    likeCountElement.textContent = likesCount;
-    dislikeCountElement.textContent = dislikesCount;
+  // NOTIFICATION
+  function showNotification() {
+    document.getElementById("overlay").classList.remove("hidden");
+    document.getElementById("notification").classList.remove("hidden");
   }
-});  
-
-// POST COMMENT
-const commentForm = document.querySelector('#comment-form');
-const commentInput = commentForm.querySelector('input[type="text"]');
-const commentButton = commentForm.querySelector('button');
-
-const handleCommentSubmission = () => {
-  const commentContent = commentInput.value;
-
-  const newCommentList = document.createElement('div');
-  newCommentList.classList.add('comment-list');
-
-  const newCommentBox = document.createElement('div');
-  newCommentBox.classList.add('comment-box');
-
-  newCommentBox.innerHTML = `
-    <div class="flex">
-      <div class="user">
-        <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
-        <div class="user-meta">
-          <div class="name"><p>@YourUsername</p></div>
-          <div class="day">Just now</div>
-        </div>
-      </div>
-      <div class="reply">
-        <div class="like icon"><i class='bx bx-like'></i></div>
-        <div class="dislike icon"><i class='bx bx-dislike'></i></div>
-        <div class="">Reply</div>
-      </div>
-    </div>
-    <div class="comment">
-      <p>${commentContent}</p>
-    </div>
-  `;
-
-  const commentLists = document.querySelectorAll('.comment-list');
-  const lastCommentList = commentLists[commentLists.length - 1];
-
-  if (lastCommentList) {
-    lastCommentList.after(newCommentList);
-    lastCommentList.after(newCommentBox);
-  } else {
-    commentForm.after(newCommentList);
-    commentForm.after(newCommentBox);
+  
+  function hideNotification() {
+    document.getElementById("overlay").classList.add("hidden");
+    document.getElementById("notification").classList.add("hidden");
   }
-
-  commentInput.value = '';
-};
-
-commentButton.addEventListener('click', handleCommentSubmission);
-
-
