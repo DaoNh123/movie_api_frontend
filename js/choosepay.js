@@ -1,7 +1,4 @@
-
-
-
-  // NOTIFICATION TO PAYMENT FORM
+// NOTIFICATION TO PAYMENT FORM
   function showNotification() {
     document.getElementById("overlay").classList.remove("hidden");
     document.getElementById("notification").classList.remove("hidden");
@@ -167,7 +164,7 @@
         seatsContainer.appendChild(rowContainer);
       }
     })
-      .catch(error => console.error('Error fetching seat data:', error));
+    .catch(error => console.error('Error fetching seat data:', error));
   });
   
   
