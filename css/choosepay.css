@@ -45,7 +45,7 @@ section{
 .body-container-img{
   position: absolute;
   width: 100%;
-  height: auto;
+  height: 110vh;
   object-fit: cover;
   object-position: center;
 }
@@ -55,6 +55,7 @@ section{
     background-color: #a7a7a7;
     /* margin-left: 150px;
     margin-right: 150px; */
+    margin: auto;
     margin-top: 100px;
     /* height: auto; */
     display: flex;
@@ -231,6 +232,9 @@ section{
     width: 320px;
     height: 40px;
     padding-left: 15px ;
+  }
+  .pay-button a.btn{
+    margin-left: 50px;
   }
 
   button{
