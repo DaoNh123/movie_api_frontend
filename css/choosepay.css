@@ -45,15 +45,16 @@ section{
 .body-container-img{
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 110vh;
   object-fit: cover;
   object-position: center;
 }
 
 .choice-container{
     background-color: #a7a7a7;
-    margin-left: 150px;
-    margin-right: 150px;
+    /* margin-left: 150px;
+    margin-right: 150px; */
+    margin: auto;
     margin-top: 100px;
     height: auto;
     display: flex;
@@ -236,6 +237,9 @@ section{
     height: 40px;
     padding-left: 15px ;
   }
+  .pay-button a.btn{
+    margin-left: 50px;
+  }
 
    /**   NOTIFICATION TO PAYMENT FORM   **/
    .hidden {
@@ -250,22 +254,22 @@ section{
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
   }
-  
+
   #notification {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* width: 500px; 
+    /* width: 500px;
     padding: 10px; */
     background-color: var(--bg-color);
     border: 1px solid #ccc;
     z-index: 10000;
     border-radius: 20px;
   }
-  
 
-  
+
+
 .wrapper {
   background-color: #fff;
   width: 500px;
