@@ -1,5 +1,5 @@
 /**    NOTIFICATION  **/
-// cua so pop up
+// POP UP
 const popup = document.querySelector('.popup');
 const close = document.querySelector('.close-popup')
 
@@ -47,33 +47,7 @@ var swiper = new Swiper(".home", {
     },
   }); 
 
-  // SLIDE WRAPPER
-  var swiper = new Swiper(".coming-container",{
-    spaceBetween: 20,
-    loop:true,
-    autoplay:{
-      delay:1500,
-      disableOnInteraction:false,
-    },
-    centeredSlides:true,
-    breakpoints:{
-      0:{
-        slidesPerView:2,
-      },
-      568:{
-        slidesPerView:3,
-      },
-      768:{
-        slidesPerView:4,
-      },
-      968:{
-        slidesPerView:5,
-      },
-    },
-  });
-
-
-// Render API và phân trang
+// Render API NOW SHOWING AND PAGINATION
 const fetchApi = async (api) => {
   const response = await fetch(api);
   const data = await response.json();
@@ -131,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
       moviesSection.innerHTML = html;
     };
 
-    // Hiển thị thanh phân trang
+    // PAGINATION
     const renderPagination = () => {
       let paginationHtml = "";
 
@@ -143,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       paginationContainer.innerHTML = paginationHtml;
 
-      // Thêm sự kiện click cho các nút phân trang
+      // ADD CLICK TO PAGINATION
       const pageButtons = document.querySelectorAll(".page-button");
       pageButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -163,3 +137,65 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPagination();
   });
 });
+
+  // SLIDE WRAPPER
+  var swiper = new Swiper(".coming-container",{
+    spaceBetween: 20,
+    loop:true,
+    autoplay:{
+      delay:1500,
+      disableOnInteraction:false,
+    },
+    centeredSlides:true,
+    breakpoints:{
+      0:{
+        slidesPerView:2,
+      },
+      568:{
+        slidesPerView:3,
+      },
+      768:{
+        slidesPerView:4,
+      },
+      968:{
+        slidesPerView:5,
+      },
+    },
+  });
+
+// RENDER API COMING SOON TO SLIDE WRAPPER
+fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
+  .then(response => response.json())
+  .then(data => {
+    const movies = data.content; // Array of movies
+    const swiperWrapper = document.getElementById('swiperWrapper');
+
+    // Loop through the movies and generate HTML
+    movies.forEach(movie => {
+      const box = document.createElement('div');
+      box.classList.add('swiper-slide', 'box');
+
+      const boxImg = document.createElement('div');
+      boxImg.classList.add('box-img');
+
+      const img = document.createElement('img');
+      img.src = movie.posterUrl;
+      img.alt = '';
+
+      const h3 = document.createElement('h3');
+      h3.textContent = movie.movieName;
+
+      const span = document.createElement('span');
+      // span.textContent = `${movie.duration} min | ${movie.categoryNameList.join(', ')}`;
+      span.textContent = `${movie.duration} min`;
+
+      boxImg.appendChild(img);
+      box.appendChild(boxImg);
+      box.appendChild(h3);
+      box.appendChild(span);
+      swiperWrapper.appendChild(box);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });

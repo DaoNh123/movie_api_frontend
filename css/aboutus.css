@@ -49,14 +49,14 @@ section{
     /* background-color: rgba(255, 44, 31, 0.8); */
     padding: 20px;
     text-align: center;
-    color: white;
+    color: var(--bg-color);
 } 
 .banner-content h2{
     font-size: 26px;
 }
 .banner-content button {
     background-color: var(--main-color);
-    color: white;
+    color: var(--bg-color);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -67,7 +67,7 @@ section{
 }
   
 .banner-content button a {
-    color: white;
+    color: var(--bg-color);
     text-decoration: none;
 }
   
@@ -207,7 +207,6 @@ section{
     justify-content: space-between;
    
 }
-
 .team-card {
     width: 25%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -246,8 +245,69 @@ button {
     width: 100%;
     font-size: 18px;
 }
-button:hover, a:hover {
-    opacity: 0.9;
+button:hover{
+    background-color: #cc2017;
+}
+.team-card a{
+    color: var(--bg-color);
+    font-weight: 500;
+}
+
+
+  /**   NOTIFICATION TO CREATE MOVIE   **/
+  .hidden {
+    display: none;
+  }
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  #notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; 
+    padding: 10px;
+    background-color: var(--bg-color);
+    border: 1px solid #ccc;
+    z-index: 10000;
+    border-radius: 20px;
+  }
+  
+  .content-notification{
+    text-align: center;
+    background-color: var(--bg-color);
+    padding: 10px 20px;
+    border-radius: 20px;
+  }
+  .content-notification i{
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--main-color);
+  }
+  .content-notification h3{
+    color: var(--text-color);
+  }
+  .button-notification {
+    display: flex;
+    justify-content: center;
+    margin: 15px 40px;
+}
+.button-notification #back{
+    margin-right:25px ;
+}
+.button-notification a{
+    color: var(--bg-color);
+}
+.button-notification:hover button{
+    background-color: #cc2017;
 }
 
 /** CONTACT US **/
@@ -377,4 +437,24 @@ button:hover, a:hover {
 }
 .contact__button:hover{
     background-color: #e50d02;
+}
+
+/**   Responsive CSS   **/
+@media(max-with:1080px){
+
+}
+
+@media(max-width:991px){
+
+}
+
+@media(max-width:774px){
+
+}
+@media(max-width:472px){
+  
+}
+@media(max-width:370px){
+
+
 }

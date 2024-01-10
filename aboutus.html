@@ -102,7 +102,7 @@
     <!--   TEAM  -->
     <section class="team">
         <div class="team-top">
-            <h2 id="team-title">TEAM</h2>
+            <h2 id="team-title">OUR TEAM</h2>
             <p>For smooth and quick transactions, please review our policies to better understand and avoid any problems during transactions</p>
         </div>
 
@@ -118,7 +118,7 @@
                     <a href="#"><i class='bx bxl-youtube' ></i></a>
                     <a href="#"><i class='bx bxl-tiktok' ></i></a>
                 </div>
-                <p><button>Contact</button></p>
+                <p><button><a href="#" onclick="showNotification()">Contact</a></button></p>
             </div>
 
             <div class="team-card">
@@ -132,7 +132,7 @@
                     <a href="#"><i class='bx bxl-youtube' ></i></a>
                     <a href="#"><i class='bx bxl-tiktok' ></i></a>
                 </div>
-                <p><button>Contact</button></p>
+                <p><button><a href="#" onclick="showNotification()">Contact</a></button></p>
             </div>
 
             <div class="team-card">
@@ -146,7 +146,7 @@
                     <a href="#"><i class='bx bxl-youtube' ></i></a>
                     <a href="#"><i class='bx bxl-tiktok' ></i></a>
                 </div>
-                <p><button>Contact</button></p>
+                <p><button><a href="#" onclick="showNotification()">Contact</a></button></p>
             </div>
 
             <div class="team-card">
@@ -160,48 +160,20 @@
                     <a href="#"><i class='bx bxl-youtube' ></i></a>
                     <a href="#"><i class='bx bxl-tiktok' ></i></a>
                 </div>
-                <p><button>Contact</button></p>
+                <p><button><a href="#" onclick="showNotification()">Contact</a></button></p>
             </div>
-<!-- 
-            <div class="member">
-                <img src="image/icon2.jpg" alt="">
-                <h3>Cao Thành Đạt</h3>
-                <span>Leader</span>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae reprehenderit laudantium minus perspiciatis magnam, </p>
-                <div class="social">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-instagram' ></i></a>
-                    <a href="#"><i class='bx bxl-youtube' ></i></a>
-                    <a href="#"><i class='bx bxl-tiktok' ></i></a>
+            <!-- NOFICATION TO CREATE MOVIE -->
+            <div id="overlay" class="hidden"></div>
+            <div id="notification" class="hidden">
+                <div class="content-notification">
+                    <i class='bx bxs-error-alt'></i>
+                    <h3>Do you want to access as administrator?</h3>
+                    <div class="button-notification">
+                        <button onclick="hideNotification()" class="btn" id="back">BACK</button>
+                        <button class="btn"><a href="createmovie.html" id="continue">CONTINUE</a></button>
+                    </div>
                 </div>
             </div>
-
-            <div class="member">
-                <img src="image/icon1.jpg" alt="">
-                <h3>Cao Thành Đạt</h3>
-                <span>Leader</span>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae reprehenderit laudantium minus perspiciatis magnam, </p>
-                <div class="social">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-instagram' ></i></a>
-                    <a href="#"><i class='bx bxl-youtube' ></i></a>
-                    <a href="#"><i class='bx bxl-tiktok' ></i></a>
-                </div>
-            </div>
-
-            <div class="member">
-                <img src="image/icon1.jpg" alt="">
-                <h3>Cao Thành Đạt</h3>
-                <span>Leader</span>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae reprehenderit laudantium minus perspiciatis magnam, </p>
-                <div class="social">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-instagram' ></i></a>
-                    <a href="#"><i class='bx bxl-youtube' ></i></a>
-                    <a href="#"><i class='bx bxl-tiktok' ></i></a>
-                </div>
-            </div>
-        </div> -->
     </section>
 
     <!--  CONTACT US SECTION  -->
@@ -211,6 +183,7 @@
             <p>FILMHUB was established with the goal of providing customers with the best quality products and services at the most reasonable prices; with two main business segments: entertainment service complex and communication service provision.</p>
         </div>
         <div class="contact-content">
+
             <div class="contact-left">
                 <div class="contact-address">
                     <i class='bx bx-location-plus' ></i>
@@ -228,6 +201,7 @@
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0969490732564!2d105.77971427500047!3d21.028806487777477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b32b842a37%3A0xe91a56573e7f9a11!2zOGEgVMO0biBUaOG6pXQgVGh1eeG6v3QsIE3hu7kgxJDDrG5oLCBD4bqndSBHaeG6pXksIEjDoCBO4buZaSAxMDAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1702282276783!5m2!1svi!2s"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
+            
             <div class="contact-right">
                 <div class="contact-right-name">
                     <p>Name:</p>
@@ -249,76 +223,56 @@
             </div>
         </div>    
     </div> 
-
-    <!--  FOOTER  -->
-    <!-- <section class="footer">
-        <div class="footer-left">
-            <div class="footer-address">
-                <i class='bx bx-location-plus' ></i>
-                <p>8A Ton That Thuyet Street, Nam Tu Liem, Ha Noi</p>
-            </div>
-            <div class="footer-phone">
-                <i class='bx bxs-phone' ></i>
-                <p>+84 441 678910</p>
-            </div>
-            <div class="footer-email">
-                <i class='bx bxs-envelope' ></i>
-                <p>team2t2203e@gmail.com</p>
-            </div>
-        </div>
-        <div class="footer-right">
-            <a href="#" class="logo">
-                <i class='bx bxs-movie-play'></i>FilmHub
-            </a>
-            <p>Enhance your movie watching experience with your loved ones. If you have comments, please use the following methods</p>
-            <div class="social">
-                <a href="#"><i class='bx bxl-facebook'></i></a>
-                <a href="#"><i class='bx bxl-instagram' ></i></a>
-                <a href="#"><i class='bx bxl-youtube' ></i></a>
-                <a href="#"><i class='bx bxl-tiktok' ></i></a>
-            </div>
-        </div>
-    </section> -->
     
     <!--  FOOTER  -->
-    <section class="footer">
-        <div class="footer-left">
-            <div class="footer-address">
-                <i class='bx bx-location-plus' ></i>
-                <p>8A Ton That Thuyet Street, Nam Tu Liem, Ha Noi</p>
+    <footer>
+        <div class="footer-content">
+            <div class="left box-footer">
+                <a href="index.html" class="logo">
+                    <i class='bx bxs-movie-play'></i>FilmHub
+                </a>
+                <div class="content-box-footer">
+                    <p>Enhance your movie watching experience with your loved ones. If you have comments, please use the following methods</p>
+                <div class="social">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-instagram' ></i></a>
+                    <a href="#"><i class='bx bxl-youtube' ></i></a>
+                    <a href="#"><i class='bx bxl-tiktok' ></i></a>
+                </div>
+              </div>
             </div>
-            <div class="footer-phone">
-                <i class='bx bxs-phone' ></i>
-                <p>+84 441 678910</p>
-            </div>
-            <div class="footer-email">
-                <i class='bx bxs-envelope' ></i>
-                <p>team2t2203e@gmail.com</p>
-            </div>
-        </div>
 
-        <div class="footer-center">
-            <a href="index.html" class="logo">
-                <i class='bx bxs-movie-play'></i>FilmHub
-            </a>
-            <p>Enhance your movie watching experience with your loved ones. If you have comments, please use the following methods</p>
-            <div class="social">
-                <a href="#"><i class='bx bxl-facebook'></i></a>
-                <a href="#"><i class='bx bxl-instagram' ></i></a>
-                <a href="#"><i class='bx bxl-youtube' ></i></a>
-                <a href="#"><i class='bx bxl-tiktok' ></i></a>
+            <div class="center box-footer">
+                <h2>Address</h2>
+                <div class="content-box-footer">
+                    <div class="footer-address">
+                        <span><i class='bx bx-location-plus' ></i></span>
+                        <span class="footer-text">8A Ton That Thuyet Street, Nam Tu Liem, Ha Noi</span>
+                    </div>
+                    <div class="footer-phone">
+                        <span><i class='bx bxs-phone' ></i></span>
+                        <span class="footer-text">+84 441 678910</span>
+                    </div>
+                    <div class="footer-email">
+                        <span><i class='bx bxs-envelope' ></i></span>
+                        <span class="footer-text">team2t2203e@gmail.com</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="footer-right" id="newsletter"> 
-            <h2>Subscribe To Get <br> Newsletter</h2> 
-            <form action="">
-                <input type="email" class="email" placeholder="Enter Email..." required>
-                <input type="submit" value="Subcribe" class="btn">
-            </form> 
+            <div class="right box-footer">
+                <h2>Subscribe To Get <br> Newsletter</h2>
+                <div class="content-box-footer">
+                    <form action="">
+                        <input type="email" class="email" placeholder="Enter Email..." required>
+                        <input type="submit" value="Subcribe" class="btn">
+                    </form>     
+                </div>
+            </div>      
         </div>
+    </footer>
 
-    </section>
+
 
 
     <!--Copyright-->
