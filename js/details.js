@@ -40,6 +40,7 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
     const detailsIndexMovieName = document.querySelector("#details-index .movieName");
     const averageStar = document.querySelector(".averageStar");
     const trailerIframe = document.querySelector(".iframe iframe");
+    const imdbRatings = document.querySelector(".imdbRatings");
     // const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
     const commentList = document.querySelector(".commentList");
     console.log(commentList);
@@ -52,6 +53,7 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
     openingTime.textContent = `Premiere Date: ${new Date(movie.openingTime).toLocaleDateString()}`;
     closingTime.textContent = `End Date: ${new Date(movie.closingTime).toLocaleDateString()}`;
     averageStar.innerHTML = `Average Star: ${movie.averageStar} <i class='bx bxs-star'></i>` ;
+    imdbRatings.textContent = `ImdbRatings: ${movie.imdbRatings}`;
     posterUrl.src = movie.posterUrl;
     detailsIndexMovieName.textContent = movie.movieName;
     trailerIframe.src = movie.trailerUrl;
