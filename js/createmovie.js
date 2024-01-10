@@ -1,67 +1,106 @@
-
 class CreateMovieRequest {
-  constructor(movieName, language, duration, imdbRatings,movieLabel,iframe,openingTime,closingTime,categoryList,description) {
+  constructor(
+    movieName,
+    description,
+    duration,
+    language,
+    openingTime,
+    closingTime,
+    categoryList,
+    youtubeLink,
+    movieLabel,
+  ) {
     this.movieName = movieName;
+    this.description = description;
+    this.duration = duration;
     this.language = language;
-    this.duration =duration;
-    this.imdbRatings = imdbRatings;
-    this.movieLabel = movieLabel;
-    this.iframe = iframe;
     this.openingTime = openingTime;
     this.closingTime = closingTime;
-    this.categoryList =categoryList;
-    this.description=description;
+    this.youtubeLink = youtubeLink;
+    this.categoryList = categoryList;
+    this.movieLabel = movieLabel;
+  }
+
+  toString() {
+    return `CreateMovieRequest {
+  movieName: ${this.movieName},
+  language: ${this.language},
+  duration: ${this.duration},
+  movieLabel: ${this.movieLabel},
+  iframe: ${this.iframe},
+  openingTime: ${this.openingTime},
+  closingTime: ${this.closingTime},
+  categoryList: ${JSON.stringify(this.categoryList)},
+  description: ${this.description}
+}`;
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  let submitBtn = document.querySelector("btnSubmit"); 
+// document.addEventListener("DOMContentLoaded", function () {  ==> Unnecessary event
 
-  if (submitBtn) { 
-    submitBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      
-    });
- 
-  const createMovieRequestJson = JSON.stringify(new CreateMovieRequest(movieName, language, duration, imdbRatings,movieLabel,iframe,openingTime,closingTime,categoryList,description));
+let submitBtn = document.querySelector("#btnSubmit");
 
-  const posterFileInput = document.getElementById("posterFileInput"); 
-  const posterFile = posterFileInput.files[0];
+const submitCreateMovieForm = (e) => {
+  e.preventDefault();
+
   const movieName = document.querySelector(".movieName input").value;
-  const language = document.querySelector(".language select").value;
-  // const posterFile = document.querySelector(".poster input").files[0];
-  const duration = document.querySelector(".duration input").value;
-  const imdbRatings = document.querySelector(".imdbRatings input").value;
-  const movieLabel = document.querySelector(".movieLabel select").value;
-  const iframe = document.querySelector(".iframe input").value;
-  const openingTime = document.querySelector(".openingTime input").value;
-  const closingTime = document.querySelector(".closingTime input").value;
-  const categoryList = document.querySelector(".categoryList input").value;
   const description = document.querySelector(".description input").value;
+  const duration = document.querySelector(".duration input").value;
+  const language = document.querySelector(".language select").value;
+  const openingTimeInString = document.querySelector(".openingTime input").value;
+  const closingTimeInString = document.querySelector(".closingTime input").value.concat("T00:00:00");
+
+  // Category
+  const categoryListInString = document.querySelector(".categoryList input").value.concat("T00:00:00");
+  const youtubeLink = document.querySelector(".youtubeLink input").value;
+  const movieLabel = document.querySelector(".movieLabel select").value;
+
+const openingTime = new Date(openingTimeInString);
+const closingTime = new Date(closingTimeInString);
+
+  const posterFileInput = document.getElementById("posterFileInput");
+  const posterFile = posterFileInput.files[0];
+  // const posterFile = document.querySelector(".poster input").files[0];
+  // const imdbRatings = document.querySelector(".imdbRatings input").value;
+  
+  const categoryList = categoryListInString.split(",").map((category) => category.trim());
+  console.log(categoryList);
+  const createMovieRequestJson = JSON.stringify(
+    new CreateMovieRequest(
+      movieName,
+      description,
+      duration,
+      language,
+      openingTime,
+      closingTime,
+      categoryList,
+      youtubeLink,
+      movieLabel,
+    )
+  );
+
+  console.log(createMovieRequestJson);
 
   const formData = new FormData();
-  formData.append('poster', posterFile);
+  formData.append("poster", posterFile);
   //debugger;
-  
-  formData.append('createMovieRequest', new Blob([createMovieRequestJson], { type: 'application/json' }));
-  
+
+  formData.append("createMovieRequest", new Blob([createMovieRequestJson], { type: "application/json" }));
+
   fetch("http://localhost:8080/api/movies", {
     method: "POST",
     body: formData,
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error("HTTP error! Status: " + response.status);
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.json(); 
+      return response.json();
     })
     .then((data) => {
-    
       console.log("Response data:", data);
     })
     .catch((error) => {
-
       console.error("Error:", error);
     });
-  };
-});
+};

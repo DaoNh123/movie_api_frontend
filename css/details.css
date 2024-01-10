@@ -76,6 +76,9 @@ section{
 .details-menu .menu-title{
   font-size: 1000;
 }
+.details-menu .averageStar i{
+  color: var(--main-color);
+}
 /***   TRAILER   **/
 
 #trailer-title {
@@ -83,7 +86,7 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px auto;
+  margin: 40px auto;
   width: fit-content;
 }
 
@@ -98,8 +101,8 @@ section{
 }
 
 .iframe{
-  width:1100; 
-  height:700;
+  width:1100px; 
+  height:700px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,7 +118,6 @@ section{
   margin: 0 auto 20px;
   width: fit-content;
 }
-
 #comment-title::after {
   content: "";
   position: absolute;
@@ -125,7 +127,11 @@ section{
   height: 2px;
   background-color: var(--main-color);
 }
-
+.comment-session{
+  width: 1000px;
+  height: auto;
+  margin: 0 auto;
+}
 .flex{
   display: flex;
   justify-content: space-between;
@@ -135,46 +141,46 @@ img{
   width: 100%;
   height: 100%;
 }
-.comment-box, .comment-list{ 
-  background: var(--bg-color);
+.comment{ 
+  padding: 10px;
+  margin-bottom: 10px;
   border-radius: 4px;
-  box-shadow: 0 2px 2px var(--text-color);
+  box-shadow: 0 2px 2px var(--text-color); 
+  background-color: var(--bg-color);
 }
-.comment-session{
-  width: 950px;
-  height: auto;
-  margin: 0 auto;
-}
-.comment-list{
+.flex{ 
   width: 100%;
   height: auto;
-  margin-bottom: 12px;
 }
-.comment-list .user{
+.flex .user{
   display: flex;
   padding: 8px;
   overflow: hidden;
 }
-.comment-list .user img{
+.flex .user img{
   height: 38px;
   width: 38px;
   border-radius: 50%;
   margin-right: 10px;
 }
-.comment-list .commentUsername{
+.flex .commentUsername{
   text-transform:none;
   font-weight: 600;
   color: var(--text-color);
 }
-.comment-list .day{
+.flex .starRate{
   font-size: 12px;
   color: var(--text-color);
+}
+.flex .starRate i{
+  color: var(--main-color);
 }
 .reply{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
   gap: 10px;
   color: var(--text-color);
 }
@@ -190,21 +196,78 @@ img{
   color: var(--text-color);
   cursor: pointer;
 }
-.commentList .commentContent{
-  padding: 0 0 15px 58px;
+.comment .commentContent{
+  /* margin-bottom: 12px; */
+  padding: 0 22px 0px 58px;
   color: var(--text-color);
 }
 
 /* Input Your Comment */
-.commentContent input{
-  margin-right: 20px;
-  width: 100%;
+#comment-input{
+  height: 150px;
 }
-.commentContent button{
-  color: var(--bg-color);
+#comment-content {
+  width: 920px;
+  height: 30px;
+  margin-left: 55px;
+
+}
+#comment-submit{
+  padding: 5px;
+  margin: 5px;
+  border: none;
   background-color: var(--main-color);
-  border:none;
-  float: left;
+  color: var(--bg-color);
+  float: right;
+  font-weight: 500;
 }
+#comment-input .starRate i {
+  color: #b0b0b0;
+}
+
+#comment-input .starRate i.active {
+  color: var(--main-color);
+}
+
+
+
+/**   Responsive CSS   **/
+@media(max-with:1080px){
+  .iframe{
+    width: 90%;
+    height: auto;
+  }
+
+}
+
+@media(max-width:991px){
+  .iframe{
+    width: 90%;
+    height: auto;
+  }
+
+}
+@media(max-width:774px){
+  .iframe {
+    width: 80%;
+    height: auto;
+  }
+
+}
+@media(max-width:472px){
+  .iframe {
+    width: 70%;
+    height: auto;
+  }
+}
+@media(max-width:370px){
+  .iframe{
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
 
 

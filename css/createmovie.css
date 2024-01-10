@@ -36,8 +36,7 @@ section{
     padding: 4.5rem 0 1.5rem;
 }
 
-
-
+/* Banner */
 .post-form{
     position: relative;
     height: 100vh;
@@ -52,8 +51,7 @@ section{
     object-position: center;
 }
 
-
-
+/* Form Input */
 .wrapper {
     background-color: var(--bg-color);
     width: 1000px;
@@ -62,16 +60,6 @@ section{
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
-/* 
-.wrapper h2 {
-    background-color: #fcfcfc;
-    color: #ff2c1f;
-    font-size: 24px;
-    padding: 10px;
-    margin-bottom: 8px;
-    text-align: center;
-    border: 1px dashed #ff2c1f;;
-} */
 
 .wrapper h4 {
     padding-bottom: 5px;
@@ -91,6 +79,7 @@ section{
     width: 100%;
     margin-right: 12px;
     position: relative;
+    
 }
 
 .movieName {
@@ -163,16 +152,16 @@ section{
 }
 
 .name:focus+.bx {
-    background-color: #ff2c1f;;
+    background-color: var(--main-color);
     color: #fff;
-    border-right: 1px solid #ff2c1f;;
+    border-right: 1px solid var(--main-color);
     border: none;
     transition: 1s;
 }
 .input_box select:focus+.bx {
-    background-color: #ff2c1f;;
+    background-color: var(--main-color);
     color: #fff;
-    border-right: 1px solid #ff2c1f;;
+    border-right: 1px solid var(--main-color);
     border: none;
     transition: 1s;
 }
@@ -203,16 +192,16 @@ section{
 }
 
 .radio:checked+label {
-    background-color: #ff2c1f;;
-    color: #fff;
+    background-color: var(--main-color);
+    color: var(--bg-color);
     transition: 0.5s;
 }
 
 .input_box button {
     width: 100%;
-    background-color: #ff2c1f;;
+    background-color: var(--main-color);
     border: none;
-    color: #fff;
+    color: var(--bg-color);
     padding: 15px;
     border-right: 4px;
     font-size: 16px;
@@ -227,3 +216,59 @@ section{
 .input_button{
     text-align: center;
 }
+.input_button button a{
+    color: var(--bg-color);
+}
+/* Reset CSS cho label và input */
+ .categoryForm {
+    margin: 0;
+    padding: 0;
+}
+
+.categoryForm input,
+.categoryForm label {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none; 
+}
+
+/* CSS cho label và input */
+.categoryForm label {
+    display: block;
+    /* margin-bottom: 5px; */
+    float: right;
+}
+.categoryForm input {
+    margin-right: 3px;
+    margin-left: 10px;
+}
+/* CSS cho categoryForm */
+.categoryForm {
+    display: none !important;
+    position: absolute;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding: 10px;
+    border: 1px solid #ccc;
+    z-index: 1;
+    width: auto;
+}
+#category-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.category-box {
+    margin-right: 10px;
+    /* margin-bottom: 5px; */
+    display: inline-block;
+    vertical-align: top;
+    /* border: 3px solid #ba1209; */
+}
+.category-box input{
+    accent-color: var(--main-color);
+}
+.input_box.categoryList:hover .categoryForm{
+    display: block !important;
+}
+  

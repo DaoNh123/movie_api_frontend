@@ -67,16 +67,20 @@ section{
     margin-bottom: 20px;
     border-right: 2px solid var(--text-color);
 }
-.movie-content {
-    display: flex;
+.movie-seat {
+    /* display: flex; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
   }
-  .movie-content label {
+  .movie-seat label {
     display: flex;
     justify-content: left;
     align-content: center;
     padding-top: 10px;
   }
-  .movie-content option{
+  .movie-seat option{
     background-color: #fff;
     border: 0;
     border-radius: 5px;
@@ -113,11 +117,11 @@ section{
     background-color: #6feaf6;
   }
   .seat.vip{
-    background-color: var(--main-color);
+    background-color: rgb(254, 169, 89);
   }
-  .seat.nor{
-    background-color: #9af66f;
-  }
+  /* .seat.nor{
+    background-color: var(--bg-color);
+  } */
   .seat.occupied {
     background-color: #f7fb3b;
   } 
@@ -140,38 +144,38 @@ section{
   }
   
   .showcase {
-    /* background: rgba(0, 0, 0, 0.1); 
-    width: 300px; */
-    padding: 5px 5px;
-    border-radius: 5px;
     color: var(--text-color);
     font-size: 16px;
-    font-weight: 400;
-    list-style-type: none;
+    font-weight: 500;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center;
   }
-  
   .showcase li {
     display: flex;
     align-items: center;
-    justify-content: right;
-    margin: 0 10px;
+    margin-bottom: 10px;
+    margin-right: 100px;
   }
-  
   .showcase li p{
-    margin-left: 2px;
-    padding-right: 10px;
+    margin: 0 0 0 5px;
   }
-  
+  .movie-seat .showcase li .vip{
+  margin-left: 12px;
+}
+
   .row {
     display: flex;
   }
   
   .screen {
-    background-color: #fff;
+    background-color: var(--bg-color);
+    border-radius: 50px;
+    color: var(--main-color);
+    font-size: 40px;
+    font-weight: 550;
+    text-align: center;
     height: 70px;
     width: 520px;
     margin: 15px 0;
@@ -229,7 +233,7 @@ section{
     padding-left: 15px ;
   }
 
-  .seat-choices{
+  /* .seat-choices{
     padding: 10px 0 20px 0;
   }
   .seat-choices select{
@@ -267,9 +271,9 @@ section{
     z-index: 10000;
     border-radius: 20px;
   }
+  
 
-
-
+  
 .wrapper {
   background-color: #fff;
   width: 500px;

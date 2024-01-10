@@ -1,4 +1,17 @@
-// NOTIFICATION TO PAYMENT FORM
+// CHOICE SEAT
+document.addEventListener('DOMContentLoaded', function () {
+  var seats = document.querySelectorAll('.seat, .vip');
+  seats.forEach(function (seat) {
+      seat.addEventListener('click', function () {
+          if (!seat.classList.contains('occupied')) {
+              seat.classList.toggle('selected');
+          }
+      });
+  });
+});
+
+
+  // NOTIFICATION TO PAYMENT FORM
   function showNotification() {
     document.getElementById("overlay").classList.remove("hidden");
     document.getElementById("notification").classList.remove("hidden");
@@ -12,7 +25,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var seats = document.querySelectorAll('.seat');
-  
+
     // Gọi API để lấy dữ liệu trạng thái chỗ ngồi từ máy chủ
     fetch('http://localhost:8080/api/slots/11')
       .then(response => response.json())
@@ -22,7 +35,7 @@
           var seatElement = document.querySelector('.row .' + slot.seat);
           if (seatElement) {
             seatElement.classList.add(slot.status);
-  
+
             // Vô hiệu hóa chỗ đã có người ngồi
             if (slot.status === 'occupied') {
               seatElement.removeEventListener('click', seatClickHandler);
@@ -31,11 +44,11 @@
         });
       })
       .catch(error => console.error('Lỗi khi lấy dữ liệu chỗ ngồi:', error));
-  
+
     seats.forEach(function (seat) {
       seat.addEventListener('click', seatClickHandler);
     });
-  
+
     function seatClickHandler() {
       // Kiểm tra xem chỗ còn trống hay không trước khi chuyển đổi lớp đã chọn
       if (!this.classList.contains('occupied')) {
@@ -43,7 +56,7 @@
         updateTotal();
       }
     }
-  
+
     function updateTotal() {
       var selectedSeats = document.querySelectorAll('.selected');
       var vipSeatPrice = 15;
@@ -54,16 +67,16 @@
       document.getElementById('totalAmount').innerText = '$' + selectedSeatPrice;
     }
   });
-  
+
   // Modal box
   const section = document.querySelector('section'),
     overlay = document.querySelector('.overlay'),
     showBtn = document.querySelector('.show-modal'),
     closeBtn = document.querySelector('.close-btn');
-  
+
   showBtn.addEventListener('click', () => section.classList.add('active'));
   closeBtn.addEventListener('click', () => section.classList.remove('active'));
-  
+
 
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -73,7 +86,7 @@
       const data = await response.json();
       return data;
     };
-  
+
     // Hàm để tạo SeatClass
     class SeatClass {
       constructor(seatClassName, price) {
@@ -81,7 +94,7 @@
         this.price = price;
       }
     }
-  
+
     // Hàm để tạo Seat
     class Seat {
       constructor(seatId, seatName, status, seatClass) {
@@ -104,7 +117,7 @@
           ]`;
       }
     }
-  
+
     // Hàm để lấy Map của các dãy ghế
     let getMapRowSeat = async () => {
       return getApiData("http://localhost:8080/api/slots/11")
@@ -113,7 +126,7 @@
         })
         .then((listSeat) => {
           const seatMap = new Map();
-  
+
           listSeat.forEach((seat) => {
             const key = seat.row;
             if (!seatMap.has(key)) {
@@ -121,7 +134,7 @@
             }
             seatMap.get(key).push(seat);
           });
-  
+
           console.log(seatMap);
           return seatMap;
         });
@@ -166,5 +179,5 @@
     })
     .catch(error => console.error('Error fetching seat data:', error));
   });
-  
-  
+
+
