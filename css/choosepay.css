@@ -113,7 +113,7 @@ section{
     font-size: 16px;
     cursor: pointer;
   }
-  .seat.selected{
+  .seat.available{
     background-color: #6feaf6;
   }
   .seat.vip{
@@ -122,7 +122,7 @@ section{
   /* .seat.nor{
     background-color: var(--bg-color);
   } */
-  .seat.occupied {
+  .seat.booked {
     background-color: #f7fb3b;
   } 
   .seat:nth-of-type(2) {
@@ -133,12 +133,12 @@ section{
     margin-left: 18px;
   }
   
-  .seat:not(.occupied):hover {
+  .seat:not(.booked):hover {
     cursor: pointer;
     transform: scale(1.2);
   }
   
-  .showcase .seat:not(.occupied):hover {
+  .showcase .seat:not(.booked):hover {
     cursor: default;
     transform: scale(1);
   }
@@ -208,7 +208,7 @@ section{
     width: 500px;
     height: 50px;
     margin-top: 13px;
-   }
+   } 
   .theater-choices select{
     width: 320px;
     height: 40px;

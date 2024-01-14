@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const moviesSection = document.getElementById("movie");
   const paginationContainer = document.getElementById("pagination");
 
-  const pageSize = 10; 
+  const pageSize = 15; 
   let currentPage = 1; 
 
   fetchApi("http://localhost:8080/api/movies/now-showing?page=0&size=28").then((data) => {

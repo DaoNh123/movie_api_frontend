@@ -34,7 +34,7 @@ fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
     const closingTime = document.querySelector('.closingTime');
     const posterUrl = document.querySelector('.posterUrl img');
     const detailsIndexMovieName = document.querySelector('#details-index .movieName');
-    const trailerIframe = document.querySelector('.iframe iframe');
+    const trailerIframe = document.querySelector(".iframe iframe");
     const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
 
     const updateMovieDetails = (movie) => {
@@ -50,7 +50,7 @@ fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
       closingTime.textContent = `End Date: ${new Date(movie.closingTime).toLocaleDateString()}`;
       posterUrl.src = movie.posterUrl;
       detailsIndexMovieName.textContent = movie.movieName;
-      trailerIframe.src = movie.iframe;
+      trailerIframe.src = movie.trailerUrl;
     };
 
     movieLinks.forEach(movieLink => {
