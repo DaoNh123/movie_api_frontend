@@ -417,3 +417,9 @@ section{
   cursor: pointer;
   background-color: #ba1209;;
 }
+
+/* New for choosingSeat JS */
+.seat.selected {
+  background-color: #6feaf6;
+}
+/* End New for choosingSeat JS */
