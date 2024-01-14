@@ -340,4 +340,39 @@ createOrderBtn.addEventListener("click", (e) => {
   const orderRequest = new OrderRequest(fullNameInput.value, emailInput.value, addressInput.value, age, createOrderBtn.getAttribute('slot-id'), seatIdList);
 
   console.log(orderRequest);
+
+  const endpoint = "http://localhost:8080/api/orders/";
+
+// Fetch options for the POST request
+const requestOptions = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderRequest),
+};
+
+// Make the POST request
+fetch(endpoint, requestOptions)
+    .then(response => {
+      if (response.ok) {
+        // Parse the JSON response
+        return response.json();
+      } else {
+        // If it's a bad request, log the error message
+        return response.json().then(error => {
+          console.log('Bad Request:', error.data);
+          // You can handle the error further as needed
+          throw new Error('Bad Request');
+        });
+      }
+    })
+    .then(data => {
+      // If it's a success, log the specific field you're interested in
+      console.log('Total Value:', data.totalValue);
+      // You can handle the success further as needed
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 });
