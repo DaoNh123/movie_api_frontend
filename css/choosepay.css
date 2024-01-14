@@ -45,7 +45,7 @@ section{
 .body-container-img{
   position: absolute;
   width: 100%;
-  height: 110vh;
+  height: 120vh;
   object-fit: cover;
   object-position: center;
 }
@@ -173,10 +173,9 @@ section{
     background-color: var(--bg-color);
     border-radius: 50px;
     color: var(--main-color);
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 550;
     text-align: center;
-    height: 70px;
     width: 520px;
     margin: 15px 0;
     box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
@@ -233,6 +232,22 @@ section{
     padding-left: 15px ;
   }
 
+  .choice {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .choice .choice-label {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 400;
+    width: 85px;
+  }
+
+  .choice select {
+    width: calc(100% - 85px);
+  }
+
   /* .seat-choices{
     padding: 10px 0 20px 0;
   }
@@ -240,11 +255,21 @@ section{
     width: 320px;
     height: 40px;
     padding-left: 15px ;
-  }
-  .pay-button a.btn{
-    margin-left: 50px;
-  }
+  } */
+.pay-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
 
+  .pay-button a.btn:first-of-type {
+    margin-right: 50px;
+  }
+  /* #totalAmount{
+    display: flex;
+  } */
+  
    /**   NOTIFICATION TO PAYMENT FORM   **/
    .hidden {
     display: none;
@@ -270,15 +295,40 @@ section{
     border: 1px solid #ccc;
     z-index: 10000;
     border-radius: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
   }
   
+  /* width */
+  #notification::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+#notification::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Handle */
+#notification::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+#notification::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+  border-radius: 10px;
+}
 
   
 .wrapper {
   background-color: #fff;
   width: 500px;
   padding: 25px;
-  margin: 25px auto 25px;
+  margin: 0px auto;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
@@ -312,6 +362,29 @@ section{
   margin-right: 12px;
   position: relative;
 }
+
+.input_box a{
+  padding: 0.7rem 1.4rem;
+  background: var(--main-color);
+  color: var(--bg-color);
+  font-size: 18px;
+  font-weight: 550;
+  border-radius: 0.5rem;
+  /* margin-left: 70px; */
+}
+
+.input_box2 button{
+  padding: 0.7rem 1.4rem;
+  background: var(--main-color);
+  color: var(--bg-color);
+  font-size: 18px;
+  font-weight: 550;
+  border-radius: 0.5rem;
+  border: none;
+  margin-top: -10px;
+}
+
+
 
 .input_box:last-child {
   margin-right: 0;
@@ -389,12 +462,14 @@ section{
 }
 
 .input_box label:first-of-type {
+  font-size: 15px;
   border-top-left-radius: 3px;
   border-bottom-right-radius: 3px;
   border-right: none;
 }
 
 .input_box label:last-of-type {
+  font-size: 15px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }

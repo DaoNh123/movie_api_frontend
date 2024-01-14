@@ -93,6 +93,9 @@ section{
     padding: 0 auto;
     margin-bottom: 20px;
 }
+.about-top p{
+    font-size: 15px;
+}
 #about-title {
     position: relative;
     display: inline-block;
@@ -112,10 +115,18 @@ section{
     justify-content: space-around;
 }
 .about-text{
+    margin-top: 30px;
     float: left;
     text-align: left;
 }
+
+.about-text ul li{
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: 100;
+}
 .about-img img{
+    margin-top: 30px;
     width: 620px;
     margin-left: 30px;
 }
@@ -129,6 +140,9 @@ section{
     padding: 0 20px;
     text-align: center;
     margin-bottom: 20px;
+}
+.policy-top p{
+    font-size: 15px;
 }
 #policy-title {
     position: relative;
@@ -152,7 +166,7 @@ section{
 .accordion {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 450;
     cursor: pointer;
     padding: 18px;
@@ -184,6 +198,9 @@ section{
     padding: 0 20px;
     text-align: center;
     margin-bottom: 20px;
+}
+.team-top p{
+    font-size: 15px;
 }
 #team-title {
     position: relative;
@@ -217,6 +234,7 @@ section{
     color: var(--text-color);
 }
 .team-card img{
+    height: 250px;
     border-radius: 50%;
     padding: 10px;
 }
@@ -226,12 +244,15 @@ section{
  } 
 .team-title {
     color: grey;
-    font-size: 18px;
+    font-size: 16px;
 }
 .team-card .social{
     display: flex;
     justify-content: space-between;
     margin: 10px 50px;
+}
+.team-card p{
+    font-size: 15px;
 }
 button {
     border: none;
@@ -324,6 +345,9 @@ button:hover{
 .contact-top{
     margin-bottom: 30px;
 }
+.contact-top p{
+    font-size: 15px;
+}
 #contact-title {
     position: relative;
     display: inline-block;
@@ -364,13 +388,22 @@ button:hover{
     padding-right: 15px;
     padding-top: 0px ;
 }
+.contact-address p{
+    font-size: 15px;
+}
 .contact-phone i{
     font-size: 22px;
     padding-right: 15px;
 }
+.contact-phonep{
+    font-size: 15px;
+}
 .contact-email i{
     font-size: 22px;
     padding-right: 15px;
+}
+.contact-email p{
+    font-size: 15px;
 }
 .contact-map iframe{
     width: 460px;
@@ -394,6 +427,7 @@ button:hover{
     margin-left: 50px;
 }
 .contact-right-name, .contact-right-email, .contact-right-address p{
+    font-size: 16px;
     text-align: left;
 }
 .contact-right-name input{
@@ -415,6 +449,7 @@ button:hover{
     margin-left: 50px
 }
 .contact-right-input p{
+    font-size: 16px;
     text-align: left;
 }
 .contact-right-input textarea{
@@ -423,7 +458,6 @@ button:hover{
 }
 .contact__button{
     width: 150px;
-    padding: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     background-color: var(--main-color);

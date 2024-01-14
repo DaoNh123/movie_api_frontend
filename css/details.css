@@ -39,13 +39,13 @@ section{
 
 /***  DETAILS   **/
 #details-index{
+  text-align: center;
   margin-top: 50px;
-  margin-left: 275px;
   margin-bottom: 20px;
   font-size: 23px;
 }
 #details-index span{
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
 }
 .details{
@@ -55,7 +55,11 @@ section{
   display: flex;
   /* justify-content: space-between; */
 }
+.details-infor p, ul li{
+  font-size: 15px;
+} 
 .posterUrl img{
+  margin-left: 100px;
   width: 255px;
   height: 405px;
   margin-right: 20px;
