@@ -21,7 +21,7 @@ window.onscroll = () =>{
 // let movieId  = decodeURIComponent(urlParams.get('movie.id'));
 
 // // Fetch API data
-fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
+fetch(`http://localhost:8080/api/movies/${movieId}`)
   .then(response => response.json())
   .then(data => {
     const movieNameElements = document.querySelectorAll('.movieName');

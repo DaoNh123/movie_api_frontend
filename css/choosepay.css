@@ -45,14 +45,16 @@ section{
 .body-container-img{
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 110vh;
   object-fit: cover;
   object-position: center;
 }
+
 .choice-container{
     background-color: #a7a7a7;
-    margin-left: 150px;
-    margin-right: 150px;
+    /* margin-left: 150px;
+    margin-right: 150px; */
+    margin: auto;
     margin-top: 100px;
     height: auto;
     display: flex;
@@ -65,20 +67,16 @@ section{
     margin-bottom: 20px;
     border-right: 2px solid var(--text-color);
 }
-.movie-seat {
-    /* display: flex; */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+.movie-content {
+    display: flex;
   }
-  .movie-seat label {
+  .movie-content label {
     display: flex;
     justify-content: left;
     align-content: center;
     padding-top: 10px;
   }
-  .movie-seat option{
+  .movie-content option{
     background-color: #fff;
     border: 0;
     border-radius: 5px;
@@ -111,16 +109,16 @@ section{
     font-size: 16px;
     cursor: pointer;
   }
-  .seat.available{
+  .seat.selected{
     background-color: #6feaf6;
   }
   .seat.vip{
-    background-color: rgb(254, 169, 89);
+    background-color: var(--main-color);
   }
-  /* .seat.nor{
-    background-color: var(--bg-color);
-  } */
-  .seat.booked {
+  .seat.nor{
+    background-color: #9af66f;
+  }
+  .seat.occupied {
     background-color: #f7fb3b;
   } 
   .seat:nth-of-type(2) {
@@ -131,49 +129,49 @@ section{
     margin-left: 18px;
   }
   
-  .seat:not(.booked):hover {
+  .seat:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2);
   }
   
-  .showcase .seat:not(.booked):hover {
+  .showcase .seat:not(.occupied):hover {
     cursor: default;
     transform: scale(1);
   }
   
   .showcase {
+    /* background: rgba(0, 0, 0, 0.1); 
+    width: 300px; */
+    padding: 5px 5px;
+    border-radius: 5px;
     color: var(--text-color);
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
+    list-style-type: none;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
   }
+  
   .showcase li {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    margin-right: 100px;
-  } 
-  .showcase li p{
-    margin: 0 0 0 5px;
+    justify-content: right;
+    margin: 0 10px;
   }
-  .movie-seat .showcase li .vip{
-  margin-left: 12px;
-}
+  
+  .showcase li p{
+    margin-left: 2px;
+    padding-right: 10px;
+  }
   
   .row {
     display: flex;
   }
   
   .screen {
-    background-color: var(--bg-color);
-    border-radius: 50px;
-    color: var(--main-color);
-    font-size: 40px;
-    font-weight: 550;
-    text-align: center;
+    background-color: #fff;
     height: 70px;
     width: 520px;
     margin: 15px 0;
@@ -206,7 +204,7 @@ section{
     width: 500px;
     height: 50px;
     margin-top: 13px;
-   } 
+   }
   .theater-choices select{
     width: 320px;
     height: 40px;
@@ -231,14 +229,17 @@ section{
     padding-left: 15px ;
   }
 
-  /* .seat-choices{
+  .seat-choices{
     padding: 10px 0 20px 0;
   }
   .seat-choices select{
     width: 320px;
     height: 40px;
     padding-left: 15px ;
-  } */
+  }
+  .pay-button a.btn{
+    margin-left: 50px;
+  }
 
    /**   NOTIFICATION TO PAYMENT FORM   **/
    .hidden {
@@ -253,20 +254,22 @@ section{
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
   }
-  
+
   #notification {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* width: 500px; 
+    /* width: 500px;
     padding: 10px; */
     background-color: var(--bg-color);
     border: 1px solid #ccc;
     z-index: 10000;
     border-radius: 20px;
   }
-  
+
+
+
 .wrapper {
   background-color: #fff;
   width: 500px;
@@ -414,3 +417,9 @@ section{
   cursor: pointer;
   background-color: #ba1209;;
 }
+
+/* New for choosingSeat JS */
+.seat.selected {
+  background-color: #6feaf6;
+}
+/* End New for choosingSeat JS */
