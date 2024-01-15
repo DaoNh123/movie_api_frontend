@@ -369,10 +369,12 @@ fetch(endpoint, requestOptions)
     })
     .then(data => {
       // If it's a success, log the specific field you're interested in
+      alert("Create Order successfully");
       console.log('Total Value:', data.totalValue);
       // You can handle the success further as needed
     })
     .catch(error => {
+        alert('Error:', error);
         console.error('Error:', error);
     });
 });
