@@ -39,6 +39,7 @@ section{
 /* HEADER */
 /* LOGO + Navbar */
 header{
+    height: 80px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -55,13 +56,14 @@ header.shadow{
     box-shadow:  0 0 4px rgb(14 55 54 / 15%);
 }
 header.shadow .navbar a{
-     color: var(--text-color);
+    font-size: 14px;
+    color: var(--text-color);
 }
 header.shadow .logo{
     color: var(--text-color);
 }
 .logo{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--bg-color);
     display: flex;
@@ -81,7 +83,7 @@ header.shadow .logo{
 
 }
 .navbar a{
-    font-size: 1rem;
+    font-size: 14px;
     font-weight: 550;
     color: var(--bg-color);
 }
@@ -100,7 +102,7 @@ header.shadow .logo{
     width: 100%;
  
 } */
-.navbar a:hover::after {
+.navbar a:hover::after, a.page-active::after {
     width: 100%;
 }    
 #menu-icon{
@@ -219,8 +221,9 @@ header.shadow .logo{
     color: var(--text-color);
     font-size: 18px;
     background-color: #cecbcbe6;
-  
+    border-radius: 50px 50px 50px 50px;
 }
+
 
 /**     SLIDER    **/
 .container{
@@ -261,7 +264,7 @@ header.shadow .logo{
 }
 .home-text h1{
     color: var(--bg-color);
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
@@ -448,6 +451,7 @@ header.shadow .logo{
 
 /**   FOOTER   **/
 footer{
+    height: 250px;
     bottom: 0px;
     width: 100%;
     margin-top: 50px;
@@ -460,6 +464,7 @@ footer{
     display: flex;
 }
 .footer-content .box-footer{
+    margin-top: -30px;
     flex-basis: 50%;
     padding: 10px 10px;
 }
@@ -491,7 +496,7 @@ footer{
 .left .content-box-footer p{
     text-align: justify;
     padding-right: 10px;
-    font-size: 18px;
+    font-size: 14px;
 }
 .social{
     display: flex;
@@ -515,6 +520,7 @@ footer{
 
 /* footer -center  */
 .center h2 {
+    font-size: 1rem;
     width: fit-content; 
     display: inline-block; 
     border-bottom: 2px solid var(--main-color);
@@ -530,7 +536,7 @@ footer{
 }
 
 .center .content-box-footer .footer-text{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     padding-left:10px;
    
@@ -542,7 +548,7 @@ footer{
 /* footer-right */
 .right h2{
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 .content-box-footer form{
@@ -567,6 +573,7 @@ footer{
     font-weight: 400;
 }
 .content-box-footer .btn{
+    font-size: 15px;
     text-transform: uppercase;
     font-weight: 500;
     cursor: pointer;
@@ -576,11 +583,13 @@ footer{
 
 /**  COPYRIGHT  **/
 .copyright{
-    padding: 20px;
+    padding: 5px;
     text-align: center;
     color: var(--bg-color);
 }
-
+.copyright p{
+    font-size: 13px;
+}
 
 /**   Responsive CSS   **/
 @media(max-with:1080px){

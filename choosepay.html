@@ -28,7 +28,7 @@
             <li><a href="category.html">CATEGORY</a></li>
             <li><a href="aboutus.html">ABOUT US</a></li>
         </ul>
-        <a href="login.html" class="btn">LOG IN</a>   
+        <div/>    
     </header>
 
     <!-- BODY -->
@@ -206,8 +206,8 @@
             </div>    
             <div class="pay-container-right"> 
                 <!-- CHOICE THEATER   -->
-                <div class="theater-choices">  
-                    <label>Theater : </label>
+                <div class="theater-choices choice">  
+                    <p class="choice-label">Theater :</p>
                     <select id="Theater">
                         <option value="" selected><p>8A Tôn Thất Thuyết</p></option>
                         <option value="a001">A001</option>
@@ -218,8 +218,8 @@
                     </select>
                 </div>
                 <!-- CHOICE DAY -->   
-                <div class="day-choices">
-                    <label>Day : </label>
+                <div class="day-choices choice">
+                    <p class="choice-label">Day :</p>
                     <select id="day">
                         <option value="#">16/05/2023</option>
                         <option value="#">17/05/2023</option>
@@ -228,8 +228,8 @@
                     </select> 
                 </div>
                 <!-- CHOICE TIME -->
-                <div class="time-choices">
-                    <label>Time : </label>
+                <div class="time-choices choice">
+                    <p class="choice-label">Time :</p>
                     <select id="day">
                         <option value="#">09:00 AM</option>
                         <option value="#">02:00 PM</option>
@@ -248,6 +248,7 @@
                     <label>Total Amount : </label>
                     <span id="totalAmount">$0</span>
                 </div>
+                
                 <div class="pay-button">
                     <a href="details.html" class="btn">BACK</a>  
                     <a href="#" class="btn" onclick="showNotification()">CONTINUE</a>
@@ -331,7 +332,9 @@
                         
                                     <div class="input_group">
                                         <div class="input_box">
-                                            <button type="submit">BACK</button>
+                                            <a href="choosepay.html">BACK</a>
+                                        </div>
+                                        <div class="input_box2">
                                             <button type="submit">CONTINUE</button>
                                         </div>
                                     </div>

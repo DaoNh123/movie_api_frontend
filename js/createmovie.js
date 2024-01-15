@@ -115,3 +115,15 @@ document.querySelectorAll('.categoryForm input[type="checkbox"]').forEach(checkb
     input.value = selectedOptions.join(', ');
   });
 });
+
+
+// categoryForm checkbox
+document.querySelectorAll('.categoryForm input[type="checkbox"]').forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    const selectedOptions = Array.from(document.querySelectorAll('.categoryForm input[type="checkbox"]:checked'))
+      .map(checkbox => checkbox.value);
+
+    const input = document.querySelector('.input_box.categoryList input');
+    input.value = selectedOptions.join(', ');
+  });
+});

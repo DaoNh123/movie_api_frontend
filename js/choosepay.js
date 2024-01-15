@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+
   // NOTIFICATION TO PAYMENT FORM
   function showNotification() {
     document.getElementById("overlay").classList.remove("hidden");
@@ -82,14 +83,14 @@ fetch(`http://localhost:8080/api/slots/${movieId}`)
     const data = await response.json();
     return data;
   };
-  
+
   class SeatClass {
     constructor(seatClassName, price) {
       this.seatClassName = seatClassName;
       this.price = price;
     }
   }
-  
+
   class Seat {
     constructor(seatId, seatName, status, seatClass) {
       this.seatId = seatId;
@@ -111,8 +112,8 @@ fetch(`http://localhost:8080/api/slots/${movieId}`)
       ]`;
     }
   }
-  
-  
+
+
   let getMapRowSeat = async () => {
     return getApi("http://localhost:8080/api/slots/${movieId}")
       .then((data) => {
@@ -120,7 +121,7 @@ fetch(`http://localhost:8080/api/slots/${movieId}`)
       })
       .then((listSeat) => {
         const seatMap = new Map();
-  
+
         listSeat.forEach((seat) => {
           const key = seat.row;
           if (!seatMap.has(key)) {
@@ -128,20 +129,20 @@ fetch(`http://localhost:8080/api/slots/${movieId}`)
           }
           seatMap.get(key).push(seat);
         });
-  
+
         console.log(seatMap);
         return seatMap;
       });
   };
-  
+
   getMapRowSeat()
   .then(mapRowSeat => {
     let rows = mapRowSeat.keys();
     for (const row of rows) {
       console.log(row);
-      
+
       let seatsInRow = mapRowSeat.get(row);
       console.log(seatsInRow);
-    
+
     }
   });
