@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <a href="details.html?id=${movie.id}"><img src="${movie.posterUrl}" alt=""></a>
               <div class="overlay">
                 <div class="button-container">
-                  <a href="choosepay.html" class="book-button">Book</a>
+                  <a href="choosepay.html?movie-id=${movie.id}" class="book-button">Book</a>
                   <a href="details.html?id=${movie.id}" class="detail-button">Detail</a>
                 </div>
               </div>

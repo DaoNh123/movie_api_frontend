@@ -30,10 +30,14 @@ const detailsIndexMovieName = document.querySelector("#details-index .movieName"
 const trailerIframe = document.querySelector(".iframe iframe");
 const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
 
-// // Fetch API data
+const choosePayBtn = document.querySelector('#choose-pay-btn');
+
+
 let urlParams = new URLSearchParams(window.location.search);
 let movieId = decodeURIComponent(urlParams.get("id"));
 
+choosePayBtn.href = `choosepay.html?movie-id=${movieId}`;
+// // Fetch API data
 fetch(`http://localhost:8080/api/movies/${movieId}`)
   .then((response) => response.json())
   .then((movie) => {
