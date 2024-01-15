@@ -1,3 +1,4 @@
+
 class CreateMovieRequest {
   constructor(
     movieName,
@@ -40,7 +41,7 @@ class CreateMovieRequest {
 
 let submitBtn = document.querySelector("#btnSubmit");
 
-const submitCreateMovieForm = (e) => {
+submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   const movieName = document.querySelector(".movieName input").value;
@@ -49,8 +50,6 @@ const submitCreateMovieForm = (e) => {
   const language = document.querySelector(".language select").value;
   const openingTimeInString = document.querySelector(".openingTime input").value;
   const closingTimeInString = document.querySelector(".closingTime input").value.concat("T00:00:00");
-
-  // Category
   const categoryListInString = document.querySelector(".categoryList input").value.concat("T00:00:00");
   const youtubeLink = document.querySelector(".youtubeLink input").value;
   const movieLabel = document.querySelector(".movieLabel select").value;
@@ -103,4 +102,15 @@ const closingTime = new Date(closingTimeInString);
     .catch((error) => {
       console.error("Error:", error);
     });
-};
+});
+
+// categoryForm checkbox
+document.querySelectorAll('.categoryForm input[type="checkbox"]').forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    const selectedOptions = Array.from(document.querySelectorAll('.categoryForm input[type="checkbox"]:checked'))
+      .map(checkbox => checkbox.value);
+
+    const input = document.querySelector('.input_box.categoryList input');
+    input.value = selectedOptions.join(', ');
+  });
+});

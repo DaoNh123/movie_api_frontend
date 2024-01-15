@@ -96,13 +96,14 @@ header.shadow .logo{
     transition: 0.4s all linear;
 }
 /* .navbar a:hover::after,
-.navbar .home-active::after {
+.navbar .active::after {
     width: 100%;
  
 } */
 .navbar a:hover::after {
     width: 100%;
 }    
+
 #menu-icon{
     font-size: 24px;
     cursor: pointer;
@@ -284,10 +285,72 @@ header.shadow .logo{
     transition: 0.2s all linear;
 }
 
+/*** Search - box  ***/
+.container-search {
+    width: 350px;
+    height: 50px;
+    background-color: var(--bg-color);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50px;
+    align-items: center;
+    border-radius: 4rem;
+    padding: 5px;
+}
+.search__box {
+    float: left;
+    width: 0;
+    height: 40px;
+    background: none;
+    color: var(--text-color);
+    font-size: 18px;
+    border-radius: 2rem;
+    outline: none;
+    border: none;
+    position: relative;
+    opacity: 1;
+    transition: all .75s ease-in;
+    cursor: pointer;
+}
+.container-search .bx {
+    box-sizing: border-box;
+    float: right;
+    font-size: 1.75rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: .8rem;
+    margin-top: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--main-color);
+    transition: all .25s ease-in;
+    padding: .7rem;
+    border-radius: 50%;
+}
+.container-search:hover > .search__box {
+    width: 85%;
+    padding: 0 1rem;
+} 
+.container-search:hover > .bx {
+    background-color: var(--bg-color);
+} 
+.show {
+    width: 85%;
+    border: 1px solid var(--main-color);
+}
+  
+
 /**  MOVIES HOME CONTAINER  **/
+.movies{
+    padding-top: 120px ;
+}
 .heading{
     color: var(--bg-color);
     max-width: 1000px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     font-size: 1.2 rem;
@@ -297,7 +360,7 @@ header.shadow .logo{
 }
 
 .grid-container {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     width: 100%;
     max-width: 1000px;
     margin-left: auto;
@@ -398,13 +461,16 @@ header.shadow .logo{
 }
 
 /**   COMING SOON  **/
+.coming{
+    padding-top:0 !important ;
+}
 .coming-container{
     display: grid;
     gap: 1rem;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 .coming-container .box-img img:hover{
     transform: translateY(0);

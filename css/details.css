@@ -229,8 +229,6 @@ img{
   color: var(--main-color);
 }
 
-
-
 /**   Responsive CSS   **/
 @media(max-with:1080px){
   .iframe{

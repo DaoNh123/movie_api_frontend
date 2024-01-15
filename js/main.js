@@ -1,18 +1,18 @@
-/**    NOTIFICATION  **/
-// cua so pop up
-const popup = document.querySelector('.popup');
-const close = document.querySelector('.close-popup')
+// /**    NOTIFICATION  **/
+// // cua so pop up
+// const popup = document.querySelector('.popup');
+// const close = document.querySelector('.close-popup')
 
-window.onload = function(){
-  setTimeout(function(){
-    popup.style.display = "block"
+// window.onload = function(){
+//   setTimeout(function(){
+//     popup.style.display = "block"
 
-     // Add some time delay to show popup
-  },1500)
-}
-close.addEventListener('click',()=>{
-   popup.style.display = "none"
-})
+//      // Add some time delay to show popup
+//   },1500)
+// }
+// close.addEventListener('click',()=>{
+//    popup.style.display = "none"
+// })
 
 // SCROLL HEADER
 let header = document.querySelector('header');
@@ -46,6 +46,24 @@ var swiper = new Swiper(".home", {
       clickable: true,
     },
   }); 
+
+// Search - box
+  // function toggleShow() {
+  //   var el = document.getElementById("box");
+  //   el.classList.toggle("show");
+  // }
+  
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const searchBox = document.getElementById("box");
+  
+  //   searchBox.addEventListener("input", () => {
+  //     if (searchBox.value.trim() !== "") {
+  //       searchBox.classList.add("show");
+  //     } else {
+  //       searchBox.classList.remove("show");
+  //     }
+  //   });
+  // });
 
   // SLIDE WRAPPER
   var swiper = new Swiper(".coming-container",{

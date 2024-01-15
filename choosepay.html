@@ -28,7 +28,8 @@
             <li><a href="category.html">CATEGORY</a></li>
             <li><a href="aboutus.html">ABOUT US</a></li>
         </ul>
-        <a href="login.html" class="btn">LOG IN</a>   
+        <div/>
+        <!-- <a href="login.html" class="btn">LOG IN</a>    -->
     </header>
 
     <!-- BODY -->
@@ -85,16 +86,9 @@
 
                     </select>
                 </div>
-                <!-- <div class="seat-choices">
-                    <label>Seat : </label>
-                    <select id="chair">
-                        <option value="15">VIP Seats(A3-A10; B3-B10; C3-C10) ($15)</option>
-                        <option value="12">Normal Seats ($12)</option>
-                    </select>
-                </div>     -->
                 <div class="total">
                     <label>Total Amount : </label>
-                    $<span id="totalAmount">0</span>
+                    <span id="totalAmount">0</span>VNĐ
                 </div>
                 <div class="pay-button">
                     <a href="details.html" class="btn">BACK</a>  
@@ -131,16 +125,12 @@
                                     </div>
                         
                                     <!--Account Information End-->
-                        
-                        
                                     <!--DOB & Gender Start-->
                                     <div class="input_group">
                                         <div class="input_box">
                                             <h4>Date Of Birth</h4>
-                                            <!-- <input type="text" placeholder="DD" required class="dob">
-                                            <input type="text" placeholder="MM" required class="dob">
-                                            <input type="text" placeholder="YYYY" required class="dob"> -->
-                                            <input type="date" name="" id="dob-input">
+                                            <input type="date" placeholder="#" required class="name" name="openingTime" id="dob-input">
+                                            <i class='bx bxs-calendar' style="height: 49px;top: 30px;"></i>
                                         </div>
                                         <div class="input_box">
                                             <h4>Gender</h4>
@@ -157,12 +147,10 @@
                                             <input type="tel" name="" class="name" placeholder="Phone Number" required>
                                             <i class='bx bxs-phone'></i>
                                         </div>
-                                    </div>
-                                   
+                                    </div>                                 
                                     <!--Payment Details End-->
-                        
                                     <div class="input_group">
-                                        <div class="input_box">
+                                        <div class="input_box" id="input_box-button">
                                             <button id="close-payment-form">BACK</button>
                                             <button type="submit" id="create-order-btn">CREATE ORDER</button>
                                         </div>
