@@ -36,7 +36,7 @@ const choosePayBtn = document.querySelector('#choose-pay-btn');
 let urlParams = new URLSearchParams(window.location.search);
 let movieId = decodeURIComponent(urlParams.get("id"));
 
-// choosePayBtn.href = `choosepay.html?movie-id=${movieId}`;
+choosePayBtn.href = `choosepay.html?movie-id=${movieId}`;
 // // Fetch API data
 fetch(`http://localhost:8080/api/movies/${movieId}`)
   .then((response) => response.json())
@@ -120,3 +120,56 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
       });
     });
   });
+
+// POST COMMENT
+
+
+// // POST COMMENT
+// const commentForm = document.querySelector("#comment-form");
+// const commentInput = commentForm.querySelector('input[type="text"]');
+// const commentButton = commentForm.querySelector("button");
+
+// const handleCommentSubmission = () => {
+//   const commentContent = commentInput.value;
+
+//   const newCommentList = document.createElement("div");
+//   newCommentList.classList.add("comment-list");
+
+//   const newCommentBox = document.createElement("div");
+//   newCommentBox.classList.add("comment-box");
+
+//   newCommentBox.innerHTML = `
+//     <div class="flex">
+//       <div class="user">
+//         <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
+//         <div class="user-meta">
+//           <div class="name"><p>@YourUsername</p></div>
+//           <div class="day">Just now</div>
+//         </div>
+//       </div>
+//       <div class="reply">
+//         <div class="like icon"><i class='bx bx-like'></i></div>
+//         <div class="dislike icon"><i class='bx bx-dislike'></i></div>
+//         <div class="">Reply</div>
+//       </div>
+//     </div>
+//     <div class="comment">
+//       <p>${commentContent}</p>
+//     </div>
+//   `;
+
+//   const commentLists = document.querySelectorAll(".comment-list");
+//   const lastCommentList = commentLists[commentLists.length - 1];
+
+//   if (lastCommentList) {
+//     lastCommentList.after(newCommentList);
+//     lastCommentList.after(newCommentBox);
+//   } else {
+//     commentForm.after(newCommentList);
+//     commentForm.after(newCommentBox);
+//   }
+
+//   commentInput.value = "";
+// };
+
+// commentButton.addEventListener("click", handleCommentSubmission);

@@ -11,6 +11,60 @@ class SeatClass {
   }
 }
 
+class SlotResponse {
+  constructor(id, startTime, endTime, theaterRoom) {
+      this.id = id;
+      this.startTime = startTime;
+      this.endTime = endTime;
+      this.theaterRoom = theaterRoom;
+  }
+
+  toString() {
+      return `SlotResponse(id=${this.id}, startTime=${this.startTime}, endTime=${this.endTime}, theaterRoom=${this.theaterRoom})`;
+  }
+}
+
+class OverallResponse {
+  constructor(resultSize, slotResponses) {
+      this.resultSize = resultSize;
+      this.slotResponses = slotResponses.map(slot => new SlotResponse(slot.id, slot.startTime, slot.endTime, slot.theaterRoom));
+  }
+
+  toString() {
+      return `OverallResponse(resultSize=${this.resultSize}, slotResponses=[${this.slotResponses.map(slot => slot.toString()).join(', ')}])`;
+  }
+}
+
+// Example usage
+const jsonData = {
+  "resultSize": 13,
+  "slotResponses": [
+      {
+          "id": 1,
+          "startTime": "2024-01-06@09:27:56.858+0700",
+          "endTime": null,
+          "theaterRoom": "A005"
+      },
+      {
+          "id": 2,
+          "startTime": "2024-01-02@09:27:56.858+0700",
+          "endTime": null,
+          "theaterRoom": "A005"
+      },
+      {
+          "id": 3,
+          "startTime": "2024-01-03@09:27:56.858+0700",
+          "endTime": null,
+          "theaterRoom": "A001"
+      }
+  ]
+};
+
+const responseObject = new OverallResponse(jsonData.resultSize, jsonData.slotResponses);
+
+console.log(responseObject.toString());
+
+
 class Seat {
   constructor(seatId, seatName, status, seatClass) {
     this.seatId = seatId;

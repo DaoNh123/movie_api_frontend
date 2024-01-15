@@ -41,7 +41,7 @@ class OverallResponse {
 
 let getMovieId = async () => {
   let urlParams = await new URLSearchParams(window.location.search);
-  let movieId = await decodeURIComponent(urlParams.get("id"));
+  let movieId = await decodeURIComponent(urlParams.get("movie-id"));
   return movieId;
 };
 
@@ -62,48 +62,6 @@ let slotResponsesArray = async () => {
     return slotList;
   });
 };
-
-// // Common function to get movie id from URL
-// function getMovieIdFromUrl() {
-//   let urlParams = new URLSearchParams(window.location.search);
-//   return decodeURIComponent(urlParams.get("id"));
-// }
-
-// let redirectToChoosePayPage = async () => {
-//   let movieId = await getMovieIdFromUrl();
-//   window.location.href = `http://127.0.0.1:5500/group2-front-edn/choosepay.html?id=${movieId}`;
-// };
-
-// let getSlotsByMovieId = async () => {
-//   try {
-//     let movieId = await getMovieIdFromUrl();
-//     let slotResponse = await getApi(`http://localhost:8080/api/movies/${movieId}/slots`)
-//       .then((data) => new OverallResponse(data.resultSize, data.slotResponses))
-//       .then((res) => {
-//         console.log(res);
-//         return res;
-//       });
-
-//     return slotResponse.slotResponses || []; // Ensure slotResponses is defined, otherwise use an empty array
-//   } catch (error) {
-//     console.error(error);
-//     return [];
-//   }
-// };
-
-// let slotResponsesArray = async () => {
-//   return getSlotsByMovieId().then((slotList) => {
-//     return slotList;
-//   });
-// };
-
-// // Redirect to choosepay.html if "id" parameter is not present
-// if (!getMovieIdFromUrl()) {
-//   redirectToChoosePayPage();
-// }
-
-
-
 
 // Convert the array to a Map with day of startTime as the key
 const slotResponsesMap = async () => {
@@ -411,10 +369,12 @@ fetch(endpoint, requestOptions)
     })
     .then(data => {
       // If it's a success, log the specific field you're interested in
+      alert("Create Order successfully");
       console.log('Total Value:', data.totalValue);
       // You can handle the success further as needed
     })
     .catch(error => {
+        alert('Error:', error);
         console.error('Error:', error);
     });
 });

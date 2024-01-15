@@ -51,10 +51,8 @@
             <li class="language">Language: English, VietNamese</li>
             <li class="openingTime">Premiere Date : 16/05/2023</li>
             <li class="closingTime">End Date : 16/05/2023</li>
-            <li class="imdbRatings">ImdbRatings: 7.151</li>
-            <li class="averageStar">Average Star : 5 <i class='bx bxs-star'></i></li>
           </ul>
-          <a href="choosepay.html" class="btn">Book Now</a>
+          <a href="" class="btn" id="choose-pay-btn">Book Now</a>
         </div>
       </div>
     </section>
@@ -84,8 +82,7 @@
       </div>
       <div class="comment-session">
         <div class="commentList">
-
-          <div class="comment">
+          <div class="comment-list">
             <div class="flex">
               <div class="user">
                 <div class="user-image"><img src="image/icon2.jpg" alt="" /></div>
@@ -110,23 +107,17 @@
               <p>It will be hard for newer generations to understand why some people value these films so much...</p>
             </div>
           </div>
-
         </div>
 
         <!--INPUT COMMENT -->
-        <div class="comment" id="comment-input">
+        <div class="comment-list">
           <div class="flex">
             <div class="user">
-              <div class="user-image"><img src="image/icon2.jpg" alt=""></div>
+              <div class="user-image"><img src="image/icon2.jpg" alt="" /></div>
               <div class="user-meta">
-                <input class="commentUsername" id="commentUsername" placeholder="Input Your Name">
-                <div class="starRate">
-                  <i class='bx bxs-star'></i>
-                  <i class='bx bxs-star'></i>
-                  <i class='bx bxs-star'></i>
-                  <i class='bx bxs-star'></i>
-                  <i class='bx bxs-star'></i>
-              </div>
+                <!-- <div class="commentUsername"><p>@Camtasio369</p></div> -->
+                <input class="commentUsername" id="commentUsername" />
+                <div class="day">4 day ago</div>
               </div>
             </div>
             <div class="reply">
@@ -135,8 +126,10 @@
               <div class="">Reply</div>
             </div>
           </div>
-          <input type="text" id="comment-content" placeholder="Input Your Comment">
-          <button type="submit" id="comment-submit">Comment</button>
+          <!-- <form class="commentContent" id="comment-input"> -->
+            <input type="text" id="comment-content" placeholder="Input Your Comment" />
+            <button type="submit" id="comment-submit">Comment</button>
+          <!-- </form> -->
         </div>
       </div>
     </section>
@@ -180,7 +173,7 @@
 
         <div class="right box-footer">
           <h2>
-            Subscribe To Get <br/>
+            Subscribe To Get <br />
             Newsletter
           </h2>
           <div class="content-box-footer">

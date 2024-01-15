@@ -1,4 +1,3 @@
-  
 class CreateCommentRequest {
   constructor(commentUsername, starRate, commentContent, movieId) {
     this.commentUsername = commentUsername;
@@ -8,41 +7,25 @@ class CreateCommentRequest {
   }
 }
 
-const starIcons = document.querySelectorAll(".starRate i");
+let urlParams2 = new URLSearchParams(window.location.search);
+let movieId2 = decodeURIComponent(urlParams.get("id"));
+
 const commentSubmitBtn = document.querySelector("button#comment-submit");
 const commentUsernameInput = document.querySelector("input#commentUsername");
+console.log(commentUsernameInput);
 const commentContentInput = document.querySelector("input#comment-content");
-const movieId2 = getMovieIdFromUrl();
-
-starIcons.forEach((star, index) => {
-  star.addEventListener("click", () => {
-    // Thay đổi màu sắc và trạng thái active của các ngôi sao
-    starIcons.forEach((s, i) => {
-      if (i <= index) {
-        s.classList.add("bxs-star", "active");
-        s.classList.remove("bx-star");
-      } else {
-        s.classList.remove("bxs-star", "active");
-        s.classList.add("bx-star");
-      }
-    });
-  });
-});
+console.log(commentContentInput);
+console.log(1);
 
 commentSubmitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
+  e.preventDefault;
   const commentUsername = commentUsernameInput.value;
   const commentContent = commentContentInput.value;
 
-  if (commentContent !== "" && commentUsername !== "") {
-    const starRate = document.querySelectorAll(".starRate i.active").length;
+  if (commentContent != "" && commentUsername != "") {
+    const startRate = Math.floor(Math.random() * 5) + 1;
 
-    const createCommentRequest = new CreateCommentRequest(
-      commentUsername,
-      starRate,
-      commentContent,
-      movieId2
-    );
+    const createCommentRequest = new CreateCommentRequest(commentUsername, startRate, commentContent, movieId2);
 
     console.log(createCommentRequest);
 
@@ -57,49 +40,40 @@ commentSubmitBtn.addEventListener("click", (e) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
+        return response.json(); // Assuming the response is in JSON format
+      })
+      .then((data) => {
+        // Handle the response data
+        console.log("Response data:", data);
+        return data;
       })
       .then((comment) => {
-        const commentList = document.querySelector(".comment");
+        const commentList = document.querySelector(".comment-list");
+        console.log(comment);
 
         commentList.innerHTML += `
-        <div class="comment">
-                 <div class="flex">
-                      <div class="user">
-                           <div class="user-image"><img src="image/icon2.jpg" alt="" /></div>
-                         <div class="user-meta">
-                             <div class="commentUsername"><p>${comment.commentUsername}</p></div>
-                             <div class="starRate">${comment.starRate} stars</div>
-                           </div>
-                         </div>
-                       <div class="reply">
-                           <div class="like icon"><i class="bx bx-like"></i></div>
-                           <div class="dislike icon"><i class="bx bx-dislike"></i></div>
-                           <div class="">Reply</div>
-                         </div>
-                       </div>
-                       <div class="commentContent">
-                         <p>${comment.commentContent} </p>
-                       </div>
+        <div class="flex">
+                <div class="user">
+                  <div class="user-image"><img src="image/icon2.jpg" alt="" /></div>
+                  <div class="user-meta">
+                    <div class="commentUsername"><p>${comment.commentUsername}</p></div>
+                    <div class="day">4 day ago</div>
+                  </div>
+                </div>
+                <div class="reply">
+                  <div class="like icon"><i class="bx bx-like"></i></div>
+                  <div class="dislike icon"><i class="bx bx-dislike"></i></div>
+                  <div class="">Reply</div>
+                </div>
+              </div>
+              <div class="commentContent">
+                <p>${comment.commentContent} with rating ${comment.starRate} stars</p>
+              </div>
         `;
-
-        // Reset ngôi sao sau khi gửi comment
-        starIcons.forEach((s) => {
-          s.classList.remove("bxs-star", "active");
-          s.classList.add("bx-star");
-        });
-
-        // Xóa nội dung input
-        commentUsernameInput.value = "";
-        commentContentInput.value = "";
       })
       .catch((error) => {
+        // Handle errors
         console.error("Error:", error);
       });
   }
 });
-
-function getMovieIdFromUrl() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return decodeURIComponent(urlParams.get("id"));
-}
