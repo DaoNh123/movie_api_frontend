@@ -52,7 +52,10 @@ section{
     color: white;
 } 
 .banner-content h2{
-    font-size: 26px;
+    font-size: 25px;
+}
+.banner-content p{
+    font-size: 15px;
 }
 
 /* Movies Comming Soon */

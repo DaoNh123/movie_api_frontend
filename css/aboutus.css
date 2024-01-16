@@ -52,7 +52,10 @@ section{
     color: var(--bg-color);
 } 
 .banner-content h2{
-    font-size: 26px;
+    font-size: 25px;
+}
+.banner-content P{
+    font-size: 15px;
 }
 .banner-content button {
     background-color: var(--main-color);
@@ -457,6 +460,7 @@ button:hover{
     height: 240px;
 }
 .contact__button{
+    font-size: 18px;
     width: 150px;
     margin-top: 1rem;
     margin-bottom: 1rem;
