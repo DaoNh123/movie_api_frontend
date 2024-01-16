@@ -1,18 +1,18 @@
-/**    NOTIFICATION  **/
-// POP UP
-const popup = document.querySelector('.popup');
-const close = document.querySelector('.close-popup')
+// /**    NOTIFICATION  **/
+// // cua so pop up
+// const popup = document.querySelector('.popup');
+// const close = document.querySelector('.close-popup')
 
-window.onload = function(){
-  setTimeout(function(){
-    popup.style.display = "block"
+// window.onload = function(){
+//   setTimeout(function(){
+//     popup.style.display = "block"
 
-     // Add some time delay to show popup
-  },1500)
-}
-close.addEventListener('click',()=>{
-   popup.style.display = "none"
-})
+//      // Add some time delay to show popup
+//   },1500)
+// }
+// close.addEventListener('click',()=>{
+//    popup.style.display = "none"
+// })
 
 // SCROLL HEADER
 let header = document.querySelector('header');
@@ -47,7 +47,51 @@ var swiper = new Swiper(".home", {
     },
   }); 
 
-// Render API NOW SHOWING AND PAGINATION
+// Search - box
+  // function toggleShow() {
+  //   var el = document.getElementById("box");
+  //   el.classList.toggle("show");
+  // }
+  
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const searchBox = document.getElementById("box");
+  
+  //   searchBox.addEventListener("input", () => {
+  //     if (searchBox.value.trim() !== "") {
+  //       searchBox.classList.add("show");
+  //     } else {
+  //       searchBox.classList.remove("show");
+  //     }
+  //   });
+  // });
+
+  // SLIDE WRAPPER
+  var swiper = new Swiper(".coming-container",{
+    spaceBetween: 20,
+    loop:true,
+    autoplay:{
+      delay:1500,
+      disableOnInteraction:false,
+    },
+    centeredSlides:true,
+    breakpoints:{
+      0:{
+        slidesPerView:2,
+      },
+      568:{
+        slidesPerView:3,
+      },
+      768:{
+        slidesPerView:4,
+      },
+      968:{
+        slidesPerView:5,
+      },
+    },
+  });
+
+
+// Render API và phân trang
 const fetchApi = async (api) => {
   const response = await fetch(api);
   const data = await response.json();
@@ -86,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <a href="details.html?id=${movie.id}"><img src="${movie.posterUrl}" alt=""></a>
               <div class="overlay">
                 <div class="button-container">
-                  <a href="choosepay.html" class="book-button">Book</a>
+                  <a href="choosepay.html?movie-id=${movie.id}" class="book-button">Book</a>
                   <a href="details.html?id=${movie.id}" class="detail-button">Detail</a>
                 </div>
               </div>
@@ -105,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
       moviesSection.innerHTML = html;
     };
 
-    // PAGINATION
+    // Hiển thị thanh phân trang
     const renderPagination = () => {
       let paginationHtml = "";
 
@@ -117,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       paginationContainer.innerHTML = paginationHtml;
 
-      // ADD CLICK TO PAGINATION
+      // Thêm sự kiện click cho các nút phân trang
       const pageButtons = document.querySelectorAll(".page-button");
       pageButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -138,30 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-  // SLIDE WRAPPER
-  var swiper = new Swiper(".coming-container",{
-    spaceBetween: 20,
-    loop:true,
-    autoplay:{
-      delay:1500,
-      disableOnInteraction:false,
-    },
-    centeredSlides:true,
-    breakpoints:{
-      0:{
-        slidesPerView:2,
-      },
-      568:{
-        slidesPerView:3,
-      },
-      768:{
-        slidesPerView:4,
-      },
-      968:{
-        slidesPerView:5,
-      },
-    },
-  });
 
 // RENDER API COMING SOON TO SLIDE WRAPPER
 fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
@@ -199,3 +219,4 @@ fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
   .catch(error => {
     console.error('Error:', error);
   });
+
