@@ -1,5 +1,3 @@
-
-
 // SCROLL HEADER
 let header = document.querySelector("header");
 let menu = document.querySelector("#menu-icon");
@@ -20,9 +18,25 @@ window.onscroll = () => {
 };
 
 
-// // Fetch API data
+const movieNameElements = document.querySelectorAll(".movieName");
+const description = document.querySelector(".description");
+const director = document.querySelector(".director");
+const categoryNameList = document.querySelector(".categoryNameList");
+const duration = document.querySelector(".duration");
+const language = document.querySelector(".language");
+const openingTime = document.querySelector(".openingTime");
+const closingTime = document.querySelector(".closingTime");
+const posterUrl = document.querySelector(".posterUrl img");
+const detailsIndexMovieName = document.querySelector("#details-index .movieName");
+const trailerIframe = document.querySelector(".iframe iframe");
+const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
+const choosePayBtn = document.querySelector('#choose-pay-btn');
+
 let urlParams = new URLSearchParams(window.location.search);
 let movieId = decodeURIComponent(urlParams.get("id"));
+if (choosePayBtn) {
+  choosePayBtn.href = `choosepay.html?movie-id=${movieId}`;
+}
 
 fetch(`http://localhost:8080/api/movies/${movieId}`)
   .then((response) => response.json())
@@ -40,7 +54,6 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
     const detailsIndexMovieName = document.querySelector("#details-index .movieName");
     const averageStar = document.querySelector(".averageStar");
     const trailerIframe = document.querySelector(".iframe iframe");
-    const imdbRatings = document.querySelector(".imdbRatings");
     // const movieLinks = document.querySelectorAll('a[href^="details.html?id="]');
     const commentList = document.querySelector(".commentList");
     console.log(commentList);
@@ -53,7 +66,6 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
     openingTime.textContent = `Premiere Date: ${new Date(movie.openingTime).toLocaleDateString()}`;
     closingTime.textContent = `End Date: ${new Date(movie.closingTime).toLocaleDateString()}`;
     averageStar.innerHTML = `Average Star: ${movie.averageStar} <i class='bx bxs-star'></i>` ;
-    imdbRatings.textContent = `ImdbRatings: ${movie.imdbRatings}`;
     posterUrl.src = movie.posterUrl;
     detailsIndexMovieName.textContent = movie.movieName;
     trailerIframe.src = movie.trailerUrl;
@@ -88,32 +100,39 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
       `;
     });
 
-      // Add "Like" or "Dislike"
-      const replyDiv = document.querySelectorAll(".reply");
+    // Add "Like" or "Dislike"
+    const replyDiv = document.querySelectorAll(".reply");
 
-      replyDiv.forEach((replyDivs) => {
-        const likeBtn = replyDivs.querySelector(".like");
-        const dislikeBtn = replyDivs.querySelector(".dislike");
-        let likesCount = 0;
-        let dislikesCount = 0;
+    replyDiv.forEach((replyDivs) => {
+      const likeBtn = replyDivs.querySelector(".like");
+      const dislikeBtn = replyDivs.querySelector(".dislike");
+      let likesCount = 0;
+      let dislikesCount = 0;
 
-        likeBtn.addEventListener("click", () => {
-          likesCount++;
-          updateCounts();
-        });
-
-        dislikeBtn.addEventListener("click", () => {
-          dislikesCount++;
-          updateCounts();
-        });
-
-        function updateCounts() {
-          const likeCountElement = likeBtn.querySelector("i");
-          const dislikeCountElement = dislikeBtn.querySelector("i");
-
-          likeCountElement.textContent = likesCount;
-          dislikeCountElement.textContent = dislikesCount;
-        }
+      likeBtn.addEventListener("click", () => {
+        likesCount++;
+        updateCounts();
       });
+
+      dislikeBtn.addEventListener("click", () => {
+        dislikesCount++;
+        updateCounts();
+      });
+
+      function updateCounts() {
+        const likeCountElement = likeBtn.querySelector("i");
+        const dislikeCountElement = dislikeBtn.querySelector("i");
+
+        likeCountElement.textContent = likesCount;
+        dislikeCountElement.textContent = dislikesCount;
+      }
     });
+  });
+// });
+
+
+
+
+
   
+

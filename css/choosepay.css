@@ -67,20 +67,16 @@ section{
     margin-bottom: 20px;
     border-right: 2px solid var(--text-color);
 }
-.movie-seat {
-    /* display: flex; */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+.movie-content {
+    display: flex;
   }
-  .movie-seat label {
+  .movie-content label {
     display: flex;
     justify-content: left;
     align-content: center;
     padding-top: 10px;
   }
-  .movie-seat option{
+  .movie-content option{
     background-color: #fff;
     border: 0;
     border-radius: 5px;
@@ -113,16 +109,16 @@ section{
     font-size: 16px;
     cursor: pointer;
   }
-  .seat.available{
+  .seat.selected{
     background-color: #6feaf6;
   }
   .seat.vip{
-    background-color: rgb(254, 169, 89);
+    background-color: var(--main-color);
   }
-  /* .seat.nor{
-    background-color: var(--bg-color);
-  } */
-  .seat.booked {
+  .seat.nor{
+    background-color: #9af66f;
+  }
+  .seat.occupied {
     background-color: #f7fb3b;
   } 
   .seat:nth-of-type(2) {
@@ -133,51 +129,50 @@ section{
     margin-left: 18px;
   }
   
-  .seat:not(.booked):hover {
+  .seat:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2);
   }
   
-  .showcase .seat:not(.booked):hover {
+  .showcase .seat:not(.occupied):hover {
     cursor: default;
     transform: scale(1);
   }
   
   .showcase {
+    /* background: rgba(0, 0, 0, 0.1);
+    width: 300px; */
+    padding: 5px 5px;
+    border-radius: 5px;
     color: var(--text-color);
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
+    list-style-type: none;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
   }
+
   .showcase li {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    margin-right: 100px;
+    justify-content: right;
+    margin: 0 10px;
   }
+
   .showcase li p{
-    margin: 0 0 0 5px;
+    margin-left: 2px;
+    padding-right: 10px;
   }
-  .movie-seat .showcase li .vip{
-  margin-left: 12px;
-}
-.showcase li .seat{
-  margin-left: 27px;
-}
+
   .row {
     display: flex;
   }
   
   .screen {
-    background-color: var(--bg-color);
-    border-radius: 50px;
-    color: var(--main-color);
-    font-size: 35px;
-    font-weight: 550;
-    text-align: center;
+    background-color: #fff;
+    height: 70px;
     width: 520px;
     margin: 15px 0;
     box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
@@ -209,7 +204,7 @@ section{
     width: 500px;
     height: 50px;
     margin-top: 13px;
-   } 
+   }
   .theater-choices select{
     width: 320px;
     height: 40px;
@@ -234,44 +229,23 @@ section{
     padding-left: 15px ;
   }
 
-  .choice {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .choice .choice-label {
-    color: var(--text-color);
-    font-size: 18px;
-    font-weight: 400;
-    width: 85px;
-  }
-
-  .choice select {
-    width: calc(100% - 85px);
-  }
-
-  /* .seat-choices{
+  .seat-choices{
     padding: 10px 0 20px 0;
   }
   .seat-choices select{
     width: 320px;
     height: 40px;
     padding-left: 15px ;
-  } */
+  }
+  /* Pay Button */
 .pay-button{
+  width: 400px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: space-evenly;
+  margin: 30px auto;
 }
 
-  .pay-button a.btn:first-of-type {
-    margin-right: 50px;
-  }
-  /* #totalAmount{
-    display: flex;
-  } */
-  
+
    /**   NOTIFICATION TO PAYMENT FORM   **/
    .hidden {
     display: none;
@@ -330,7 +304,8 @@ section{
   background-color: #fff;
   width: 450px;
   padding: 25px;
-  margin: 0px auto;
+  /* margin: 25px auto 25px; */
+  margin: 0 auto ;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
@@ -488,14 +463,22 @@ section{
   transition: 0.5s;
 }
 
+#input_box-button{
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
 .input_box button {
-  width: 100%;
-  background-color: #ff2c1f;;
+  width: 300px;
+  margin-right: 10px;
+  background-color: var(--main-color);
   border: none;
-  color: #fff;
+  color: var(--bg-color);
   padding: 15px;
   border-right: 4px;
   font-size: 16px;
+  font-weight: 550;
   transition: all 0.3s ease;
   border-radius: 8px;
 }
@@ -504,3 +487,9 @@ section{
   cursor: pointer;
   background-color: #ba1209;;
 }
+
+/* New for choosingSeat JS */
+.seat.selected {
+  background-color: #6feaf6;
+}
+/* End New for choosingSeat JS */
