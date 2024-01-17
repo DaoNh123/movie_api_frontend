@@ -51,7 +51,7 @@ section{
 }
 
 .choice-container{
-    background-color: #a7a7a7;
+    background-color: rgba(193, 193, 193, 1);
     /* margin-left: 150px;
     margin-right: 150px; */
     margin: auto;
@@ -173,6 +173,7 @@ section{
   }
 
   .showcase li p{
+    color: var(--text-color);
     margin-left: 2px;
     padding-right: 10px;
   }
@@ -193,8 +194,7 @@ section{
   
   .pay-container-right{
      margin-top: 40px;
-     margin-left: 50px;
-     margin-right: 100px  ;
+     margin-left: 30px;
   }
   .pay-container-right label{
     color: var(--text-color);
@@ -205,8 +205,22 @@ section{
     font-size: 18px;
     font-weight: 600;
   }
+  select#Theater, #day, #choosing-time {
+    background-position: 97% center;
+    background-repeat: no-repeat;
+    border: 1px solid #AAA;
+    padding: 5px 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 350px;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    -webkit-border-radius: 20px;
+    padding-left: 15px;
+ }
   .theater-choices{
-    width: 500px;
+    align-items: center;
+    width: 480px;
     height: 50px;
     margin-top: 13px;
    }
@@ -215,8 +229,8 @@ section{
     height: 40px;
     padding-left: 15px ;
   }
-
   .day-choices{
+    align-items: center;
     padding: 20px 0 20px 0;
   }
   .day-choices select{
@@ -224,8 +238,8 @@ section{
     height: 40px;
     padding-left: 15px ;
   }
-
   .time-choices{
+    align-items: center;
     padding: 10px 0 20px 0;
   }
   .time-choices select{
