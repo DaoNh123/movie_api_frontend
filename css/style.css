@@ -619,7 +619,7 @@ footer{
 }
 .content-box-footer form{
     background: var(--bg-color);
-    padding: 10px;
+    padding: 5px;
     border-radius: 0.5rem;
     display: flex;
     align-items: center;

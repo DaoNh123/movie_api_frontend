@@ -39,7 +39,7 @@ section{
 
 /***  DETAILS   **/
 #details-index{
-  text-align: center;
+  margin-left: 230px;
   margin-top: 50px;
   margin-bottom: 20px;
   font-size: 23px;
@@ -59,6 +59,7 @@ section{
   font-size: 15px;
 } 
 .posterUrl img{
+  margin-top: 30px;
   margin-left: 100px;
   width: 255px;
   height: 405px;
@@ -67,7 +68,7 @@ section{
 }
 .movieName{
   font-size: 24px;
-  margin-top: 5px;
+  margin-top: 30px;
   margin-bottom: 10px;
   font-weight: 600 !important;
 }
