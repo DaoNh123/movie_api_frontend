@@ -191,6 +191,9 @@ section{
     overflow: hidden;
     color: var(--text-color);
 }
+.panel p {
+    font-size: 14px;
+}
 
 /**  TEAM  **/
 .team-top {

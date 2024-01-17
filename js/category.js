@@ -18,6 +18,7 @@ window.onscroll = () =>{
 }
 
 
+
 // Render Api 
 const apiURL = 'http://localhost:8080/api/movies/now-showing?page=0&size=28'; 
 
@@ -114,4 +115,57 @@ function displayMovies(movies) {
 
     moviesContainer.appendChild(movieDiv);
   });
+}
+
+function showAllMovies() {
+  // Hiển thị tất cả các bộ phim
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+      const movies = data.content;
+      displayMovies(movies);
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
+
+  // Xóa lớp 'active' từ tất cả các nút
+  var buttons = document.querySelectorAll('.btn');
+  buttons.forEach(function (button) {
+      button.classList.remove('active');
+  });
+
+  // Thêm lớp 'active' vào nút được nhấp chuột
+  var showAllButton = document.getElementById('btn');
+  showAllButton.classList.add('active');
+}
+
+function getMoviesByCategory(category) {
+  // Lấy các bộ phim theo thể loại
+  let apiUrl = apiURL;
+  if (category === 'opening') {
+    apiURL = 'http://localhost:8080/api/movies/now-showing?page=0&size=28';
+  }
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+      const movies = data.content;
+      const moviesWithSelectedCategory = movies.filter(movie =>
+        movie.categoryNameList.includes(category)
+      );
+      displayMovies(moviesWithSelectedCategory);
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
+
+  // Xóa lớp 'active' từ tất cả các nút
+  var buttons = document.querySelectorAll('.btn');
+  buttons.forEach(function (button) {
+      button.classList.remove('active');
+  });
+
+  // Thêm lớp 'active' vào nút được nhấp chuột
+  var clickedButton = document.querySelector('[data-category="' + category + '"]');
+  clickedButton.classList.add('active');
 }
