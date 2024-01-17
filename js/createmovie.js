@@ -8,7 +8,7 @@ class CreateMovieRequest {
     closingTime,
     categoryList,
     youtubeLink,
-    movieLabel,
+    movieLabel
   ) {
     this.movieName = movieName;
     this.description = description;
@@ -55,14 +55,14 @@ const submitCreateMovieForm = (e) => {
   const youtubeLink = document.querySelector(".youtubeLink input").value;
   const movieLabel = document.querySelector(".movieLabel select").value;
 
-const openingTime = new Date(openingTimeInString);
-const closingTime = new Date(closingTimeInString);
+  const openingTime = new Date(openingTimeInString);
+  const closingTime = new Date(closingTimeInString);
 
   const posterFileInput = document.getElementById("posterFileInput");
   const posterFile = posterFileInput.files[0];
   // const posterFile = document.querySelector(".poster input").files[0];
   // const imdbRatings = document.querySelector(".imdbRatings input").value;
-  
+
   const categoryList = categoryListInString.split(",").map((category) => category.trim());
   console.log(categoryList);
   const createMovieRequestJson = JSON.stringify(
@@ -75,7 +75,7 @@ const closingTime = new Date(closingTimeInString);
       closingTime,
       categoryList,
       youtubeLink,
-      movieLabel,
+      movieLabel
     )
   );
 
