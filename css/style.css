@@ -118,10 +118,13 @@ header.shadow .logo{
     color: var(--bg-color);
     font-size: 18px;
     font-weight: 550;
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
 }
 .btn:hover{
     background: #fa1216 ;
+}
+a.btn {
+    font-size: 16px;
 }
 
 /** BODY **/
@@ -558,6 +561,27 @@ footer{
     width: 15%;
     top: -10px;
 }
+.divider1{
+    margin-left: 100px;
+    width: 85%;
+    height: 2px;
+    background-color: #fff;
+}
+.divider2{
+    margin-top: 90px;
+    margin-left: 70px;
+    width: 90%;
+    height: 2px;
+    background-color: #fff;
+}
+.divider3{
+    margin-top: 50px;
+    margin-left: 70px;
+    width: 90%;
+    height: 2px;
+    background-color: #fff;
+}
+
 /* Footer-left */
 .left .content-box-footer p{
     text-align: justify;

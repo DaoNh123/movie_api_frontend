@@ -104,6 +104,7 @@ section{
     color: var(--text-color);
     font-weight: 550;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 .btn.active {
     background-color: var(--main-color);
