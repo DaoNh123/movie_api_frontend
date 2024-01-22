@@ -1,10 +1,7 @@
 // Format the dates using Intl.DateTimeFormat
 const openingTime = new Date('2023-12-21T11:11:00');
 
-
 const closingTime = new Date('2023-12-21T11:11:00');
-
-
 class CreateMovieRequest {
   constructor(movieName, language, openingTime, closingTime) {
     this.movieName = movieName;

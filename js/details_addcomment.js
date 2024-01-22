@@ -60,28 +60,34 @@ commentSubmitBtn.addEventListener("click", (e) => {
         return response.json();
       })
       .then((comment) => {
-        const commentList = document.querySelector(".comment");
+        const commentList = document.querySelector(".commentList");
+
+        let stars = '';
+        for (let i = 0; i < comment.starRate; i++) {
+          stars += "<i class='bx bxs-star'></i>";
+        }
 
         commentList.innerHTML += `
         <div class="comment">
-                 <div class="flex">
-                      <div class="user">
-                           <div class="user-image"><img src="image/icon2.jpg" alt="" /></div>
-                         <div class="user-meta">
-                             <div class="commentUsername"><p>${comment.commentUsername}</p></div>
-                             <div class="starRate">${comment.starRate} stars</div>
-                           </div>
-                         </div>
-                       <div class="reply">
-                           <div class="like icon"><i class="bx bx-like"></i></div>
-                           <div class="dislike icon"><i class="bx bx-dislike"></i></div>
-                           <div class="">Reply</div>
-                         </div>
-                       </div>
-                       <div class="commentContent">
-                         <p>${comment.commentContent} </p>
-                       </div>
-        `;
+          <div class="flex">
+              <div class="user">
+                <div class="user-image"><img src="image/icon2.jpg" alt="" /></div>
+                <div class="user-meta">
+                  <div class="commentUsername"><p>${comment.commentUsername}</p></div>
+                  <div class="starRate">${stars}</div>
+                </div>
+              </div>
+              <div class="reply">
+                <div class="like icon"><i class="bx bx-like"></i></div>
+                <div class="dislike icon"><i class="bx bx-dislike"></i></div>
+                <div class="">Reply</div>
+              </div>
+          </div>
+          <div class="commentContent">
+            <p>${comment.commentContent}</p>
+          </div>
+        </div>  
+      `;
 
         // Reset ngôi sao sau khi gửi comment
         starIcons.forEach((s) => {
