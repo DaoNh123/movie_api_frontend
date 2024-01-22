@@ -37,8 +37,9 @@ section{
 }
 
 /* HEADER */
-/* HEADER */
+/* LOGO + Navbar */
 header{
+    height: 80px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -55,13 +56,14 @@ header.shadow{
     box-shadow:  0 0 4px rgb(14 55 54 / 15%);
 }
 header.shadow .navbar a{
-     color: var(--text-color);
+    font-size: 14px;
+    color: var(--text-color);
 }
 header.shadow .logo{
     color: var(--text-color);
 }
 .logo{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--bg-color);
     display: flex;
@@ -81,7 +83,7 @@ header.shadow .logo{
 
 }
 .navbar a{
-    font-size: 1rem;
+    font-size: 14px;
     font-weight: 550;
     color: var(--bg-color);
 }
@@ -96,13 +98,14 @@ header.shadow .logo{
     transition: 0.4s all linear;
 }
 /* .navbar a:hover::after,
-.navbar .home-active::after {
+.navbar .active::after {
     width: 100%;
  
 } */
-.navbar a:hover::after {
+.navbar a:hover::after, a.page-active::after {
     width: 100%;
 }    
+
 #menu-icon{
     font-size: 24px;
     cursor: pointer;
@@ -115,13 +118,14 @@ header.shadow .logo{
     color: var(--bg-color);
     font-size: 18px;
     font-weight: 550;
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
 }
 .btn:hover{
     background: #fa1216 ;
 }
-
-
+a.btn {
+    font-size: 16px;
+}
 
 /** BODY **/
 /** NOTIFICATION HOME PAGE **/
@@ -221,8 +225,9 @@ header.shadow .logo{
     color: var(--text-color);
     font-size: 18px;
     background-color: #cecbcbe6;
-  
+    border-radius: 50px 50px 50px 50px;
 }
+
 
 /**     SLIDER    **/
 .container{
@@ -263,7 +268,7 @@ header.shadow .logo{
 }
 .home-text h1{
     color: var(--bg-color);
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
@@ -286,10 +291,72 @@ header.shadow .logo{
     transition: 0.2s all linear;
 }
 
+/*** Search - box  ***/
+.container-search {
+    width: 350px;
+    height: 50px;
+    background-color: var(--bg-color);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50px;
+    align-items: center;
+    border-radius: 4rem;
+    padding: 5px;
+}
+.search__box {
+    float: left;
+    width: 0;
+    height: 40px;
+    background: none;
+    color: var(--text-color);
+    font-size: 18px;
+    border-radius: 2rem;
+    outline: none;
+    border: none;
+    position: relative;
+    opacity: 1;
+    transition: all .75s ease-in;
+    cursor: pointer;
+}
+.container-search .bx {
+    box-sizing: border-box;
+    float: right;
+    font-size: 1.75rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: .8rem;
+    margin-top: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--main-color);
+    transition: all .25s ease-in;
+    padding: .7rem;
+    border-radius: 50%;
+}
+.container-search:hover > .search__box {
+    width: 85%;
+    padding: 0 1rem;
+} 
+.container-search:hover > .bx {
+    background-color: var(--bg-color);
+} 
+.show {
+    width: 85%;
+    border: 1px solid var(--main-color);
+}
+  
+
 /**  MOVIES HOME CONTAINER  **/
+.movies{
+    padding-top: 120px ;
+}
 .heading{
     color: var(--bg-color);
     max-width: 1000px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     font-size: 1.2 rem;
@@ -299,7 +366,7 @@ header.shadow .logo{
 }
 
 .grid-container {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     width: 100%;
     max-width: 1000px;
     margin-left: auto;
@@ -400,13 +467,16 @@ header.shadow .logo{
 }
 
 /**   COMING SOON  **/
+.coming{
+    padding-top:0 !important ;
+}
 .coming-container{
     display: grid;
     gap: 1rem;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 .coming-container .box-img img:hover{
     transform: translateY(0);
@@ -420,8 +490,7 @@ header.shadow .logo{
     display: flex;
     justify-content: center;
     margin-top: 20px;
-}
-  
+} 
 .page-button {
     width: 35px;
     height: 35px;
@@ -438,22 +507,20 @@ header.shadow .logo{
     align-items: center;
     text-decoration: none;
 }
-
 .page-button.active {
     background-color: var(--main-color);
     color: var(--bg-color); 
     border: 1px solid var(--main-color); 
 }
-
 .page-button:hover {
     background-color: var(--main-color);
     color: var(--bg-color);
     border: 1px solid var(--main-color);
 }
 
-
 /**   FOOTER   **/
 footer{
+    height: 250px;
     bottom: 0px;
     width: 100%;
     margin-top: 50px;
@@ -466,6 +533,7 @@ footer{
     display: flex;
 }
 .footer-content .box-footer{
+    margin-top: -30px;
     flex-basis: 50%;
     padding: 10px 10px;
 }
@@ -493,11 +561,32 @@ footer{
     width: 15%;
     top: -10px;
 }
+.divider1{
+    margin-left: 100px;
+    width: 85%;
+    height: 2px;
+    background-color: #fff;
+}
+.divider2{
+    margin-top: 90px;
+    margin-left: 70px;
+    width: 90%;
+    height: 2px;
+    background-color: #fff;
+}
+.divider3{
+    margin-top: 50px;
+    margin-left: 70px;
+    width: 90%;
+    height: 2px;
+    background-color: #fff;
+}
+
 /* Footer-left */
 .left .content-box-footer p{
     text-align: justify;
     padding-right: 10px;
-    font-size: 18px;
+    font-size: 14px;
 }
 .social{
     display: flex;
@@ -521,6 +610,7 @@ footer{
 
 /* footer -center  */
 .center h2 {
+    font-size: 1rem;
     width: fit-content; 
     display: inline-block; 
     border-bottom: 2px solid var(--main-color);
@@ -536,7 +626,7 @@ footer{
 }
 
 .center .content-box-footer .footer-text{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     padding-left:10px;
    
@@ -548,12 +638,12 @@ footer{
 /* footer-right */
 .right h2{
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 .content-box-footer form{
     background: var(--bg-color);
-    padding: 10px;
+    padding: 5px;
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
@@ -573,6 +663,7 @@ footer{
     font-weight: 400;
 }
 .content-box-footer .btn{
+    font-size: 15px;
     text-transform: uppercase;
     font-weight: 500;
     cursor: pointer;
@@ -582,11 +673,13 @@ footer{
 
 /**  COPYRIGHT  **/
 .copyright{
-    padding: 20px;
+    padding: 5px;
     text-align: center;
     color: var(--bg-color);
 }
-
+.copyright p{
+    font-size: 13px;
+}
 
 /**   Responsive CSS   **/
 @media(max-with:1080px){

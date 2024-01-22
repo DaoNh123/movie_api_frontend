@@ -1,18 +1,18 @@
-/**    NOTIFICATION  **/
-// cua so pop up
-const popup = document.querySelector('.popup');
-const close = document.querySelector('.close-popup')
+// /**    NOTIFICATION  **/
+// // cua so pop up
+// const popup = document.querySelector('.popup');
+// const close = document.querySelector('.close-popup')
 
-window.onload = function(){
-  setTimeout(function(){
-    popup.style.display = "block"
+// window.onload = function(){
+//   setTimeout(function(){
+//     popup.style.display = "block"
 
-     // Add some time delay to show popup
-  },1500)
-}
-close.addEventListener('click',()=>{
-   popup.style.display = "none"
-})
+//      // Add some time delay to show popup
+//   },1500)
+// }
+// close.addEventListener('click',()=>{
+//    popup.style.display = "none"
+// })
 
 // SCROLL HEADER
 let header = document.querySelector('header');
@@ -46,6 +46,24 @@ var swiper = new Swiper(".home", {
       clickable: true,
     },
   }); 
+
+// Search - box
+  // function toggleShow() {
+  //   var el = document.getElementById("box");
+  //   el.classList.toggle("show");
+  // }
+  
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const searchBox = document.getElementById("box");
+  
+  //   searchBox.addEventListener("input", () => {
+  //     if (searchBox.value.trim() !== "") {
+  //       searchBox.classList.add("show");
+  //     } else {
+  //       searchBox.classList.remove("show");
+  //     }
+  //   });
+  // });
 
   // SLIDE WRAPPER
   var swiper = new Swiper(".coming-container",{
@@ -84,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const moviesSection = document.getElementById("movie");
   const paginationContainer = document.getElementById("pagination");
 
-  const pageSize = 10; 
+  const pageSize = 15; 
   let currentPage = 1; 
 
   fetchApi("http://localhost:8080/api/movies/now-showing?page=0&size=28").then((data) => {
@@ -163,4 +181,42 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPagination();
   });
 });
+
+
+// RENDER API COMING SOON TO SLIDE WRAPPER
+fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
+  .then(response => response.json())
+  .then(data => {
+    const movies = data.content; // Array of movies
+    const swiperWrapper = document.getElementById('swiperWrapper');
+
+    // Loop through the movies and generate HTML
+    movies.forEach(movie => {
+      const box = document.createElement('div');
+      box.classList.add('swiper-slide', 'box');
+
+      const boxImg = document.createElement('div');
+      boxImg.classList.add('box-img');
+
+      const img = document.createElement('img');
+      img.src = movie.posterUrl;
+      img.alt = '';
+
+      const h3 = document.createElement('h3');
+      h3.textContent = movie.movieName;
+
+      const span = document.createElement('span');
+      // span.textContent = `${movie.duration} min | ${movie.categoryNameList.join(', ')}`;
+      span.textContent = `${movie.duration} min`;
+
+      boxImg.appendChild(img);
+      box.appendChild(boxImg);
+      box.appendChild(h3);
+      box.appendChild(span);
+      swiperWrapper.appendChild(box);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 

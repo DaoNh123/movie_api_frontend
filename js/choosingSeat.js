@@ -1,3 +1,4 @@
+
 let getApi = async (apiLink) => {
   const response = await fetch(apiLink);
   const data = await response.json();
@@ -45,17 +46,31 @@ let getMovieId = async () => {
   return movieId;
 };
 
+// let getSlotsByMovieId = async () => {
+//   let movieId = await getMovieId();
+//   let slotResponse = await getApi(`http://localhost:8080/api/movies/${movieId}/slots`)
+//     .then((data) => new OverallResponse(data.resultSize, data.slotResponses))
+//     .then((res) => {
+//       console.log(res);
+//       return res;
+//     });
+
+//   return slotResponse.slotResponses;
+// };
+
 let getSlotsByMovieId = async () => {
   let movieId = await getMovieId();
   let slotResponse = await getApi(`http://localhost:8080/api/movies/${movieId}/slots`)
-    .then((data) => new OverallResponse(data.resultSize, data.slotResponses))
+    .then((data) => new OverallResponse(data.resultSize, data.slotResponses ?? []))
     .then((res) => {
       console.log(res);
       return res;
     });
-
-  return slotResponse.slotResponses;
+    return slotResponse.slotResponses;
 };
+
+
+
 
 let slotResponsesArray = async () => {
   return getSlotsByMovieId().then((slotList) => {
@@ -378,3 +393,4 @@ fetch(endpoint, requestOptions)
         console.error('Error:', error);
     });
 });
+
