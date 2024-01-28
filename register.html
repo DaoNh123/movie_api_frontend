@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Register Form</h1>
+    <form action="">
+      <label for="first_name">First name</label>
+      <input type="text" name="first_name" id="first_name" />
+      <br />
+
+      <label for="last_name">Last name</label>
+      <input type="text" name="last_name" id="last_name" />
+      <br />
+
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" />
+      <br />
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" />
+      <br />
+
+      <label for="gender">Gender</label>
+      <select name="language" id="gender" value="en">
+        <option value="" default aria-placeholder="Gender"></option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="O">Other</option>
+      </select>
+      <br />
+
+      <label for="dob">Date of birth</label>
+      <input type="date" placeholder="#" required id="dob" name="dob" value="" />
+      <br />
+
+      <label for="email">Email</label>
+      <input type="email" placeholder="enter your email!" required id="email" name="email" value="" />
+      <br />
+
+      <label for="avartar">Avatar</label>
+      <input type="file" required class="avatar" />
+    </form>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/register.js"></script>
+  </body>
+</html>

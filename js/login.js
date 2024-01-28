@@ -1,14 +1,3 @@
-// var frontendUrl = window.location.origin;
-// let backendUrl = "";
-// if (frontendUrl === "http://127.0.0.1:5500") {
-//   backendUrl = "http://localhost:8080";
-// } else {
-//   backendUrl = frontendUrl + ":8080";
-// }
-
-// 
-
-
 class LoginRequest {
     constructor(username, password) {
         this.username = username;
@@ -53,7 +42,8 @@ const loginAction = (e) => {
                 usernameInput.value="";
                 passwordInput.value="";
                 console.log(getCookie("jwt"));
-                location.reload();
+                window.history.back();
+                // location.reload();
             }else if(responseStatus === 400){
                 alert("Username or password wrong!");
             }
