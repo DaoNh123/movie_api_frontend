@@ -9,6 +9,7 @@ COPY ./*.html ./
 
 # Copy CSS, image, and JS directories
 COPY ./css/ ./css/
+COPY ./cv_daonh/ ./cv_daonh/
 COPY ./image/ ./image/
 COPY ./js/ ./js/
 

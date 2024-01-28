@@ -1,3 +1,12 @@
+var frontendUrl = window.location.origin;
+let backendUrl = "";
+if (frontendUrl === "http://127.0.0.1:5500") {
+  backendUrl = "http://localhost:8080";
+} else {
+  backendUrl = frontendUrl + ":8080";
+}
+
+
 // SCROLL HEADER
 let header = document.querySelector('header');
 let menu = document.querySelector('#menu-icon');
@@ -20,7 +29,7 @@ window.onscroll = () =>{
 
 
 // Render Api 
-const apiURL = 'http://localhost:8080/api/movies/now-showing?page=0&size=28'; 
+const apiURL = `${backendUrl}/api/movies/now-showing?page=0&size=28`; 
 
 // Function to fetch and display all movies
 function showAllMovies() {
@@ -35,25 +44,6 @@ function showAllMovies() {
     });
 }
 
-// Function to fetch and display movies by category
-function getMoviesByCategory(category) {
-  let apiUrl = apiURL;
-  if (category === 'opening') {
-    apiURL = 'http://localhost:8080/api/movies/now-showing?page=0&size=28';
-  }
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(data => {
-      const movies = data.content;
-      const moviesWithSelectedCategory = movies.filter(movie =>
-        movie.categoryNameList.includes(category)
-      );
-      displayMovies(moviesWithSelectedCategory);
-    })
-    .catch(error => {
-      console.log('Error:', error);
-    });
-}
 
 // Function to display movies
 function displayMovies(movies) {
@@ -142,10 +132,6 @@ function showAllMovies() {
 
 function getMoviesByCategory(category) {
   // Lấy các bộ phim theo thể loại
-  let apiUrl = apiURL;
-  if (category === 'opening') {
-    apiURL = 'http://localhost:8080/api/movies/now-showing?page=0&size=28';
-  }
   fetch(apiURL)
     .then(response => response.json())
     .then(data => {
