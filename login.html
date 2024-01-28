@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <!--     LINK CSS      -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <!--      BOX ICONS      -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!--   Link Swiper's CSS   -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+</head>
+<body>
+    <!--NAVBAR-->
+    <header>
+        <a href="index.html" class="logo">
+            <i class='bx bxs-movie-play'></i>FilmHub
+        </a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <!--   MENU NAVBAR   -->
+        <ul class="navbar">
+            <li><a href="index.html" class="home-active">HOME</a></li>
+            <li><a href="commingsoon.html">COMMING SOON</a></li>
+            <li><a href="news.html">NEWS</a></li>
+            <li><a href="aboutus.html">ABOUT US</a></li>
+        </ul>
+        <div>
+            <a href="login.html" class="btn" id="log-in">LOG IN</a>
+            <button class="btn" id="log-out">LOG OUT</button>
+        </div>   
+    </header>
+    
+    <div class="login">
+        <img src="image/background8.jpg" alt="image" class="login__bg">
+        
+        <form action="" class="login__form">
+            <h1 class="login__title">Login Form</h1>
+
+            <div class="login__inputs">
+                <div class="login__box">
+                    <input type="text" placeholder="Username" required class="login__input username_input">
+                    <i class='bx bx-user'></i>
+                </div>
+                <div class="login__box">
+                    <input type="password" placeholder="Password" required class="login__input password_input">
+                    <i class='bx bx-lock'></i>
+                </div>
+            </div>
+
+            <div class="login__check">
+                <div class="login__check-box">
+                    <input type="checkbox" class="login__check-input remember-me-input" id="user-check">
+                    <label for="user-check" class="login__check-label">Remember me</label>
+                </div>
+
+                <a href="#" class="login__forgot">Forgot Password?</a>
+            </div>
+
+            <button type="" class="login__button" onClick="loginAction(event)">Login</button>
+
+            <div class="login__register">
+                Don't have an account? <a href="#"> Register</a>
+            </div>
+        </form>
+    </div>
+    
+    <!-- common.js is first ".js" file in the <script> list -->
+    <script src="./js/common.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>

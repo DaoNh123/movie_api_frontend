@@ -1,3 +1,11 @@
+var frontendUrl = window.location.origin;
+let backendUrl = "";
+if (frontendUrl === "http://127.0.0.1:5500") {
+  backendUrl = "http://localhost:8080";
+} else {
+  backendUrl = frontendUrl + ":8080";
+}
+
 
 let getApi = async (apiLink) => {
   const response = await fetch(apiLink);
@@ -46,31 +54,17 @@ let getMovieId = async () => {
   return movieId;
 };
 
-// let getSlotsByMovieId = async () => {
-//   let movieId = await getMovieId();
-//   let slotResponse = await getApi(`http://localhost:8080/api/movies/${movieId}/slots`)
-//     .then((data) => new OverallResponse(data.resultSize, data.slotResponses))
-//     .then((res) => {
-//       console.log(res);
-//       return res;
-//     });
-
-//   return slotResponse.slotResponses;
-// };
 
 let getSlotsByMovieId = async () => {
   let movieId = await getMovieId();
-  let slotResponse = await getApi(`http://localhost:8080/api/movies/${movieId}/slots`)
+  let slotResponse = await getApi(`${backendUrl}/api/movies/${movieId}/slots`)
     .then((data) => new OverallResponse(data.resultSize, data.slotResponses ?? []))
     .then((res) => {
       console.log(res);
       return res;
     });
-    return slotResponse.slotResponses;
+  return slotResponse.slotResponses;
 };
-
-
-
 
 let slotResponsesArray = async () => {
   return getSlotsByMovieId().then((slotList) => {
@@ -186,7 +180,7 @@ class Seat {
 }
 
 let getMapRowSeat = async (slotId) => {
-  return getApi(`http://localhost:8080/api/slots/${slotId}`)
+  return getApi(`${backendUrl}/api/slots/${slotId}`)
     .then((data) => {
       return data.map((seat) => new Seat(seat.seatId, seat.seatName, seat.status, seat.seatClass));
     })
@@ -313,7 +307,7 @@ openPaymentFormBtn.addEventListener("click", (e) => {
 });
 
 class OrderRequest {
-  constructor(customerName, customerEmail, customerAddress, customerAge,  slotId, seatIdList) {
+  constructor(customerName, customerEmail, customerAddress, customerAge, slotId, seatIdList) {
     this.customerName = customerName;
     this.customerEmail = customerEmail;
     this.customerAddress = customerAddress;
@@ -351,46 +345,56 @@ createOrderBtn.addEventListener("click", (e) => {
     age--;
   }
   // End calculate "age"
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailInput.value)) {
+    alert("Email Error: Your email is not correct, please check again");
+    return;
+  }
 
-  const orderRequest = new OrderRequest(fullNameInput.value, emailInput.value, addressInput.value, age, createOrderBtn.getAttribute('slot-id'), seatIdList);
+  const orderRequest = new OrderRequest(
+    fullNameInput.value,
+    emailInput.value,
+    addressInput.value,
+    age,
+    createOrderBtn.getAttribute("slot-id"),
+    seatIdList
+  );
 
   console.log(orderRequest);
 
-  const endpoint = "http://localhost:8080/api/orders/";
+  const endpoint = `${backendUrl}/api/orders/`;
 
-// Fetch options for the POST request
-const requestOptions = {
-    method: 'POST',
+  // Fetch options for the POST request
+  const requestOptions = {
+    method: "POST",
     headers: {
-        'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(orderRequest),
-};
+  };
 
-// Make the POST request
-fetch(endpoint, requestOptions)
-    .then(response => {
+  // Make the POST request
+  fetch(endpoint, requestOptions)
+    .then((response) => {
       if (response.ok) {
         // Parse the JSON response
         return response.json();
       } else {
         // If it's a bad request, log the error message
-        return response.json().then(error => {
-          console.log('Bad Request:', error.data);
+        return response.json().then((error) => {
+          console.log("Bad Request:", error.json().data[0]);
           // You can handle the error further as needed
-          throw new Error('Bad Request');
+          throw new Error("Bad Request");
         });
       }
     })
-    .then(data => {
-      // If it's a success, log the specific field you're interested in
+    .then((data) => {
       alert("Create Order successfully");
-      console.log('Total Value:', data.totalValue);
+      console.log("Total Value:", data.totalValue);
       // You can handle the success further as needed
     })
-    .catch(error => {
-        alert('Error:', error);
-        console.error('Error:', error);
+    .catch((error) => {
+      alert("Error:", error.message || "Unknown error");
+      console.error("Error:", error.message || "Unknown error");
     });
 });
-

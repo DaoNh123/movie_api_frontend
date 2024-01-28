@@ -1,18 +1,11 @@
-// /**    NOTIFICATION  **/
-// // cua so pop up
-// const popup = document.querySelector('.popup');
-// const close = document.querySelector('.close-popup')
-
-// window.onload = function(){
-//   setTimeout(function(){
-//     popup.style.display = "block"
-
-//      // Add some time delay to show popup
-//   },1500)
+// var frontendUrl = window.location.origin;
+// let backendUrl = "";
+// if (frontendUrl === "http://127.0.0.1:5500") {
+//   backendUrl = "http://localhost:8080";
+// } else {
+//   backendUrl = frontendUrl + ":8080";
 // }
-// close.addEventListener('click',()=>{
-//    popup.style.display = "none"
-// })
+
 
 // SCROLL HEADER
 let header = document.querySelector('header');
