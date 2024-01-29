@@ -33,7 +33,6 @@ function eraseCookie(name) {
 
 function checkCookieExists(name) {
   var cookieValue = getCookie(name);
-  console.log(cookieValue);
   return cookieValue !== undefined && cookieValue !== "";
 }
 
@@ -57,5 +56,33 @@ if(checkCookieExists("jwt")){
 
 logoutBtn.addEventListener("click", (e) => {
   eraseCookie("jwt");
+  eraseCookie("userDto");
+
   location.reload();
 })
+
+class UserDto {
+  constructor(userDtoJSON) {
+    let userDto = JSON.parse(userDtoJSON);
+
+    this.firstName = userDto.firstName;
+    this.lastName = userDto.lastName;
+    this.username = userDto.username;
+    this.gender = userDto.gender;
+    this.email = userDto.email;
+    this.dob = userDto.dob;
+    this.avatarUrl = userDto.avatarUrl;
+}
+}
+
+if(checkCookieExists("userDto")){
+  let userDto = new UserDto(getCookie("userDto"));
+
+  console.log(userDto.firstName);
+  console.log(userDto.lastName);
+  console.log(userDto.username);
+  console.log(userDto.gender);
+  console.log(userDto.email);
+  console.log(userDto.dob);
+  console.log(userDto.avatarUrl);
+}

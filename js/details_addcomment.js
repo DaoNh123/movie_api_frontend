@@ -1,10 +1,10 @@
-var frontendUrl = window.location.origin;
-let backendUrl = "";
-if (frontendUrl === "http://127.0.0.1:5500") {
-  backendUrl = "http://localhost:8080";
-} else {
-  backendUrl = frontendUrl + ":8080";
-}
+// var frontendUrl = window.location.origin;
+// let backendUrl = "";
+// if (frontendUrl === "http://127.0.0.1:5500") {
+//   backendUrl = "http://localhost:8080";
+// } else {
+//   backendUrl = frontendUrl + ":8080";
+// }
 
   
 class CreateCommentRequest {

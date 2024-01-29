@@ -3,6 +3,26 @@ let getApi = async (apiLink) => {
   const data = await response.json();
   return data;
 };
+//  Class "OrderRequest" to create new Order
+class OrderRequest {
+  constructor(customerName, customerEmail, customerAge, slotId, seatIdList) {
+    this.customerName = customerName;
+    this.customerEmail = customerEmail;
+    this.customerAge = customerAge;
+    this.slotId = slotId;
+    this.seatIdList = seatIdList;
+  }
+
+  toString() {
+    return `OrderRequest { 
+      customerName: ${this.customerName}, 
+      customerEmail: ${this.customerEmail}, 
+      customerAge: ${this.customerAge},
+      slotId: ${this.slotId}, 
+      seatIdList: [${this.seatIdList.join(", ")}]
+    }`;
+  }
+}
 // Handling choosing Slot View
 class SlotResponse {
   constructor(id, startTime, endTime, theaterRoom) {
@@ -44,7 +64,6 @@ let getMovieId = async () => {
   let movieId = await decodeURIComponent(urlParams.get("movie-id"));
   return movieId;
 };
-
 
 let getSlotsByMovieId = async () => {
   let movieId = await getMovieId();
@@ -139,7 +158,7 @@ slotResponsesMap().then((slotResponsesMap) => {
   console.log(selectDayTag);
 });
 
-// ************ Handling choosing Seat View
+// ************ Start Handling choosing Seat View *********
 
 class SeatClass {
   constructor(seatClassName, price) {
@@ -249,11 +268,12 @@ const renderChoosingSeatView = async (movieId) => {
     }
   });
 };
+// ************ End Handling choosing Seat View *********
 
-// ******************** Sending createOrder Form
+// ******************** Start Sending createOrder Form
 const openPaymentFormBtn = document.querySelector("#open-payment-form");
 
-const createOrderBtn = document.querySelector("#create-order-btn");
+const createOrderInsideFormBtn = document.querySelector("#create-order-btn");
 const closePaymentFormBtn = document.querySelector("#close-payment-form");
 
 const paymentForm = document.querySelector(".payment-form");
@@ -264,7 +284,7 @@ const emailInput = document.querySelector("#email-input");
 const addressInput = document.querySelector("#address-input");
 const dobInput = document.querySelector("#dob-input");
 
-console.log(createOrderBtn);
+console.log(createOrderInsideFormBtn);
 console.log(closePaymentFormBtn);
 console.log(paymentForm);
 console.log(dobInput);
@@ -277,6 +297,7 @@ closePaymentFormBtn.addEventListener("click", (e) => {
 
 openPaymentFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
+
   const choosingTimeSelectTag = document.querySelector("#choosing-time");
   console.log(choosingTimeSelectTag.value);
 
@@ -290,51 +311,81 @@ openPaymentFormBtn.addEventListener("click", (e) => {
   if (choosingTimeSelectTag.value == "") alert("Please choose Day and Time to create a Order!");
   else if (seatIdList.length == 0) alert("Please choose a seat before create a order!");
   else {
-    paymentForm.classList.remove("hidden");
-    overlayOfPaymentForm.classList.remove("hidden");
-    createOrderBtn.setAttribute("seat-id-list", seatIdList);
-    createOrderBtn.setAttribute("slot-id", choosingTimeSelectTag.selectedOptions[0].getAttribute("slot-id"));
+    const slotId = choosingTimeSelectTag.selectedOptions[0].getAttribute("slot-id");
+
+    if (checkCookieExists("jwt")) {
+      const userDto = new UserDto(getCookie("userDto"));
+      const fullName = userDto.firstName + " " + userDto.lastName;
+      const email = userDto.email;
+      const age = calculateAge(userDto.dob);
+
+      const orderRequestForLoggedUser = {
+        slotId: slotId,
+        seatIdList: seatIdList,
+      };
+
+      console.log(orderRequestForLoggedUser);
+
+      const createOrderForLoggedUserUrl = `${backendUrl}/api/users/orders/`;
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getCookie("jwt")}`,
+        },
+        body: JSON.stringify(orderRequestForLoggedUser),
+      };
+      let responseStatus = 0;
+
+      fetch(createOrderForLoggedUserUrl, options)
+        .then((res) => {
+          responseStatus = res.status;
+          if (responseStatus === 401) {
+            alert("Jwt have been expired! Please login your account!");
+            eraseCookie("jwt");
+            eraseCookie("userDto");
+            window.location.href = "login.html";
+            return;
+          }
+          return res.json();
+        })
+        .then((data) => {
+          if (responseStatus === 200) {
+            console.log(data);
+            alert("Create Order successfully");
+            alert("Total order value is: " + data.totalValue);
+            for (const seat of chosenSeat) {
+              seat.classList.add("occupied");
+            }
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch((error) => {
+          alert("Error:", error.message || "Unknown error");
+          console.error("Error:", error.message || "Unknown error");
+        });
+    } else {
+      openPaymentFormForNotLoggedUser(slotId, seatIdList);
+    }
   }
 });
 
-class OrderRequest {
-  constructor(customerName, customerEmail, customerAddress, customerAge, slotId, seatIdList) {
-    this.customerName = customerName;
-    this.customerEmail = customerEmail;
-    this.customerAddress = customerAddress;
-    this.customerAge = customerAge;
-    this.slotId = slotId;
-    this.seatIdList = seatIdList;
-  }
+const openPaymentFormForNotLoggedUser = (slotId, seatIdList) => {
+  paymentForm.classList.remove("hidden");
+  overlayOfPaymentForm.classList.remove("hidden");
+  createOrderInsideFormBtn.setAttribute("seat-id-list", seatIdList);
+  createOrderInsideFormBtn.setAttribute("slot-id", slotId);
+};
 
-  toString() {
-    return `OrderRequest { 
-      customerName: ${this.customerName}, 
-      customerEmail: ${this.customerEmail}, 
-      customerAddress: ${this.customerAddress}, 
-      customerAge: ${this.customerAge},
-      slotId: ${this.slotId}, 
-      seatIdList: [${this.seatIdList.join(", ")}]
-    }`;
-  }
-}
-
-createOrderBtn.addEventListener("click", (e) => {
+// ************ Handle event in "CreateOrder" form for un-logged user *******************
+createOrderInsideFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  const seatIdList = createOrderBtn.getAttribute("seat-id-list").split(",");
+  const seatIdList = createOrderInsideFormBtn.getAttribute("seat-id-list").split(",");
   console.log(seatIdList);
 
-  // Calculate age of customer
-  const birthDate = new Date(dobInput.value);
-  const currentDate = new Date();
-  let age = currentDate.getFullYear() - birthDate.getFullYear();
-
-  if (
-    currentDate.getMonth() < birthDate.getMonth() ||
-    (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
-  ) {
-    age--;
-  }
+  const age = calculateAge(dobInput.value);
   // End calculate "age"
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(emailInput.value)) {
@@ -345,14 +396,30 @@ createOrderBtn.addEventListener("click", (e) => {
   const orderRequest = new OrderRequest(
     fullNameInput.value,
     emailInput.value,
-    addressInput.value,
     age,
-    createOrderBtn.getAttribute("slot-id"),
+    createOrderInsideFormBtn.getAttribute("slot-id"),
     seatIdList
   );
 
   console.log(orderRequest);
 
+  sendCreateOrderRequest(orderRequest);
+});
+
+// ************ calculateAge
+function calculateAge(dob) {
+  var today = new Date();
+  var birthDate = new Date(dob);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var month = today.getMonth() - birthDate.getMonth();
+  if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
+
+// ************ Send "OrderRequest" ********************
+const sendCreateOrderRequest = (orderRequest) => {
   const endpoint = `${backendUrl}/api/orders/`;
 
   // Fetch options for the POST request
@@ -364,28 +431,27 @@ createOrderBtn.addEventListener("click", (e) => {
     body: JSON.stringify(orderRequest),
   };
 
+  let responseStatus = 0;
+
   // Make the POST request
   fetch(endpoint, requestOptions)
     .then((response) => {
-      if (response.ok) {
-        // Parse the JSON response
-        return response.json();
-      } else {
-        // If it's a bad request, log the error message
-        return response.json().then((error) => {
-          console.log("Bad Request:", error.json().data[0]);
-          // You can handle the error further as needed
-          throw new Error("Bad Request");
-        });
-      }
+      console.log("1");
+
+      responseStatus = response.status;
+      return response.json();
     })
     .then((data) => {
-      alert("Create Order successfully");
-      console.log("Total Value:", data.totalValue);
+      if (responseStatus === 200) {
+        alert("Create Order successfully");
+        alert("Total order value is: " + data.totalValue);
+      } else {
+        alert(data.message);
+      }
       // You can handle the success further as needed
     })
     .catch((error) => {
       alert("Error:", error.message || "Unknown error");
       console.error("Error:", error.message || "Unknown error");
     });
-});
+};
