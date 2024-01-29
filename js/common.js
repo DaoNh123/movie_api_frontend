@@ -18,16 +18,13 @@ function setCookie(cName, cValue, expDays) {
 function getCookie(cName) {
   const name = cName + "=";
   const cDecoded = decodeURIComponent(document.cookie); //to be careful
-  const cArr = cDecoded .split('; ');
+  const cArr = cDecoded.split('; ');
   let res;
   cArr.forEach(val => {
       if (val.indexOf(name) === 0) res = val.substring(name.length);
   })
   return res;
 }
-
-const usernameInput = document.querySelector("input.username_input");
-const passwordInput = document.querySelector("input.password_input");
 
 // Function to delete a cookie
 function eraseCookie(name) {
