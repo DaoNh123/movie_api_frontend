@@ -1,12 +1,3 @@
-// var frontendUrl = window.location.origin;
-// let backendUrl = "";
-// if (frontendUrl === "http://127.0.0.1:5500") {
-//   backendUrl = "http://localhost:8080";
-// } else {
-//   backendUrl = frontendUrl + ":8080";
-// }
-
-  
 class CreateCommentRequest {
   constructor(commentUsername, starRate, commentContent, movieId) {
     this.commentUsername = commentUsername;
@@ -42,35 +33,21 @@ commentSubmitBtn.addEventListener("click", (e) => {
   const commentUsername = commentUsernameInput.value;
   const commentContent = commentContentInput.value;
 
-  if (commentContent !== "" && commentUsername !== "") {
-    const starRate = document.querySelectorAll(".starRate i.active").length;
+  console.log(commentSubmitBtn);
 
-    const createCommentRequest = new CreateCommentRequest(
-      commentUsername,
-      starRate,
-      commentContent,
-      movieId2
-    );
-
-    console.log(createCommentRequest);
-
-    fetch("http://localhost:8080/api/comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(createCommentRequest),
-    })
+    postComment()
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        if (response.status === 401) {
+          throw new Error(`Your login session have expired! Please login your account!`);
+        } 
         return response.json();
       })
       .then((comment) => {
+        console.log(comment);
+
         const commentList = document.querySelector(".commentList");
 
-        let stars = '';
+        let stars = "";
         for (let i = 0; i < comment.starRate; i++) {
           stars += "<i class='bx bxs-star'></i>";
         }
@@ -108,10 +85,69 @@ commentSubmitBtn.addEventListener("click", (e) => {
         commentContentInput.value = "";
       })
       .catch((error) => {
-        console.error("Error:", error);
+        alert("Error:", error);
       });
   }
-});
+);
+
+const postComment = () => {
+  let jwt = getCookie("jwt");
+  let jwtExist = true;
+  if (jwt == undefined) jwtExist = false;
+  let userDto;
+  if(jwtExist){
+    userDto = new UserDto(getCookie("userDto"));
+  }
+  console.log(userDto);
+
+  const commentUsername = jwtExist ? userDto.fullName : commentUsernameInput.value;
+  const commentContent = commentContentInput.value;
+
+  if (commentContent.trim() === "") {
+    alert("Comment content can not be empty!");
+    return;
+  }
+
+  if (!jwtExist && commentUsername.trim() === "") {
+    alert("Username can not be empty!");
+    return;
+  }
+
+  const starRate = document.querySelectorAll(".starRate i.active").length;
+  if(starRate === 0) {
+    alert("You must choose star rate for this movie before comment!");
+    return;
+  }
+
+  const createCommentRequest = new CreateCommentRequest(commentUsername, starRate, commentContent, movieId2);
+
+  console.log(createCommentRequest);
+
+  let postOption;
+  let postUrl;
+  if (jwtExist) {
+    postOption = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("jwt")}`,
+      },
+      body: JSON.stringify(createCommentRequest),
+    };
+    postUrl = `${backendUrl}/api/users/comments`;
+  } else {
+    postOption = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(createCommentRequest),
+    };
+    postUrl = `${backendUrl}/api/comments`;
+  }
+
+  return fetch(postUrl, postOption);
+};
 
 function getMovieIdFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);

@@ -26,6 +26,8 @@ function getCookie(cName) {
   return res;
 }
 
+console.log(getCookie("jwt"));
+
 // Function to delete a cookie
 function eraseCookie(name) {
   document.cookie = name + '=; Max-Age=-99999999;';
@@ -72,7 +74,21 @@ class UserDto {
     this.email = userDto.email;
     this.dob = userDto.dob;
     this.avatarUrl = userDto.avatarUrl;
-}
+    this.fullName = this.firstName;
+    if(this.lastName !== null) this.fullName += " " + this.lastName;
+  }
+  toString() {
+    return `UserDto {
+  firstName: ${this.firstName},
+  lastName: ${this.lastName},
+  username: ${this.username},
+  gender: ${this.gender},
+  email: ${this.email},
+  dob: ${this.dob},
+  avatarUrl: ${this.avatarUrl},
+  fullName: ${this.fullName}
+}`;
+  }
 }
 
 if(checkCookieExists("userDto")){
