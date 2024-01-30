@@ -1,6 +1,7 @@
 class CreateMovieRequest {
   constructor(
     movieName,
+    imdbId,
     description,
     duration,
     language,
@@ -11,6 +12,7 @@ class CreateMovieRequest {
     movieLabel,
   ) {
     this.movieName = movieName;
+    this.imdbId = imdbId,
     this.description = description;
     this.duration = duration;
     this.language = language;
@@ -24,6 +26,7 @@ class CreateMovieRequest {
   toString() {
     return `CreateMovieRequest {
   movieName: ${this.movieName},
+  imdbId: ${this.imdbId},
   language: ${this.language},
   duration: ${this.duration},
   movieLabel: ${this.movieLabel},
@@ -36,7 +39,6 @@ class CreateMovieRequest {
   }
 }
 
-// document.addEventListener("DOMContentLoaded", function () {  ==> Unnecessary event
 
 let submitBtn = document.querySelector("#btnSubmit");
 
@@ -44,6 +46,7 @@ submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   const movieName = document.querySelector(".movieName input").value;
+  const imdbId = document.querySelector(".imdb_id input").value;
   const description = document.querySelector(".description input").value;
   const duration = document.querySelector(".duration input").value;
   const language = document.querySelector(".language select").value;
@@ -66,6 +69,7 @@ submitBtn.addEventListener("click", (e) => {
   const createMovieRequestJson = JSON.stringify(
     new CreateMovieRequest(
       movieName,
+      imdbId,
       description,
       duration,
       language,
@@ -78,6 +82,7 @@ submitBtn.addEventListener("click", (e) => {
   );
 
   console.log(createMovieRequestJson);
+  return;
 
   const formData = new FormData();
   formData.append("poster", posterFile);
@@ -85,10 +90,17 @@ submitBtn.addEventListener("click", (e) => {
 
   formData.append("createMovieRequest", new Blob([createMovieRequestJson], { type: "application/json" }));
 
-  fetch("http://localhost:8080/api/movies", {
+  const createMovieUrl = `${backendUrl}/api/admin/movies`;
+  const requestOption = {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getCookie("jwt")}`,
+    },
     body: formData,
-  })
+  }
+
+  fetch(createMovieUrl, requestOption)
     .then((response) => {
       console.log("***");
       console.log(response);

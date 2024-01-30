@@ -40,13 +40,20 @@
             <!-- <form action="" method="POST" enctype="multipart/form-data"> -->
                 <!--Information Start-->
                 <div class="input_group">
+                    <div class="input_box imdb_id">
+                        <input type="text" placeholder="IMDB Id" required class="name" name="imdb_id" value="">
+                        <i class='bx bxs-user-circle'></i>
+                    </div>
+                </div>
+
+                <div class="input_group">
                     <div class="input_box movieName">
                         <input type="text" placeholder="Movie Name" required class="name" name="movieName" value="movie">
                         <i class='bx bxs-user-circle'></i>
                     </div>
                     <div class="input_box language">
                         <select name="language" id="#" value="en">
-                            <option value="...">Language</option>
+                            <option value="">Language</option>
                             <option value="en" default>en</option>
                             <option value="vi">vi</option>
                         </select>

@@ -26,8 +26,6 @@ function getCookie(cName) {
   return res;
 }
 
-console.log(getCookie("jwt"));
-
 // Function to delete a cookie
 function eraseCookie(name) {
   document.cookie = name + '=; Max-Age=-99999999;';
@@ -91,14 +89,33 @@ class UserDto {
   }
 }
 
-if(checkCookieExists("userDto")){
-  let userDto = new UserDto(getCookie("userDto"));
+// if(checkCookieExists("userDto")){
+//   let userDto = new UserDto(getCookie("userDto"));
+//   console.log(userDto.firstName);
+//   console.log(userDto.lastName);
+//   console.log(userDto.username);
+//   console.log(userDto.gender);
+//   console.log(userDto.email);
+//   console.log(userDto.dob);
+//   console.log(userDto.avatarUrl);
+// }
 
-  console.log(userDto.firstName);
-  console.log(userDto.lastName);
-  console.log(userDto.username);
-  console.log(userDto.gender);
-  console.log(userDto.email);
-  console.log(userDto.dob);
-  console.log(userDto.avatarUrl);
+// Test "jwt" claim "isAdmin"
+function decodeToken(token) {
+  const parts = token.split('.');
+  const decoded = {};
+
+  if (parts.length !== 3) {
+    throw new Error('Invalid token format');
+  }
+
+  decoded.header = JSON.parse(atob(parts[0]));
+  decoded.payload = JSON.parse(atob(parts[1]));
+
+  return decoded;
 }
+
+const decodedToken = decodeToken(getCookie("jwt"));
+const isAdmin = decodedToken.payload.isAdmin;
+
+console.log("isAdmin:", isAdmin);
