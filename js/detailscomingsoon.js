@@ -1,11 +1,3 @@
-var frontendUrl = window.location.origin;
-let backendUrl = "";
-if (frontendUrl === "http://127.0.0.1:5500") {
-  backendUrl = "http://localhost:8080";
-} else {
-  backendUrl = frontendUrl + ":8080";
-}
-
 //************************************ */
 // SCROLL HEADER
 let header = document.querySelector("header");
@@ -74,31 +66,6 @@ fetch(`http://localhost:8080/api/movies/${movieId}`)
     posterUrl.src = movie.posterUrl;
     detailsIndexMovieName.textContent = movie.movieName;
     trailerIframe.src = movie.trailerUrl;
-
-    // commentList.innerHTML = "";
-
-    // movie.commentList.forEach((comment) => {
-    //   commentList.innerHTML += `
-    //   <div class="flex">
-    //           <div class="user">
-    //             <div class="user-image"><img src="image/icon2.jpg" alt="" /></div>
-    //             <div class="user-meta">
-    //               <div class="commentUsername"><p>${comment.commentUsername}</p></div>
-    //               <div class="day">4 day ago</div>
-    //             </div>
-    //           </div>
-    //           <div class="reply">
-    //             <div class="like icon"><i class="bx bx-like"></i></div>
-    //             <div class="dislike icon"><i class="bx bx-dislike"></i></div>
-    //             <div class="">Reply</div>
-    //           </div>
-    //         </div>
-    //         <div class="commentContent">
-    //           <p>${comment.commentContent} with rating ${comment.starRate} stars</p>
-    //         </div>
-    //   `;
-
-   
     });
   
 

@@ -26,6 +26,8 @@ function getCookie(cName) {
   return res;
 }
 
+console.log(getCookie("jwt"));
+
 // Function to delete a cookie
 function eraseCookie(name) {
   document.cookie = name + '=; Max-Age=-99999999;';
@@ -33,7 +35,6 @@ function eraseCookie(name) {
 
 function checkCookieExists(name) {
   var cookieValue = getCookie(name);
-  console.log(cookieValue);
   return cookieValue !== undefined && cookieValue !== "";
 }
 
@@ -57,5 +58,47 @@ if(checkCookieExists("jwt")){
 
 logoutBtn.addEventListener("click", (e) => {
   eraseCookie("jwt");
+  eraseCookie("userDto");
+
   location.reload();
 })
+
+class UserDto {
+  constructor(userDtoJSON) {
+    let userDto = JSON.parse(userDtoJSON);
+
+    this.firstName = userDto.firstName;
+    this.lastName = userDto.lastName;
+    this.username = userDto.username;
+    this.gender = userDto.gender;
+    this.email = userDto.email;
+    this.dob = userDto.dob;
+    this.avatarUrl = userDto.avatarUrl;
+    this.fullName = this.firstName;
+    if(this.lastName !== null) this.fullName += " " + this.lastName;
+  }
+  toString() {
+    return `UserDto {
+  firstName: ${this.firstName},
+  lastName: ${this.lastName},
+  username: ${this.username},
+  gender: ${this.gender},
+  email: ${this.email},
+  dob: ${this.dob},
+  avatarUrl: ${this.avatarUrl},
+  fullName: ${this.fullName}
+}`;
+  }
+}
+
+if(checkCookieExists("userDto")){
+  let userDto = new UserDto(getCookie("userDto"));
+
+  console.log(userDto.firstName);
+  console.log(userDto.lastName);
+  console.log(userDto.username);
+  console.log(userDto.gender);
+  console.log(userDto.email);
+  console.log(userDto.dob);
+  console.log(userDto.avatarUrl);
+}

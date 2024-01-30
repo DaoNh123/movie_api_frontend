@@ -78,25 +78,12 @@ const loginAction = (e) => {
         if (responseStatus === 200) {
           const userData = new UserData(data.jwt, data.userDto);
 
-          console.log(userData.firstName); // Output: admin
-          console.log(userData.lastName); // Output: null
-          console.log(userData.username); // Output: admin
-          console.log(userData.gender); // Output: null
-          console.log(userData.email); // Output: nhdao.it2.learn@gmail.com
-          console.log(userData.dob); // Output: null
           console.log("Avatar" + userData.avatarUrl);
 
           setCookie("jwt", data.jwt, 1);
+          setCookie("userDto", JSON.stringify(userData.userDto), 1);
 
-          setCookie("firstName", userData.firstName);
-          setCookie("lastName", userData.lastName);
-          setCookie("username", userData.username);
-          setCookie("gender", userData.gender);
-          setCookie("email", userData.email);
-          setCookie("dob", userData.dob);
-          setCookie("avatarUrl", userData.avatarUrl);
-
-          console.log(getCookie("avatarUrl"));
+          console.log(JSON.parse(getCookie("userDto")).avatarUrl);
 
           usernameInput.value = "";
           passwordInput.value = "";
