@@ -41,20 +41,20 @@
                 <!--Information Start-->
                 <div class="input_group">
                     <div class="input_box imdb_id">
-                        <input type="text" placeholder="IMDB Id" required class="name" name="imdb_id" value="">
+                        <input type="text" placeholder="IMDB Id" required class="name" name="imdb_id" value="tt9682428">
                         <i class='bx bxs-user-circle'></i>
                     </div>
                 </div>
 
                 <div class="input_group">
                     <div class="input_box movieName">
-                        <input type="text" placeholder="Movie Name" required class="name" name="movieName" value="movie">
+                        <input type="text" placeholder="Movie Name" required class="name" name="movieName" value="">
                         <i class='bx bxs-user-circle'></i>
                     </div>
                     <div class="input_box language">
                         <select name="language" id="#" value="en">
                             <option value="">Language</option>
-                            <option value="en" default>en</option>
+                            <option value="en" selected>en</option>
                             <option value="vi">vi</option>
                         </select>
                         <i class='bx bxs-user-voice'></i>
@@ -76,8 +76,8 @@
                     </div>
                     <div class="input_box movieLabel">
                         <select name="movieLabel" id="" >
-                            <option value="...">Label</option>
-                            <option value="P" selected>P</option>
+                            <option value="">Label</option>
+                            <option value="P">P</option>
                             <option value="C12">C12</option>
                             <option value="C18">C18</option>
                         </select>
@@ -181,9 +181,13 @@
                     <div class="input_button">
                         <button class="btn"><a href="index.html">BACK</a></button>
                         <button type="submit" class="btn" id="btnSubmit">POST</button>
+                        <button type="submit" class="btn" id="auto-fill-data">AUTO FILL DATA</button>
                     </div>
                 </div>
             <!-- </form> -->
+            <div>
+                <img src="" style="width: 200px;" alt="Preview Image autoFill" id="image-auto-fill">
+            </div>
         </div>   
     </body>  
 

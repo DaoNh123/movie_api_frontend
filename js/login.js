@@ -80,7 +80,7 @@ const loginAction = (e) => {
 
           console.log("Avatar" + userData.avatarUrl);
 
-          setCookie("jwt", data.jwt, 1);
+          setCookie("jwt", data.jwt, 2);
           setCookie("userDto", JSON.stringify(userData.userDto), 1);
 
           console.log(JSON.parse(getCookie("userDto")).avatarUrl);
