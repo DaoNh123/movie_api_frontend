@@ -38,7 +38,7 @@ if (choosePayBtn) {
   choosePayBtn.href = `choosepay.html?movie-id=${movieId}`;
 }
 
-fetch(`http://localhost:8080/api/movies/${movieId}`)
+fetch(`${backendUrl}/api/movies/${movieId}`)
   .then((response) => response.json())
   .then((movie) => {
     console.log(movie);

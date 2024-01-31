@@ -9,7 +9,7 @@ if (frontendUrl === "http://127.0.0.1:5500") {
 
 function setCookie(cName, cValue, expHours) {
   let date = new Date();
-  date.setTime(date.getTime() + expHours * 24 * 60 * 60 * 1000);
+  date.setTime(date.getTime() + expHours * 60 * 60 * 1000);
   const expires = "expires=" + date.toUTCString();
   document.cookie = cName + "=" + cValue + "; " + expires;
 }
@@ -39,18 +39,47 @@ function checkCookieExists(name) {
 const rememberMeInput = document.querySelector("input.remember-me-input");
 const logoutBtn = document.querySelector("button#log-out");
 const loginBtn = document.querySelector("a#log-in");
+const pathName = window.location.pathname;
+
+// Test "jwt" claim "isAdmin"
+function decodeToken(token) {
+  const parts = token.split(".");
+  const decoded = {};
+
+  if (parts.length !== 3) {
+    throw new Error("Invalid token format");
+  }
+
+  decoded.header = JSON.parse(atob(parts[0]));
+  decoded.payload = JSON.parse(atob(parts[1]));
+
+  return decoded;
+}
+let isAdmin = false;
+
+if (checkCookieExists("jwt")) {
+  const decodedToken = decodeToken(getCookie("jwt"));
+  isAdmin = decodedToken.payload.isAdmin;
+}
+
+console.log("isAdmin:", isAdmin);
 
 if (checkCookieExists("jwt")) {
   loginBtn.style.display = "none";
   logoutBtn.style.display = "block";
 
-  if (window.location.pathname.endsWith("login.html")) {
+  if (pathName.endsWith("login.html")) {
     window.location.href = "index.html";
-  } else {
   }
 } else {
   loginBtn.style.display = "block";
   logoutBtn.style.display = "none";
+}
+
+console.log(pathName.endsWith("createmovie.html"));
+if (pathName.endsWith("createmovie.html") && !isAdmin){
+  alert("Only admin can access this page!");
+  window.location.href = "index.html";
 }
 
 logoutBtn.addEventListener("click", (e) => {
@@ -88,37 +117,27 @@ class UserDto {
   }
 }
 
-// if(checkCookieExists("userDto")){
-//   let userDto = new UserDto(getCookie("userDto"));
-//   console.log(userDto.firstName);
-//   console.log(userDto.lastName);
-//   console.log(userDto.username);
-//   console.log(userDto.gender);
-//   console.log(userDto.email);
-//   console.log(userDto.dob);
-//   console.log(userDto.avatarUrl);
-// }
-
-// Test "jwt" claim "isAdmin"
-function decodeToken(token) {
-  const parts = token.split(".");
-  const decoded = {};
-
-  if (parts.length !== 3) {
-    throw new Error("Invalid token format");
-  }
-
-  decoded.header = JSON.parse(atob(parts[0]));
-  decoded.payload = JSON.parse(atob(parts[1]));
-
-  return decoded;
+// api fetch
+const fetchApiCommon = (apiUrl, requestOption, messageWhenError) => {
+  let responseStatus = 0;
+  // POST new Movie
+  fetch(apiUrl, requestOption)
+    .then((response) => {
+      responseStatus = response.status;
+      console.log(responseStatus);
+      return response.json();
+    })
+    .then((data) => {
+      if (responseStatus === 200) {
+        console.log("Response data:", data);
+        alert("Successfully!");
+      } else {
+        console.log(data.message);
+        alert("Error: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert(messageWhenError);
+    });
 }
-
-let isAdmin = false;
-
-if (checkCookieExists("jwt")) {
-  const decodedToken = decodeToken(getCookie("jwt"));
-  isAdmin = decodedToken.payload.isAdmin;
-}
-
-console.log("isAdmin:", isAdmin);

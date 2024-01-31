@@ -1,12 +1,3 @@
-// var frontendUrl = window.location.origin;
-// let backendUrl = "";
-// if (frontendUrl === "http://127.0.0.1:5500") {
-//   backendUrl = "http://localhost:8080";
-// } else {
-//   backendUrl = frontendUrl + ":8080";
-// }
-
-
 // SCROLL HEADER
 let header = document.querySelector('header');
 let menu = document.querySelector('#menu-icon');
@@ -40,23 +31,6 @@ var swiper = new Swiper(".home", {
     },
   }); 
 
-// Search - box
-  // function toggleShow() {
-  //   var el = document.getElementById("box");
-  //   el.classList.toggle("show");
-  // }
-  
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   const searchBox = document.getElementById("box");
-  
-  //   searchBox.addEventListener("input", () => {
-  //     if (searchBox.value.trim() !== "") {
-  //       searchBox.classList.add("show");
-  //     } else {
-  //       searchBox.classList.remove("show");
-  //     }
-  //   });
-  // });
 
   // SLIDE WRAPPER
   var swiper = new Swiper(".coming-container",{
@@ -98,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pageSize = 15; 
   let currentPage = 1; 
 
-  fetchApi("http://localhost:8080/api/movies/now-showing?page=0&size=28").then((data) => {
+  fetchApi(`${backendUrl}/api/movies/now-showing?page=0&size=100`).then((data) => {
     let movies = data.content;
     const totalMovies = movies.length;
     const totalPages = Math.ceil(totalMovies / pageSize); 
@@ -177,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // RENDER API COMING SOON TO SLIDE WRAPPER
-fetch('http://localhost:8080/api/movies/coming-soon?pages=0&size=18')
+fetch(`${backendUrl}/api/movies/coming-soon?pages=0&size=18`)
   .then(response => response.json())
   .then(data => {
     const movies = data.content; // Array of movies

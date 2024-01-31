@@ -3,6 +3,7 @@ class CreateMovieRequest {
     movieName,
     imdbId,
     posterUrl,
+    posterUrlInMovieDB,
     description,
     duration,
     language,
@@ -13,7 +14,9 @@ class CreateMovieRequest {
     movieLabel
   ) {
     this.movieName = movieName;
-    (this.imdbId = imdbId), (this.posterUrl = posterUrl);
+    this.imdbId = imdbId, 
+    this.posterUrl = posterUrl,
+    this.posterUrlInMovieDB = posterUrlInMovieDB,
     this.description = description;
     this.duration = duration;
     this.language = language;
@@ -29,6 +32,7 @@ class CreateMovieRequest {
   movieName: ${this.movieName},
   imdbId: ${this.imdbId},
   posterUrl: ${this.posterUrl},
+  posterUrlInMovieDB: ${this.posterUrlInMovieDB},
   language: ${this.language},
   duration: ${this.duration},
   movieLabel: ${this.movieLabel},
@@ -59,7 +63,6 @@ const categoryListCheckbox = document.querySelectorAll('.categoryForm input[type
 // Start autoFill data for the "CreateMovie" Form
 const autoFillDataBtn = document.querySelector("button#auto-fill-data");
 const imageAutoFill = document.querySelector("img#image-auto-fill");
-console.log(autoFillDataBtn);
 
 autoFillDataBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -76,19 +79,23 @@ autoFillDataBtn.addEventListener("click", (e) => {
   let createMovieRequestAutoFill;
 
   console.log(autoFillUrl);
+  let responseStatus = 0;
   fetch(autoFillUrl, requestOption)
     .then((response) => {
-      console.log(response.status);
-      console.log(response);
+      responseStatus = response.status;
       return response.json();
     })
     .then((data) => {
-      console.log(data);
-      console.log(data.movieName);
+      if(responseStatus === 200) {
+        console.log(data.movieName);
+      }else {
+        alert(data.message);
+      }
       createMovieRequestAutoFill = new CreateMovieRequest(
         data.movieName,
         data.imdbId,
         data.posterUrl,
+        data.posterUrlInMovieDB,
         data.description,
         data.duration,
         data.language,
@@ -98,8 +105,6 @@ autoFillDataBtn.addEventListener("click", (e) => {
         data.youtubeLink,
         data.movieLabel
       );
-      console.log(createMovieRequestAutoFill.openingTime);
-      console.log(createMovieRequestAutoFill.categoryList);
 
       movieNameInput.value = createMovieRequestAutoFill.movieName;
       imdbIdInput.value = createMovieRequestAutoFill.imdbId;
@@ -107,14 +112,8 @@ autoFillDataBtn.addEventListener("click", (e) => {
       durationInput.value = createMovieRequestAutoFill.duration;
       languageInput.value = createMovieRequestAutoFill.language;
       openingTimeInStringInput.value = createMovieRequestAutoFill.openingTime.split("T")[0];
-      // closingTimeInStringInput.value = createMovieRequestAutoFill.closingTimeInString.split("T")[0];
 
-      console.log(categoryListInStringInput);
-      // categoryListInStringInput.value = createMovieRequestAutoFill.categoryList.join(", ");
-      console.log(createMovieRequestAutoFill.categoryList);
-      console.log(createMovieRequestAutoFill.categoryList.includes("Horror"));
       for (const item of categoryListCheckbox) {
-        console.log(item.value);
         if(createMovieRequestAutoFill.categoryList.includes(item.value)){
           item.checked = true;
         }
@@ -124,7 +123,7 @@ autoFillDataBtn.addEventListener("click", (e) => {
       youtubeLinkInput.value = createMovieRequestAutoFill.youtubeLink;
       movieLabelInput.value = createMovieRequestAutoFill.movieLabel;
 
-      imageAutoFill.src = createMovieRequestAutoFill.posterUrl;
+      imageAutoFill.src = createMovieRequestAutoFill.posterUrlInMovieDB;
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
@@ -155,8 +154,10 @@ submitBtn.addEventListener("click", (e) => {
 
   const posterFileInput = document.getElementById("posterFileInput");
   const posterFile = posterFileInput.files[0];
-  // const posterFile = document.querySelector(".poster input").files[0];
-  // const imdbRatings = document.querySelector(".imdbRatings input").value;
+
+  console.log(posterFile);
+  console.log(imageAutoFill.src);
+
   function checkForNullValues() {
     // Define an array to store variables with null values
     const nullVariables = [];
@@ -223,6 +224,7 @@ submitBtn.addEventListener("click", (e) => {
       movieName,
       imdbId,
       null,
+      imageAutoFill.src,
       description,
       duration,
       language,
@@ -252,32 +254,8 @@ submitBtn.addEventListener("click", (e) => {
     body: formData,
   };
 
-  let responseStatus = 0;
-  // POST new Movie
-  fetch(createMovieUrl, requestOption)
-    .then((response) => {
-      console.log("***");
-      console.log(response);
-      console.log(response.status);
-      console.log("***");
-      responseStatus = response.status;
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (responseStatus === 200) {
-        console.log("Response data:", data);
-        alert("Successfull!");
-      } else {
-        alert("Error: " + data.message);
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("An error occurred while trying to add the movie.");
-    });
+
+  fetchApiCommon(createMovieUrl, requestOption, "An error occurred while trying to add the movie.");
 });
 
 //categoryForm checkbox
