@@ -37,8 +37,6 @@ function checkCookieExists(name) {
 }
 
 const rememberMeInput = document.querySelector("input.remember-me-input");
-const logoutBtn = document.querySelector("button#log-out");
-const loginBtn = document.querySelector("a#log-in");
 const pathName = window.location.pathname;
 
 // Test "jwt" claim "isAdmin"
@@ -64,16 +62,32 @@ if (checkCookieExists("jwt")) {
 
 console.log("isAdmin:", isAdmin);
 
+//  Handle Button "Log in", "Log out" in Navbar
+const btnContainerNavbarLeft = document.querySelector("div#btn-container-navbar-left");
+
 if (checkCookieExists("jwt")) {
-  loginBtn.style.display = "none";
-  logoutBtn.style.display = "block";
+  if (isAdmin == true) {
+    btnContainerNavbarLeft.innerHTML += `<a href="createmovie.html" class="btn" id="log-in">Create Movie</a>`;
+  }
+
+  let logoutBtn = document.createElement("button");
+  logoutBtn.classList.add("btn");
+  logoutBtn.id = "log-out";
+  logoutBtn.innerText = "LOG OUT";
+
+  logoutBtn.addEventListener("click", (e) => {
+    eraseCookie("jwt");
+    eraseCookie("userDto");
+  
+    location.reload();
+  });
+  btnContainerNavbarLeft.appendChild(logoutBtn);
 
   if (pathName.endsWith("login.html")) {
     window.location.href = "index.html";
   }
 } else {
-  loginBtn.style.display = "block";
-  logoutBtn.style.display = "none";
+  btnContainerNavbarLeft.innerHTML += `<a href="login.html" class="btn" id="log-in">LOG IN</a>`;
 }
 
 console.log(pathName.endsWith("createmovie.html"));
@@ -81,13 +95,6 @@ if (pathName.endsWith("createmovie.html") && !isAdmin){
   alert("Only admin can access this page!");
   window.location.href = "index.html";
 }
-
-logoutBtn.addEventListener("click", (e) => {
-  eraseCookie("jwt");
-  eraseCookie("userDto");
-
-  location.reload();
-});
 
 class UserDto {
   constructor(userDtoJSON) {
