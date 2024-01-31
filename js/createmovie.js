@@ -1,6 +1,8 @@
 class CreateMovieRequest {
   constructor(
     movieName,
+    imdbId,
+    posterUrl,
     description,
     duration,
     language,
@@ -8,9 +10,10 @@ class CreateMovieRequest {
     closingTime,
     categoryList,
     youtubeLink,
-    movieLabel,
+    movieLabel
   ) {
     this.movieName = movieName;
+    (this.imdbId = imdbId), (this.posterUrl = posterUrl);
     this.description = description;
     this.duration = duration;
     this.language = language;
@@ -24,6 +27,8 @@ class CreateMovieRequest {
   toString() {
     return `CreateMovieRequest {
   movieName: ${this.movieName},
+  imdbId: ${this.imdbId},
+  posterUrl: ${this.posterUrl},
   language: ${this.language},
   duration: ${this.duration},
   movieLabel: ${this.movieLabel},
@@ -35,23 +40,115 @@ class CreateMovieRequest {
 }`;
   }
 }
+// Find Object in HTML
+const movieNameInput = document.querySelector(".movieName input");
+const imdbIdInput = document.querySelector(".imdb_id input");
+const descriptionInput = document.querySelector(".description input");
+const durationInput = document.querySelector(".duration input");
+const languageInput = document.querySelector(".language select");
+const openingTimeInStringInput = document.querySelector(".openingTime input");
+const closingTimeInStringInput = document.querySelector(".closingTime input");
+const categoryListInStringInput = document.querySelector(".categoryList input");
+const youtubeLinkInput = document.querySelector(".youtubeLink input");
+const movieLabelInput = document.querySelector(".movieLabel select");
 
-// document.addEventListener("DOMContentLoaded", function () {  ==> Unnecessary event
+const categoryListCheckbox = document.querySelectorAll('.categoryForm input[type="checkbox"]');
+
+// End find Object in HTML
+
+// Start autoFill data for the "CreateMovie" Form
+const autoFillDataBtn = document.querySelector("button#auto-fill-data");
+const imageAutoFill = document.querySelector("img#image-auto-fill");
+console.log(autoFillDataBtn);
+
+autoFillDataBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const imdbId = imdbIdInput.value;
+
+  const autoFillUrl = `${backendUrl}/api/admin/movies/autofill-data/${imdbId}`;
+  const requestOption = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getCookie("jwt")}`,
+    },
+  };
+  let createMovieRequestAutoFill;
+
+  console.log(autoFillUrl);
+  fetch(autoFillUrl, requestOption)
+    .then((response) => {
+      console.log(response.status);
+      console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(data.movieName);
+      createMovieRequestAutoFill = new CreateMovieRequest(
+        data.movieName,
+        data.imdbId,
+        data.posterUrl,
+        data.description,
+        data.duration,
+        data.language,
+        data.openingTime,
+        data.closingTime,
+        data.categoryList,
+        data.youtubeLink,
+        data.movieLabel
+      );
+      console.log(createMovieRequestAutoFill.openingTime);
+      console.log(createMovieRequestAutoFill.categoryList);
+
+      movieNameInput.value = createMovieRequestAutoFill.movieName;
+      imdbIdInput.value = createMovieRequestAutoFill.imdbId;
+      descriptionInput.value = createMovieRequestAutoFill.description;
+      durationInput.value = createMovieRequestAutoFill.duration;
+      languageInput.value = createMovieRequestAutoFill.language;
+      openingTimeInStringInput.value = createMovieRequestAutoFill.openingTime.split("T")[0];
+      // closingTimeInStringInput.value = createMovieRequestAutoFill.closingTimeInString.split("T")[0];
+
+      console.log(categoryListInStringInput);
+      // categoryListInStringInput.value = createMovieRequestAutoFill.categoryList.join(", ");
+      console.log(createMovieRequestAutoFill.categoryList);
+      console.log(createMovieRequestAutoFill.categoryList.includes("Horror"));
+      for (const item of categoryListCheckbox) {
+        console.log(item.value);
+        if(createMovieRequestAutoFill.categoryList.includes(item.value)){
+          item.checked = true;
+        }
+      }
+      updateDataInCategoryInput();
+
+      youtubeLinkInput.value = createMovieRequestAutoFill.youtubeLink;
+      movieLabelInput.value = createMovieRequestAutoFill.movieLabel;
+
+      imageAutoFill.src = createMovieRequestAutoFill.posterUrl;
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });;
+
+
+});
+// End autoFill data for the "CreateMovie" Form
 
 let submitBtn = document.querySelector("#btnSubmit");
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  const movieName = document.querySelector(".movieName input").value;
-  const description = document.querySelector(".description input").value;
-  const duration = document.querySelector(".duration input").value;
-  const language = document.querySelector(".language select").value;
-  const openingTimeInString = document.querySelector(".openingTime input").value;
-  const closingTimeInString = document.querySelector(".closingTime input").value.concat("T00:00:00");
-  const categoryListInString = document.querySelector(".categoryList input").value.concat("T00:00:00");
-  const youtubeLink = document.querySelector(".youtubeLink input").value;
-  const movieLabel = document.querySelector(".movieLabel select").value;
+  const movieName = movieNameInput.value;
+  const imdbId = imdbIdInput.value;
+  const description = descriptionInput.value;
+  const duration = durationInput.value;
+  const language = languageInput.value;
+  const openingTimeInString = openingTimeInStringInput.value.concat("T00:00:00");
+  const closingTimeInString = closingTimeInStringInput.value.concat("T00:00:00");
+  const categoryListInString = categoryListInStringInput.value;
+  const youtubeLink = youtubeLinkInput.value;
+  const movieLabel = movieLabelInput.value;
 
   const openingTime = new Date(openingTimeInString);
   const closingTime = new Date(closingTimeInString);
@@ -60,12 +157,72 @@ submitBtn.addEventListener("click", (e) => {
   const posterFile = posterFileInput.files[0];
   // const posterFile = document.querySelector(".poster input").files[0];
   // const imdbRatings = document.querySelector(".imdbRatings input").value;
+  function checkForNullValues() {
+    // Define an array to store variables with null values
+    const nullVariables = [];
+  
+    // Check each variable for null value
+    if (movieName === null || movieName === "") {
+      nullVariables.push("movieName");
+    }
+    if (imdbId === null || imdbId === "") {
+      nullVariables.push("imdbId");
+    }
+    if (description === null || description === "") {
+      nullVariables.push("description");
+    }
+    if (duration === null || duration === "") {
+      nullVariables.push("duration");
+    }
+    if (language === null || language === "") {
+      nullVariables.push("language");
+    }
+    if (openingTimeInString === null || openingTimeInString === "") {
+      nullVariables.push("openingTimeInString");
+    }
+    if (closingTimeInString === null || closingTimeInString === "") {
+      nullVariables.push("closingTimeInString");
+    }
+    if (categoryListInString === null || categoryListInString === "") {
+      nullVariables.push("categoryListInString");
+    }
+    if (youtubeLink === null || youtubeLink === "") {
+      nullVariables.push("youtubeLink");
+    }
+    if (movieLabel === null || movieLabel === "") {
+      nullVariables.push("movieLabel");
+    }
+    if (openingTime === null || isNaN(openingTime.getTime())) {
+      nullVariables.push("openingTime");
+    }
+    if (closingTime === null || isNaN(closingTime.getTime())) {
+      nullVariables.push("closingTime");
+    }
+    if (posterFile === null) {
+      nullVariables.push("posterFile");
+    }
+  
+    // Check if any variables have null values
+    if (nullVariables.length > 0) {
+      alert("The following variables contain null values:");
+      alert(nullVariables);
+      return true; // Indicates presence of null values
+    } else {
+      console.log("All variables contain valid values.");
+      return false; // Indicates absence of null values
+    }
+  }
+  
+  // Call the function to check for null values
+  if(checkForNullValues()) return;
 
   const categoryList = categoryListInString.split(",").map((category) => category.trim());
   console.log(categoryList);
   const createMovieRequestJson = JSON.stringify(
     new CreateMovieRequest(
       movieName,
+      imdbId,
+      null,
       description,
       duration,
       language,
@@ -73,115 +230,83 @@ submitBtn.addEventListener("click", (e) => {
       closingTime,
       categoryList,
       youtubeLink,
-      movieLabel,
+      movieLabel
     )
   );
 
   console.log(createMovieRequestJson);
+  // return;
 
   const formData = new FormData();
-  formData.append("poster", posterFile);
-  //debugger;
-
+  console.log(posterFile);
+  if (posterFile !== undefined) formData.append("poster", posterFile);
   formData.append("createMovieRequest", new Blob([createMovieRequestJson], { type: "application/json" }));
 
-  fetch("http://localhost:8080/api/movies", {
+  const createMovieUrl = `${backendUrl}/api/admin/movies`;
+  const requestOption = {
     method: "POST",
+    headers: {
+      // "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${getCookie("jwt")}`,
+    },
     body: formData,
-  })
+  };
+
+  let responseStatus = 0;
+  // POST new Movie
+  fetch(createMovieUrl, requestOption)
     .then((response) => {
       console.log("***");
       console.log(response);
       console.log(response.status);
       console.log("***");
+      responseStatus = response.status;
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       return response.json();
     })
     .then((data) => {
-      console.log("Response data:", data);
-      alert("Successfull!");
+      if (responseStatus === 200) {
+        console.log("Response data:", data);
+        alert("Successfull!");
+      } else {
+        alert("Error: " + data.message);
+      }
     })
     .catch((error) => {
-      
       console.error("Error:", error);
       alert("An error occurred while trying to add the movie.");
     });
 });
 
 //categoryForm checkbox
-document.querySelectorAll('.categoryForm input[type="checkbox"]').forEach(checkbox => {
-  checkbox.addEventListener('change', (e) => {
+document.querySelectorAll('.categoryForm input[type="checkbox"]').forEach((checkbox) => {
+  checkbox.addEventListener("change", (e) => {
     e.preventDefault();
 
-    const selectedOptions = Array.from(document.querySelectorAll('.categoryForm input[type="checkbox"]:checked'))
-      .map(checkbox => checkbox.value);
-
-    const input = document.querySelector('.input_box.categoryList input');
-    input.value = selectedOptions.join(', ');
+    updateDataInCategoryInput();
   });
 });
+
+const updateDataInCategoryInput = () => {
+  const selectedOptions = Array.from(document.querySelectorAll('.categoryForm input[type="checkbox"]:checked')).map(
+    (checkbox) => checkbox.value
+  );
+
+  const input = document.querySelector(".input_box.categoryList input");
+  input.value = selectedOptions.join(", ");
+}
 
 
 // categoryForm checkbox
-document.querySelectorAll('.categoryForm input[type="checkbox"]').forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    const selectedOptions = Array.from(document.querySelectorAll('.categoryForm input[type="checkbox"]:checked'))
-      .map(checkbox => checkbox.value);
+document.querySelectorAll('.categoryForm input[type="checkbox"]').forEach((checkbox) => {
+  checkbox.addEventListener("change", () => {
+    const selectedOptions = Array.from(document.querySelectorAll('.categoryForm input[type="checkbox"]:checked')).map(
+      (checkbox) => checkbox.value
+    );
 
-    const input = document.querySelector('.input_box.categoryList input');
-    input.value = selectedOptions.join(', ');
+    const input = document.querySelector(".input_box.categoryList input");
+    input.value = selectedOptions.join(", ");
   });
 });
-
-
-// Format the dates using Intl.DateTimeFormat
-// const openingTime = new Date('2023-12-21T11:11:00');
-
-// const closingTime = new Date('2023-12-21T11:11:00');
-// class CreateMovieRequest {
-//   constructor(movieName, language, openingTime, closingTime) {
-//     this.movieName = movieName;
-//     this.language = language;
-//     this.openingTime = openingTime;
-//     this.closingTime = closingTime;
-//   }
-// }
-
-// let submitBtn = document.getElementById("btnSubmit");
-
-// submitBtn.addEventListener("click", (e) => {
-//     e.preventDefault;
-
-//     const createMovieRequestJson = JSON.stringify(new CreateMovieRequest("Movie 1 from createMovie.js", "en", openingTime, closingTime));
-
-//   const posterFileInput = document.getElementById("posterFileInput"); // Replace with the actual ID of your file input
-//   const posterFile = posterFileInput.files[0];
-
-//   const formData = new FormData();
-//   formData.append('poster', posterFile);
-  
-//   // Append the JSON string as a blob with the desired Content-Type
-//   formData.append('createMovieRequest', new Blob([createMovieRequestJson], { type: 'application/json' }));
-  
-//   // Make the POST request using fetch
-//   fetch("http://localhost:8080/api/movies", {
-//     method: "POST",
-//     body: formData,
-//   })
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-//       return response.json(); // Assuming the response is in JSON format
-//     })
-//     .then((data) => {
-//       // Handle the response data
-//       console.log("Response data:", data);
-//     })
-//     .catch((error) => {
-//       // Handle errors
-//       console.error("Error:", error);
-//     });
-// });
