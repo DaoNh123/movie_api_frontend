@@ -255,7 +255,7 @@ submitBtn.addEventListener("click", (e) => {
   };
 
 
-  fetchApiCommon(createMovieUrl, requestOption, "An error occurred while trying to add the movie.");
+  fetchApiCommon(createMovieUrl, requestOption, "An error occurred while trying to add the movie.", true);
 });
 
 //categoryForm checkbox

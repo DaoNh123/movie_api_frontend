@@ -27,7 +27,13 @@
             <li><a href="category.html">CATEGORY</a></li>
             <li><a href="aboutus.html">ABOUT US</a></li>
         </ul>
-        <div id="btn-container-navbar-left"></div> 
+                <div id="btn-container-navbar-left">
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn user-action">User Action</button>
+                <div id="myDropdown" class="dropdown-content">
+                </div>
+              </div>
+        </div>  
         <!-- <a href="login.html" class="btn">LOG IN</a>    -->
     </header>
 
@@ -58,7 +64,7 @@
                 <div id="notification" class="hidden">
                 <div class="content-notification">
                     <i class='bx bx-error'></i>
-                    <h3>This movie will be shown on May 16, 2023 and tickets will open 3 days before</h3>
+                    <h3>Booking for this movie only available 3 days before Premiere Date</h3>
                     <button onclick="hideNotification()" class="btn">Thanks</button>
                 </div>
                 </div>

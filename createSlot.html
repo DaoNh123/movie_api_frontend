@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=3.0" />
+    <title>CreateSlot</title>
+
+    <!--     LINK CSS      -->
+    <link rel="stylesheet" href="css/createmovie.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!--      BOX ICONS      -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <!--   Link Swiper's CSS   -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  </head>
+  <body class="post-form">
+    <img src="image/background8.jpg" alt="image" class="post-banner" />
+    <!--NAVBAR-->
+    <header>
+      <a href="index.html" class="logo"> <i class="bx bxs-movie-play"></i>FilmHub </a>
+      <div class="bx bx-menu" id="menu-icon"></div>
+      <!--   MENU NAVBAR   -->
+      <ul class="navbar">
+        <li><a href="index.html" class="home-active">HOME</a></li>
+        <li><a href="comingsoon.html">COMING SOON</a></li>
+        <li><a href="category.html">CATEGORY</a></li>
+        <li><a href="aboutus.html">ABOUT US</a></li>
+      </ul>
+              <div id="btn-container-navbar-left">
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn user-action">User Action</button>
+                <div id="myDropdown" class="dropdown-content">
+                </div>
+              </div>
+        </div> 
+    </header>
+
+    <div class="wrapper">
+      <div class="input_group">
+        <div class="input_time">
+          <h4>Choosing Date</h4>
+          <div class="input_box">
+            <input type="date" placeholder="" required class="name" name="" value="" id="date-of-slot" />
+            <i class="bx bxs-calendar"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="input_box">
+        <div class="input_time">
+          <h4>Choosing Theater Room</h4>
+          <select name="theater-room" id="theater-room" value="en">
+            <option value="" default aria-placeholder="">Theater Room</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="input_box">
+        <div class="input_time">
+          <h4>Choosing Movie</h4>
+          <select name="theater-room" id="choose-movie" value="en" aria-placeholder="">
+            <option value="" default movie-id="" aria-placeholder="">Movie - placeholder </option>
+            <!-- <option value="Movie 1" movie-id="1">Movie 1</option>
+            <option value="Movie 2" movie-id="2">Movie 2</option>
+            <option value="Movie 3" movie-id="3">Movie 3</option> -->
+          </select>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_time">
+          <h4>Choosing Start Time</h4>
+          <div class="input_box">
+            <input type="time" placeholder="" required class="name" min="8:00" max="23:59" id="start-time-of-slot" />
+            <i class="bx bxs-calendar"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_button">
+            <button type="submit" class="btn" id="create-slot">Create Slot</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="./js/create.slot.js"></script>
+  </body>
+</html>

@@ -73,7 +73,6 @@ const loginAction = (e) => {
         return res.json();
       })
       .then((data) => {
-        console.log(rememberMeInput.checked);
 
         if (responseStatus === 200) {
           const userData = new UserData(data.jwt, data.userDto);
@@ -91,7 +90,7 @@ const loginAction = (e) => {
           window.history.back();
           // location.reload();
         } else if (responseStatus === 400) {
-          alert("Username or password wrong!");
+          alert(data.message);
         }
       });
   } else {
