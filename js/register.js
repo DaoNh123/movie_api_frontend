@@ -9,6 +9,7 @@ const emailInput = document.querySelector("#email");
 const avatarInput = document.querySelector("#avatar");
 const registerBtn = document.querySelector("button#register");
 
+
 class CreateUserRequest {
   constructor(firstName, lastName, username, password, gender, dob, email) {
     this.firstName = firstName;
@@ -121,7 +122,7 @@ registerBtn.addEventListener("click", (e) => {
     formData.append("avatar", avatar);
     formData.append("createUserRequest", new Blob([createUserRequestJSON], { type: "application/json" }));
   
-    fetch("http://localhost:8080/api/accounts/register2", {
+    fetch(`${backendUrl}/api/accounts/register2`, {
       method: "POST",
       body: formData,
     }).then((response) => {
@@ -141,3 +142,7 @@ registerBtn.addEventListener("click", (e) => {
     });
   }
 });
+
+if(checkCookieExists("jwt")){
+  window.location.href = "index.html";
+}
