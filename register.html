@@ -3,51 +3,167 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Register Page</title>
+
+    <!--     LINK CSS      -->
+    <link rel="stylesheet" href="css/createmovie.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!--      BOX ICONS      -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <!--   Link Swiper's CSS   -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
-  <body>
-    <h1>Register Form</h1>
-    <form action="">
-      <label for="first_name">First name</label>
-      <input type="text" name="first_name" id="first_name" />
+  <body class="post-form">
+    <img src="image/background8.jpg" alt="image" class="post-banner" />
+    <!--NAVBAR-->
+    <header>
+      <a href="index.html" class="logo"> <i class="bx bxs-movie-play"></i>FilmHub </a>
+      <div class="bx bx-menu" id="menu-icon"></div>
+      <!--   MENU NAVBAR   -->
+      <ul class="navbar">
+        <li><a href="index.html" class="home-active">HOME</a></li>
+        <li><a href="comingsoon.html">COMING SOON</a></li>
+        <li><a href="category.html">CATEGORY</a></li>
+        <li><a href="aboutus.html">ABOUT US</a></li>
+      </ul>
+              <div id="btn-container-navbar-left">
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn user-action">User Action</button>
+                <div id="myDropdown" class="dropdown-content">
+                </div>
+              </div>
+        </div> 
+    </header>
+
+    <!--  -->
+    <div class="wrapper">
+      <h1 style="color: black">Register Form</h1>
+      <div class="input_group">
+        <div class="input_box imdb_id">
+          <input type="text" placeholder="first_name" required class="name" name="first_name" value="" id="first_name" />
+          <i class="bx bxs-user-circle"></i>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_box imdb_id">
+          <input type="text" placeholder="last_name" required class="name" name="last_name" value="" id="last_name" />
+          <i class="bx bxs-user-circle"></i>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_box imdb_id">
+          <input type="text" placeholder="username" required class="name" name="username" value="" id="username"/>
+          <i class="bx bxs-user-circle"></i>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_box imdb_id">
+          <input type="password" placeholder="password" required class="name" name="password" value="" id="password" />
+          <i class="bx bxs-user-circle"></i>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_box imdb_id">
+          <input
+            type="password"
+            placeholder="re-password: password need to be at least 8 character, including minimum 1 digit"
+            required
+            class="name"
+            name="re-password"
+            value="" id="re-password"
+          />
+          <i class="bx bxs-user-circle"></i>
+        </div>
+      </div>
+
+      <div class="input_box">
+        <select name="language" id="gender" value="en" >
+          <option value="" default aria-placeholder="Gender">Gender</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="O">Other</option>
+        </select>
+        <i class="bx bxs-user-voice"></i>
+      </div>
+
+      <div class="input_group">
+        <div class="input_time">
+          <h4>Date of birth</h4>
+          <div class="input_box">
+            <input type="date" placeholder="Dob_of_birth" required class="name" name="" value="" id="dob" />
+            <i class="bx bxs-calendar"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_box imdb_id">
+          <input type="email" placeholder="email" required class="name" name="email" value="" id="email" />
+          <i class="bx bxs-user-circle"></i>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_box avatar">
+          <input type="file" required class="name" name="avatar" id="avatar" />
+          <i class="bx bxs-file-image"></i>
+        </div>
+      </div>
+      <div class="input_group">
+        <div class="input_button">
+            <button type="submit" class="btn" id="register">POST</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <!-- <form action=""> -->
+      <!-- <label for="first_name">First name</label>
+      <input type="text" name="first_name" required class="name" id="first_name" />
       <br />
 
       <label for="last_name">Last name</label>
-      <input type="text" name="last_name" id="last_name" />
-      <br />
+      <input type="text" name="last_name" required class="name" id="last_name" />
+      <br /> -->
 
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" />
+      <!-- <label for="username">Username</label>
+      <input type="text" name="username" id="username" required class="name" />
       <br />
 
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" />
-      <br />
+      <input type="password" name="password" id="password" required class="name" />
+      <br /> -->
 
-      <label for="gender">Gender</label>
+      <!-- <label for="gender">Gender</label>
       <select name="language" id="gender" value="en">
         <option value="" default aria-placeholder="Gender"></option>
         <option value="M">Male</option>
         <option value="F">Female</option>
         <option value="O">Other</option>
       </select>
-      <br />
+      <br /> -->
 
-      <label for="dob">Date of birth</label>
-      <input type="date" placeholder="#" required id="dob" name="dob" value="" />
-      <br />
+      <!-- <label for="dob">Date of birth</label>
+      <input type="date" placeholder="#" required id="dob" name="dob" required class="name" value="" />
+      <br /> -->
 
-      <label for="email">Email</label>
+      <!-- <label for="email">Email</label>
       <input type="email" placeholder="enter your email!" required id="email" name="email" value="" />
       <br />
 
       <label for="avartar">Avatar</label>
       <input type="file" required class="avatar" id="avatar" />
-      <br>
+      <br />
       <button type="submit" class="btn" id="register">Register</button>
-    </form>
+    </form> -->
 
     <!-- <script src="./js/common.js"></script> -->
+    <script src="js/common.js"></script>
     <script src="./js/register.js"></script>
   </body>
 </html>

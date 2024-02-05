@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pageSize = 10; 
   let currentPage = 1; 
 
-  fetchApi("http://localhost:8080/api/movies/coming-soon?pages=0&size=18").then((data) => {
+  fetchApi(`${backendUrl}/api/movies/coming-soon?pages=0&size=18`).then((data) => {
     let movies = data.content;
     const totalMovies = movies.length;
     const totalPages = Math.ceil(totalMovies / pageSize); 

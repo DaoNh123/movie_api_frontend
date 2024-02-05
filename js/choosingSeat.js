@@ -1,3 +1,5 @@
+const movieNameTag = document.querySelector("p#movie-name");
+
 let getApi = async (apiLink) => {
   const response = await fetch(apiLink);
   const data = await response.json();
@@ -32,11 +34,14 @@ class SlotResponse {
     this.theaterRoom = theaterRoom;
 
     // Extracting hour and minute from startTime
-    const [datePart, timePart] = startTime.split("@");
-    this.date = datePart;
+    // const [datePart, timePart] = startTime.split("T");
+    // this.date = datePart;
 
-    const [hour, minute] = timePart.split(":");
-    this.startTimeWithinDay = `${hour}:${minute}`;
+    // const [hour, minute] = timePart.split(":");
+    // this.startTimeWithinDay = `${hour}:${minute}`;
+
+    this.date = getDateInString(startTime);
+    this.startTimeWithinDay = getTimeInString(startTime);
   }
 
   toString() {
@@ -59,18 +64,30 @@ class OverallResponse {
   }
 }
 
-let getMovieId = async () => {
-  let urlParams = await new URLSearchParams(window.location.search);
-  let movieId = await decodeURIComponent(urlParams.get("movie-id"));
-  return movieId;
-};
+// let getMovieId = async () => {
+  let urlParams = new URLSearchParams(window.location.search);
+  let movieId = decodeURIComponent(urlParams.get("movie-id"));
+
+  const getMovieNameByIdUrl = `${backendUrl}/api/movies/movie-name/${movieId}`;
+  console.log(getMovieNameByIdUrl);
+
+  fetch(getMovieNameByIdUrl)
+  .then(res => res.text())
+  .then(data => {
+    movieNameTag.innerText = `Movie: ${data}`;
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+
+//   return movieId;
+// };
 
 let getSlotsByMovieId = async () => {
-  let movieId = await getMovieId();
+  // let movieId = await getMovieId();
   let slotResponse = await getApi(`${backendUrl}/api/movies/${movieId}/slots`)
     .then((data) => new OverallResponse(data.resultSize, data.slotResponses ?? []))
     .then((res) => {
-      console.log(res);
       return res;
     });
   return slotResponse.slotResponses;
@@ -155,7 +172,6 @@ slotResponsesMap().then((slotResponsesMap) => {
     });
   });
 
-  console.log(selectDayTag);
 });
 
 // ************ Start Handling choosing Seat View *********
@@ -284,10 +300,6 @@ const emailInput = document.querySelector("#email-input");
 const addressInput = document.querySelector("#address-input");
 const dobInput = document.querySelector("#dob-input");
 
-console.log(createOrderInsideFormBtn);
-console.log(closePaymentFormBtn);
-console.log(paymentForm);
-console.log(dobInput);
 
 closePaymentFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -355,6 +367,7 @@ openPaymentFormBtn.addEventListener("click", (e) => {
             console.log(data);
             alert("Create Order successfully");
             alert("Total order value is: " + data.totalValue);
+            location.reload();
             for (const seat of chosenSeat) {
               seat.classList.add("occupied");
             }
@@ -455,3 +468,7 @@ const sendCreateOrderRequest = (orderRequest) => {
       console.error("Error:", error.message || "Unknown error");
     });
 };
+
+// Set href for Back button on Page
+const backBtn = document.querySelector("a.btn-back");
+backBtn.href = `details.html?id=${movieId}`;

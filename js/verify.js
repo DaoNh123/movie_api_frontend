@@ -8,12 +8,15 @@ if (frontendUrl === "http://127.0.0.1:5500") {
 
 
 let urlParams = new URLSearchParams(window.location.search);
-const verifyCode = urlParams.get("verifyCode");
-const email = urlParams.get("email");
+console.log(urlParams.get("verifyCode"));
+console.log(urlParams.get("email"));
+
+const decodedVerifyCode = encodeURIComponent(urlParams.get("verifyCode"));
+const decodedEmail = encodeURIComponent(urlParams.get("email"));
 
 console.log("Root URL:", frontendUrl);
-console.log("verifyCode: " + verifyCode);
-console.log("email: " + email);
+console.log("decodedVerifyCode: " + decodedVerifyCode);
+console.log("decodedEmail: " + decodedEmail);
 
 const getAPI = (api) => {
   const result = fetch(api)
@@ -29,7 +32,7 @@ const verifyAccount = async () => {
   const notifyTag = document.querySelector("#notify");
   console.log(notifyTag);
 
-  const verifyUrl = `${backendUrl}/api/accounts/verify?email=${email}&verificationCode=${verifyCode}`;
+  const verifyUrl = `${backendUrl}/api/accounts/verify?email=${decodedEmail}&verificationCode=${decodedVerifyCode}`;
 
   console.log(verifyUrl);
 
@@ -41,10 +44,6 @@ const verifyAccount = async () => {
         return res.text();
       }
       return res.json();
-      // console.log('Response:', data);
-      // console.log('Response:', data.code);
-      // console.log('Message in response: ', data.message);
-      // return data.message;
     })
     .then((data) => {
       if (typeof data === "string") return data;

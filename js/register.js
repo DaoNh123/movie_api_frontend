@@ -2,11 +2,13 @@ const firstNameInput = document.querySelector("#first_name");
 const lastNameInput = document.querySelector("#last_name");
 const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
+const rePasswordInput = document.querySelector("#re-password");
 const genderInput = document.querySelector("#gender");
 const dobInput = document.querySelector("#dob");
 const emailInput = document.querySelector("#email");
 const avatarInput = document.querySelector("#avatar");
 const registerBtn = document.querySelector("button#register");
+
 
 class CreateUserRequest {
   constructor(firstName, lastName, username, password, gender, dob, email) {
@@ -30,6 +32,7 @@ registerBtn.addEventListener("click", (e) => {
   const lastName = lastNameInput.value;
   const username = usernameInput.value;
   const password = passwordInput.value;
+  const rePassword = rePasswordInput.value;
   const gender = genderInput.value;
 
   const dob = dobInput.value;
@@ -45,16 +48,20 @@ registerBtn.addEventListener("click", (e) => {
   console.log("lastName: " + lastName);
   console.log("username: " + username);
   console.log("password: " + password);
+  console.log("rePassword: " + rePassword);
   console.log("gender: " + gender);
   console.log("dob: " + dob);
   console.log("email: " + email);
+  console.log("avatar: " + avatar);
 
-  const nameRegex = /^[a-z A-Z]+$/;
+  // const nameRegex = /^[a-z A-Z]+$/;
+  const vietnameseNameRegex = /^[/[^a-z A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/;
   const usernameRegex = /^(?=.*[a-zA-Z]).{5,}$/;  // username's min length is 5 and have at least 1 alphabet
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;   // password have at least 8 character, 1 alphabet and 1 number
+  let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   let testName = false;
-  if(firstName != null && nameRegex.test(firstName) && lastName != null && nameRegex.test(lastName)){
+  if(firstName != null && vietnameseNameRegex.test(firstName) && lastName != null && vietnameseNameRegex.test(lastName)){
     testName = true;
   }else {
     testName = false;
@@ -78,8 +85,13 @@ registerBtn.addEventListener("click", (e) => {
     return;
   }
 
+  if(password !== rePassword){
+    alert("Password and Re-password does not match!");
+    return;
+  }
+
   let testGender = false;
-  if(gender != null){
+  if(gender != ""){
     testGender = true;
   }else {
     alert("You must choose your Gender!");
@@ -87,7 +99,12 @@ registerBtn.addEventListener("click", (e) => {
   }
   console.log("test");
 
-  if(testName && testUsername && testPassword){
+  if(email ==  "" || !emailRegex.test(email)){
+    alert("Email has a wrong format or null!");
+  }
+  // return;
+
+  if(testName && testUsername && testPassword && testGender){
     const createUserRequest = new CreateUserRequest(
       firstName,
       lastName,
@@ -105,7 +122,7 @@ registerBtn.addEventListener("click", (e) => {
     formData.append("avatar", avatar);
     formData.append("createUserRequest", new Blob([createUserRequestJSON], { type: "application/json" }));
   
-    fetch("http://localhost:8080/api/accounts/register2", {
+    fetch(`${backendUrl}/api/accounts/register2`, {
       method: "POST",
       body: formData,
     }).then((response) => {
@@ -125,3 +142,7 @@ registerBtn.addEventListener("click", (e) => {
     });
   }
 });
+
+if(checkCookieExists("jwt")){
+  window.location.href = "index.html";
+}
